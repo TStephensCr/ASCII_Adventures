@@ -30,5 +30,5 @@ int main(){
     wrefresh(inputwin);
     getch();
     getch();
-
+    endwin();
 }
