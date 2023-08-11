@@ -7,6 +7,6 @@ Mappa::Mappa(WINDOW * win){
 };
 
 void Mappa::stampamappa(WINDOW * playwin){
-    
+    whline(playwin, 0, 3);
     return;
 }
