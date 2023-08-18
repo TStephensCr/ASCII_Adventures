@@ -11,21 +11,20 @@ int main(){
     noecho();
     cbreak();
     curs_set(false);
-    getch();
-    WINDOW * menuwin = newwin(yMax, xMax-2, 30, 1);
-    WINDOW * inputwin = newwin(yMax-15, xMax-10, 3, 5);
+    WINDOW * menuwin = newwin(5, 102, 22, 1);
+    box(menuwin,0,0);
+    WINDOW * inputwin = newwin(20, 102, 1, 1);
     box(inputwin,0,0);
-    nodelay(inputwin, true);
+    wrefresh(menuwin);
+    wrefresh(inputwin);
+    //nodelay(inputwin, true);
+
     //Menu oggetto
     Mappa * m = new Mappa(inputwin);
-    int yMaxG,xMaxG;
-    getmaxyx(inputwin,yMaxG,xMaxG);
+
     //Stampa mappa
-    //resizeterm(105,105);
+    m->leggimappa('2');
     m->stampamappa(inputwin);
     wgetch(inputwin);
-    wgetch(inputwin);
-    getch();
     endwin();
-    return 0;
 }
