@@ -1,0 +1,26 @@
+#define CHARACTER '@'
+#define ENEMY '&'
+#define MONEY '*'
+#define SHOOT '-'
+#define HORIZONTAL_WALL '='
+#define VERTICAL_WALL '|'
+#define POWERUP 'P'
+#define PLAYERLIFES 3
+#define X_PLAYERSPAWN 20
+#define Y_PLAYERSPAWN 1
+#define JUMPHEIGHT 12
+#define NAPTIME 30
+
+
+enum EntityType { player, enemy, money, shoot };
+
+struct entita {
+  EntityType type;
+  Position* pos = new Position();
+  int xForce = 0;
+  int yForce = 0;
+  entita* next;
+};
+typedef entita* ens;  // e = entit�, n = nello , s = spazio
+
+enum GameStatus { Menu, Game };
