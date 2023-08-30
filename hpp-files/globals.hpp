@@ -10,8 +10,6 @@
 #define Y_PLAYERSPAWN 1
 #define JUMPHEIGHT 12
 #define NAPTIME 30
-#define xMaxG 100
-#define yMaxG 18
 #include "Position.hpp"
 
 
