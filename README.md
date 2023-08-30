@@ -29,3 +29,6 @@ Collisioni:
 
 TO DO:
 -unire mappa e logica
+
+
+ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
