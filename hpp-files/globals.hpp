@@ -6,11 +6,11 @@
 #define VERTICAL_WALL '|'
 #define POWERUP 'P'
 #define PLAYERLIFES 3
-#define X_PLAYERSPAWN 20
-#define Y_PLAYERSPAWN 1
+#define X_PLAYERSPAWN 3
+#define Y_PLAYERSPAWN 4
 #define JUMPHEIGHT 12
 #define NAPTIME 30
-#include "Position.hpp"
+
 
 
 enum EntityType { player, enemy, money, shoot };

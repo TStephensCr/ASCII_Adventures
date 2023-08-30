@@ -29,9 +29,11 @@ public:
 
 	void mvdown(ens myEntity);
 
-	void JumpStraight(int Height);
+	void JumpStraight();
 
-	void Jump(int Height);
+	void Jump();
+
+	void Shoot();
 
 	int getmv();
 

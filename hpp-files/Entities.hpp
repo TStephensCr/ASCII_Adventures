@@ -1,6 +1,6 @@
 #include <ncurses.h>
 #include "Player.hpp"
-//#include "Position.hpp"
+#include "Position.hpp"
 #include "globals.hpp"
 
 class Entities {
@@ -28,7 +28,7 @@ class Entities {
   char Character(EntityType Type);  // Given a EntityType return the char that
                                     // will show up in the game
 
-  ens EntityInLocation(
+  ens EntitiesInLocation(
       MyPosition Loc);  // Given a position returns the entity in that position
                         // otherwise returns NULL
 
@@ -38,6 +38,8 @@ class Entities {
   void RemovePlayer();
 
   ens SpawnPlayer();
+
+  int GetPlayerLives();
 
   ens ReturnPlayerPointer();
 

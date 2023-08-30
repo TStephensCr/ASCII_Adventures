@@ -30,8 +30,6 @@ int main() {
 
     Events* eventi = logica->ReturnEventsOBJ();
 
-    ens j = entita->Insert(player,4,4);
-
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
@@ -40,6 +38,8 @@ int main() {
     m->mapcaller();
 
     m->stampamappa();
+
+    logica->InitEntities(1);
 
     while (1) {
 

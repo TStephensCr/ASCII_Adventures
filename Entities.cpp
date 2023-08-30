@@ -72,19 +72,32 @@ ens Entities::SpawnPlayer(){
     return Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN);
 }
 
-ens Entities::EntityInLocation(MyPosition Loc) {
-  bool trovato = false;
-  ens entity = entities;
-  while (entity && !trovato) {
-    if (xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) trovato = true;
-    if (!trovato) entity = entity->next;
-  }
-  if (trovato)
-    return entity;
-  else
-    return NULL;
-}  // se l'entit� nella posizione x , y esiste allora ritorna
-   // entity->identificationCode altrimenti -1
+int Entities::GetPlayerLives(){
+    if(InfoPlayer){
+        return InfoPlayer->Lifes;
+    }else{
+      return -1;
+    }
+}
+
+ens Entities::EntitiesInLocation(MyPosition Loc) {
+    ens foundEntities = NULL;
+    ens entity = entities;
+    
+    while (entity) {
+        if (xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) {
+            // Effettua l'head insert dell'entità trovata
+            ens temp = entity;
+            entity = entity->next;  // Avanza nell'elenco principale
+            temp->next = foundEntities;
+            foundEntities = temp;
+        } else {
+            entity = entity->next;  // Avanza nell'elenco principale
+        }
+    }
+    return foundEntities;
+}
+
 
 char Entities::Character(EntityType Type) {
   switch (Type) {

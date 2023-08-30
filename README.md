@@ -24,3 +24,8 @@ Collisioni:
 -palyer/soldo ->se il soldo è una casella vicino al player lo prende
 -bot/player   ->se il bot tocca il player lo scaraventa via
 -nemico/soldo ->lo attraversa
+
+
+
+TO DO:
+-unire mappa e logica

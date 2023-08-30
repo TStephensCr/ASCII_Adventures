@@ -21,6 +21,8 @@ public:
 
 	Entities* ReturnEntitiesOBJ();	
 
+	void InitEntities(int NumberOfMap);
+
 	void GiveDynamicity();
 
 };

@@ -33,25 +33,40 @@ void Events::mvdown(ens myEntity) {
         myEntity->yForce += 1;
 }
 
-void Events::JumpStraight(int Height) {
+void Events::JumpStraight() {
     if (!InfoPlayer->inJump) {
         // Make the entity jump only if it's on the ground (i.e., yForce is zero)
         if (PlayerPointer->yForce == 0)
-            PlayerPointer->yForce -= Height;
+            PlayerPointer->yForce -= JUMPHEIGHT;
     }
 }
 
-void Events::Jump(int Height){	
+void Events::Jump(){	
 	if (!InfoPlayer->inJump) {
         if (PlayerPointer->yForce == 0)
-            PlayerPointer->yForce -= Height;
+            PlayerPointer->yForce -= JUMPHEIGHT;
 
 		if (InfoPlayer->LastMovement == 'd')
-			mvright(PlayerPointer, Height);
+			mvright(PlayerPointer, JUMPHEIGHT);
 		else 
-			mvleft(PlayerPointer, Height);
+			mvleft(PlayerPointer, JUMPHEIGHT);
     }
 }
+
+void Events::Shoot()
+{
+	int xPos = PlayerPointer->pos->ReturnPos().x;
+	int yPos = PlayerPointer->pos->ReturnPos().y;
+
+	if(InfoPlayer->LastMovement == 'd'){
+		ens sparo =entitiesOBJ->Insert(shoot, xPos + 1, yPos);
+		sparo->xForce = 20;
+	}else if(InfoPlayer->LastMovement == 's' ){
+		ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
+		sparo->xForce = -20;
+	}
+}
+
 int Events::getmv() {
 	int choice = wgetch(curwin);
 
@@ -71,10 +86,10 @@ int Events::getmv() {
 			mvdown(PlayerPointer);
 			break;
 		case ' ':
-			JumpStraight(JUMPHEIGHT);
+			JumpStraight();
 			break;
 		case KEY_UP:
-			Jump(JUMPHEIGHT);
+			Jump();
 			break;
 		}
 	}
@@ -82,7 +97,5 @@ int Events::getmv() {
 }
 
 void Events::Gravity(ens myEntity) {
-	if(myEntity)myEntity->yForce++;
+	if(myEntity && myEntity->type == player)myEntity->yForce++;
 }
-
-
