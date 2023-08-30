@@ -4,10 +4,11 @@ LDFLAGS = -lncurses
 
 SRCDIR = .
 OBJDIR = obj
+HPPDIR = hpp-files
 
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
-TARGET = progetto
+TARGET = game
 
 all: $(TARGET)
 
@@ -16,7 +17,7 @@ $(TARGET): $(OBJS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $< -I$(HPPDIR)
 
 clean:
 	rm -rf $(OBJDIR) $(TARGET)

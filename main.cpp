@@ -1,9 +1,9 @@
-#include <ncurses.h>
+/*#include <ncurses.h>
 #include <curses.h>
 
-#include "Mappa.cpp"/*
-#include "Menu.hpp" 
-#include "GameLogic/Logic.cpp"*/
+#include "Mappa.cpp"
+#include "Menu.cpp" 
+
 
 
 int main(){
@@ -19,12 +19,16 @@ int main(){
     wrefresh(inputwin);
     //nodelay(inputwin, true);
 
-    //Menu oggetto
+    Menu * menu=new Menu(menuwin, inputwin);
+    menu->titolo();
+    menu->finestraGioco();
+    int scelta=menu->finestraMenu();
+
     Mappa * m = new Mappa(inputwin);
 
     //Stampa mappa
-    m->leggimappa('2');
-    m->stampamappa(inputwin);
+    m->mapcaller();
+    m->stampamappa();
     wgetch(inputwin);
     endwin();
-}
+}*/

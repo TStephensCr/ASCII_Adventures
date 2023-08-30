@@ -10,6 +10,9 @@
 #define Y_PLAYERSPAWN 1
 #define JUMPHEIGHT 12
 #define NAPTIME 30
+#define xMaxG 100
+#define yMaxG 18
+#include "Position.hpp"
 
 
 enum EntityType { player, enemy, money, shoot };
@@ -23,4 +26,4 @@ struct entita {
 };
 typedef entita* ens;  // e = entit�, n = nello , s = spazio
 
-enum GameStatus { Menu, Game };
+enum GameStatus { MenU, Game };

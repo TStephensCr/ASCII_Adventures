@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include "hpp-files/Logic.hpp"
-#include "P.project2023/Mappa.cpp"
+#include "hpp-files/Mappa.hpp"
+#include "hpp-files/Menu.hpp" 
 
 int main() {
     initscr();
@@ -12,7 +13,10 @@ int main() {
     int x, y;
     getmaxyx(stdscr, y, x);
 
-    WINDOW* win = newwin(y, x, 0, 0);
+    WINDOW * menuwin = newwin(5, 102, 22, 1);
+    box(menuwin,0,0);
+
+    WINDOW* win = newwin(20, 102, 0, 0);
 
     nodelay(win, true);
 
@@ -28,9 +32,14 @@ int main() {
 
     ens j = entita->Insert(player,4,4);
 
-    m->leggimappa('3');
+    Menu * menu = new Menu(menuwin, win);
+    menu->titolo();
+    menu->finestraGioco();
+    int scelta=menu->finestraMenu();
 
-    m->stampamappa(win);
+    m->mapcaller();
+
+    m->stampamappa();
 
     while (1) {
 
