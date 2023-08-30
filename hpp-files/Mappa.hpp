@@ -2,7 +2,7 @@
 #define _MAPPA_H_
 
 #include <ncurses.h>
-//#include "globals.hpp"
+#include "globals.hpp"
 
 class Mappa{
     public:

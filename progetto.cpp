@@ -17,7 +17,7 @@ int main() {
     box(menuwin,0,0);
 
     WINDOW* win = newwin(20, 102, 0, 0);
-
+    //keypad(win, true);
     nodelay(win, true);
 
     box(win, 0, 0);
