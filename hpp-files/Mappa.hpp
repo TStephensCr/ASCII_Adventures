@@ -2,8 +2,7 @@
 #define _MAPPA_H_
 
 #include <ncurses.h>
-#define xMaxG 100
-#define yMaxG 18
+
 
 class Mappa{
     public:
