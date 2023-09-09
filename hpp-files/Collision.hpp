@@ -16,5 +16,7 @@ public:
 
 	Collision(Entities* MyEntities);
 
+	void ManageJump(ens Entity);
+
 	void ManageCollisions(ens Entity);
 };

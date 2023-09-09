@@ -7,26 +7,33 @@ Collision::Collision(Entities* MyEntities) {
 	curwin = entitiesOBJ->ReturnCurwin();
 }
 
+void Collision::ManageJump(ens Entity)
+{
+    int xPos = Entity->pos->ReturnPos().x;
+    int yPos = Entity->pos->ReturnPos().y;
+    
+    if(Entity == entitiesOBJ->ReturnPlayerPointer()){
+        char charBelow = mvwinch(curwin, yPos + 1, xPos);
+        if(charBelow == ' ')
+            entitiesOBJ->ReturnPlayerOBJ()->inJump = true;
+        else{
+            if(entitiesOBJ->ReturnPlayerOBJ()->inJump == true){
+                entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
+                Entity->xForce = 0;
+            }   
+            else    
+                entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
+        }
+        
+    }
+}
 
 void Collision::ManageCollisions(ens Entity) {
     if(Entity){
         int xPos = Entity->pos->ReturnPos().x;
         int yPos = Entity->pos->ReturnPos().y;
 
-        if(Entity == entitiesOBJ->ReturnPlayerPointer()){
-            char charBelow = mvwinch(curwin, yPos + 1, xPos);
-            if(charBelow == ' ')
-                entitiesOBJ->ReturnPlayerOBJ()->inJump = true;
-            else{
-                if(entitiesOBJ->ReturnPlayerOBJ()->inJump == true){
-                    entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
-                    Entity->xForce = 0;
-                }   
-                else    
-                    entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
-            }
-                
-        }
+        ManageJump(Entity);
         
         if (Entity->yForce != 0) {
             int c = (Entity->yForce < 0) ? yPos - 1 : yPos + 1;
@@ -48,5 +55,4 @@ void Collision::ManageCollisions(ens Entity) {
             }
         }
     }
-
 }
