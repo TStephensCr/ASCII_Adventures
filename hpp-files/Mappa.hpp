@@ -1,6 +1,7 @@
 #ifndef _MAPPA_H_
 #define _MAPPA_H_
-
+#define xMaxG 100
+#define yMaxG 18
 #include <ncurses.h>
 
 
