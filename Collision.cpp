@@ -17,8 +17,15 @@ void Collision::ManageCollisions(ens Entity) {
             char charBelow = mvwinch(curwin, yPos + 1, xPos);
             if(charBelow == ' ')
                 entitiesOBJ->ReturnPlayerOBJ()->inJump = true;
-            else
-                entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
+            else{
+                if(entitiesOBJ->ReturnPlayerOBJ()->inJump == true){
+                    entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
+                    Entity->xForce = 0;
+                }   
+                else    
+                    entitiesOBJ->ReturnPlayerOBJ()->inJump = false;
+            }
+                
         }
         
         if (Entity->yForce != 0) {
