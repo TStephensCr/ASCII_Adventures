@@ -60,10 +60,10 @@ void Events::Shoot()
 
 	if(InfoPlayer->LastMovement == 'd'){
 		ens sparo =entitiesOBJ->Insert(shoot, xPos + 1, yPos);
-		sparo->xForce = 20;
+		sparo->xForce = 200;
 	}else if(InfoPlayer->LastMovement == 's' ){
 		ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
-		sparo->xForce = -20;
+		sparo->xForce = -200;
 	}
 }
 
@@ -83,7 +83,8 @@ int Events::getmv() {
 			mvleft(PlayerPointer,1);
 			break;
 		case KEY_DOWN:
-			mvdown(PlayerPointer);
+			Shoot();
+			//mvdown(PlayerPointer);
 			break;
 		case ' ':
 			JumpStraight();

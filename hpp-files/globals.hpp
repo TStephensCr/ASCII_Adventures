@@ -12,7 +12,6 @@
 #define NAPTIME 30
 
 
-
 enum EntityType { player, enemy, money, shoot };
 
 struct entita {
@@ -20,6 +19,7 @@ struct entita {
   Position* pos = new Position();
   int xForce = 0;
   int yForce = 0;
+  bool death_flag = false;
   entita* next;
 };
 typedef entita* ens;  // e = entit�, n = nello , s = spazio

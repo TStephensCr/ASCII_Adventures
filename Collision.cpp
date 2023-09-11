@@ -39,7 +39,7 @@ void Collision::ManageCollisions(ens Entity) {
             int c = (Entity->yForce < 0) ? yPos - 1 : yPos + 1;
             char charAboveOrBelow = mvwinch(curwin, c, xPos);
             
-            if (charAboveOrBelow != ' ') {
+            if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL) {
                 Entity->yForce = 0;
             }else{
                 yPos = c;
@@ -50,7 +50,7 @@ void Collision::ManageCollisions(ens Entity) {
             xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
             char charAtNewPos = mvwinch(curwin, yPos, xPos);
             
-            if (charAtNewPos != ' ') {
+            if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL) {
                 Entity->xForce = 0;
             }
         }
