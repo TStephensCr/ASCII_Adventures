@@ -81,21 +81,21 @@ int Entities::GetPlayerLives(){
 }
 
 ens Entities::EntitiesInLocation(MyPosition Loc) {
-    ens foundEntities = NULL;
     ens entity = entities;
-    
-    while (entity) {
+    ens Entity_founded = NULL;
+    bool Trovato = false;
+    while (entity && !Trovato) {
         if (xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) {
-            // Effettua l'head insert dell'entità trovata
-            ens temp = entity;
-            entity = entity->next;  // Avanza nell'elenco principale
-            temp->next = foundEntities;
-            foundEntities = temp;
+            Entity_founded = entity;
+            Trovato = true;
         } else {
             entity = entity->next;  // Avanza nell'elenco principale
         }
     }
-    return foundEntities;
+    if(Trovato)
+      return Entity_founded;
+    else 
+      return NULL;
 }
 
 
@@ -124,7 +124,7 @@ int Entities::yLoc(ens Entity) { return Entity->pos->ReturnPos().y; }
 int Entities::xLoc(ens Entity) { return Entity->pos->ReturnPos().x; }
 
 void Entities::Display(ens MyEntity) {
-  if (MyEntity) {
+  if (MyEntity && !MyEntity->death_flag) {
     mvwaddch(curwin, yLoc(MyEntity), xLoc(MyEntity), Character(MyEntity->type));
   }
 }

@@ -4,7 +4,8 @@
         "cstdio": "cpp",
         "cwchar": "cpp",
         "cstdint": "cpp",
-        "new": "cpp"
+        "new": "cpp",
+        "random": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

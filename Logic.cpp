@@ -47,6 +47,7 @@ Entities *Logic::ReturnEntitiesOBJ()
 void Logic::InitEntities(int NumberOfMap = 1){
 	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN);
 	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+	entitiesOBJ->Insert(money, 10, 12);
 }
 
 void Logic::GiveDynamicity()
@@ -54,17 +55,19 @@ void Logic::GiveDynamicity()
     ens tmp = entitiesOBJ->ReturnList();
 
 	while (tmp) {
-		entitiesOBJ->ClearPosition(tmp);
+		if(!tmp->death_flag){
+			entitiesOBJ->ClearPosition(tmp);
 		
-		eventi->Gravity(tmp);
+			eventi->Gravity(tmp);
 
-		collision->ManageCollisions(tmp);
+			collision->ManageCollisions(tmp);
 
-		entitiesOBJ->MoveEntity(tmp);
+			entitiesOBJ->MoveEntity(tmp);
 
-		entitiesOBJ->DecreaseForce(tmp);
-		
-		entitiesOBJ->Display(tmp);
+			entitiesOBJ->DecreaseForce(tmp);
+			
+			entitiesOBJ->Display(tmp);
+		}
 
 		tmp = tmp->next;
 	}

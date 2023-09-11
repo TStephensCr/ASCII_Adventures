@@ -4,6 +4,7 @@
 #define SHOOT '-'
 #define HORIZONTAL_WALL '='
 #define VERTICAL_WALL '|'
+#define FULLFILL_POINT '.'
 #define POWERUP 'P'
 #define PLAYERLIFES 3
 #define X_PLAYERSPAWN 3
