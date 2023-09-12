@@ -40,7 +40,7 @@ void Mappa::leggimappa(char curmap){//rimane il fatto che l'apertura del file ca
 
     mychar=myfile.get();
 
-    while(mychar!='1' && mychar!='2' && mychar!='3' && mychar!='4' && mychar!='5' && myfile.good()){
+    while(mychar!='1' && mychar!='2' && mychar!='3' && mychar!='4' && mychar!='5' && mychar!='M' && myfile.good()){
         if(mychar=='\n')
             {j++; i=0; mychar=myfile.get();}
         else{
@@ -53,6 +53,6 @@ void Mappa::leggimappa(char curmap){//rimane il fatto che l'apertura del file ca
 }
 
 void Mappa::mapcaller(){//questa deve fare i suoi controlli ogni volta per vedere se chiamare leggimappa o no, e devo decidere se far chiamare stampamappa da questa oppure se metterla nel main diretto
-    Mappa::leggimappa('1');
+    Mappa::leggimappa('5');
     
 }
