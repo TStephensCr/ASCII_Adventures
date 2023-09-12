@@ -42,15 +42,15 @@ void Events::JumpStraight() {
 }
 
 void Events::Jump(){	
-	if (!InfoPlayer->inJump) {
-        if (PlayerPointer->yForce == 0)
-            PlayerPointer->yForce -= JUMPHEIGHT;
+if (!InfoPlayer->inJump) {
+	if (PlayerPointer->yForce == 0)
+		PlayerPointer->yForce -= JUMPHEIGHT;
 
-		if (InfoPlayer->LastMovement == 'd')
-			mvright(PlayerPointer, JUMPHEIGHT);
-		else 
-			mvleft(PlayerPointer, JUMPHEIGHT);
-    }
+	if (InfoPlayer->LastMovement == 'd')
+		mvright(PlayerPointer, JUMPHEIGHT);
+	else 
+		mvleft(PlayerPointer, JUMPHEIGHT);
+}
 }
 
 void Events::Shoot()
@@ -59,11 +59,17 @@ void Events::Shoot()
 	int yPos = PlayerPointer->pos->ReturnPos().y;
 
 	if(InfoPlayer->LastMovement == 'd'){
-		ens sparo =entitiesOBJ->Insert(shoot, xPos + 1, yPos);
-		sparo->xForce = 200;
+		char g = mvwinch(curwin, yPos, xPos + 1);
+		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT){
+			ens sparo = entitiesOBJ->Insert(shoot, xPos + 1, yPos);
+			sparo->xForce = 200;
+		}
 	}else if(InfoPlayer->LastMovement == 's' ){
-		ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
-		sparo->xForce = -200;
+		char g = mvwinch(curwin, yPos, xPos - 1);
+		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT){
+			ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
+			sparo->xForce = -200;
+		}
 	}
 }
 
