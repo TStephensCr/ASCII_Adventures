@@ -72,6 +72,14 @@ void Logic::InitEntities(int NumberOfMap = 1){
 		entitiesOBJ->Insert(money, 68, 13);
 		entitiesOBJ->Insert(enemy, 79, 10);
 	}
+	else if(NumberOfMap == 4){
+		entitiesOBJ->Insert(money, 37, 7);
+		entitiesOBJ->Insert(enemy, 51, 7);
+		entitiesOBJ->Insert(enemy, 29, 13);
+		entitiesOBJ->Insert(money, 53, 13);
+		entitiesOBJ->Insert(money, 68, 11);
+		entitiesOBJ->Insert(powerup, 22, 10);
+	}
 }
 
 void Logic::GiveDynamicity()
