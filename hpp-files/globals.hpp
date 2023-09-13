@@ -13,7 +13,7 @@
 #define NAPTIME 30
 
 
-enum EntityType { player, enemy, money, shoot };
+enum EntityType { player, enemy, money, shoot, powerup };
 
 struct entita {
   EntityType type;

@@ -47,6 +47,14 @@ Entities *Logic::ReturnEntitiesOBJ()
 void Logic::InitEntities(int NumberOfMap = 1){
 	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN);
 	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+
+	if(NumberOfMap == 1){
+		entitiesOBJ->Insert(money, 23, 4);
+		entitiesOBJ->Insert(enemy, 21, 11);
+		entitiesOBJ->Insert(enemy, 35, 6);
+		entitiesOBJ->Insert(enemy, 55, 9);
+		entitiesOBJ->Insert(enemy, 73, 8);
+	}
 }
 
 void Logic::GiveDynamicity()
