@@ -39,7 +39,7 @@ int main() {
 
     m->stampamappa();
 
-    logica->InitEntities(2);
+    logica->InitEntities(3);
 
     while (1) {
 
