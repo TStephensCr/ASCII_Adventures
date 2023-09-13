@@ -53,6 +53,6 @@ void Mappa::leggimappa(char curmap){//rimane il fatto che l'apertura del file ca
 }
 
 void Mappa::mapcaller(){//questa deve fare i suoi controlli ogni volta per vedere se chiamare leggimappa o no, e devo decidere se far chiamare stampamappa da questa oppure se metterla nel main diretto
-    Mappa::leggimappa('4');
+    Mappa::leggimappa('1');
     
 }

@@ -53,23 +53,23 @@ void Logic::InitEntities(int NumberOfMap = 1){
 		entitiesOBJ->Insert(enemy, 21, 11);
 		entitiesOBJ->Insert(enemy, 35, 6);
 		entitiesOBJ->Insert(enemy, 55, 9);
-		entitiesOBJ->Insert(money, 73, 8);
+		entitiesOBJ->Insert(money, 78, 8);
 	}
 	else if(NumberOfMap == 2){
 		entitiesOBJ->Insert(enemy, 16, 9);
-		entitiesOBJ->Insert(money, 26, 12);
+		entitiesOBJ->Insert(money, 31, 12);
 		entitiesOBJ->Insert(enemy, 38, 9);
-		entitiesOBJ->Insert(money, 49, 12);
-		entitiesOBJ->Insert(powerup, 63, 14);
+		entitiesOBJ->Insert(money, 54, 12);
+		entitiesOBJ->Insert(powerup, 68, 14);
 		entitiesOBJ->Insert(enemy, 77, 10);
 	}
 	else if(NumberOfMap == 3){
-		entitiesOBJ->Insert(money, 17, 5);
-		entitiesOBJ->Insert(powerup, 17, 14);
+		entitiesOBJ->Insert(money, 22, 5);
+		entitiesOBJ->Insert(powerup, 22, 14);
 		entitiesOBJ->Insert(enemy, 30, 11);
 		entitiesOBJ->Insert(enemy, 32, 6);
-		entitiesOBJ->Insert(money, 55, 6);
-		entitiesOBJ->Insert(money, 68, 13);
+		entitiesOBJ->Insert(money, 60, 6);
+		entitiesOBJ->Insert(money, 73, 13);
 		entitiesOBJ->Insert(enemy, 79, 10);
 	}
 	else if(NumberOfMap == 4){
@@ -79,6 +79,14 @@ void Logic::InitEntities(int NumberOfMap = 1){
 		entitiesOBJ->Insert(money, 53, 13);
 		entitiesOBJ->Insert(money, 68, 11);
 		entitiesOBJ->Insert(powerup, 22, 10);
+	}
+	else if(NumberOfMap == 5){
+		entitiesOBJ->Insert(money, 42, 5);
+		entitiesOBJ->Insert(enemy, 25, 9);
+		entitiesOBJ->Insert(enemy, 49, 9);
+		entitiesOBJ->Insert(money, 73, 10);
+		entitiesOBJ->Insert(money, 24, 13);
+		entitiesOBJ->Insert(powerup, 45, 14);
 	}
 }
 
