@@ -53,7 +53,7 @@ void Logic::InitEntities(int NumberOfMap = 1){
 		entitiesOBJ->Insert(enemy, 21, 11);
 		entitiesOBJ->Insert(enemy, 35, 6);
 		entitiesOBJ->Insert(enemy, 55, 9);
-		entitiesOBJ->Insert(enemy, 73, 8);
+		entitiesOBJ->Insert(money, 73, 8);
 	}
 	else if(NumberOfMap == 2){
 		entitiesOBJ->Insert(enemy, 16, 9);
