@@ -7,8 +7,7 @@ Collision::Collision(Entities* MyEntities) {
 	curwin = entitiesOBJ->ReturnCurwin();
 }
 
-void Collision::ManageJump(ens Entity)
-{
+void Collision::ManageJump(ens Entity){
     int xPos = Entity->pos->ReturnPos().x;
     int yPos = Entity->pos->ReturnPos().y;
     
@@ -80,20 +79,26 @@ void Collision::ManageCollisions(ens Entity) {
                     Entity->death_flag = true;
                     entitiesOBJ->ClearPosition(Entity_in_new_loc);
                 }// caso sparo/nemico e nemico/sparo [semplicemente entrambi si eliminano]
+                else if(Entity_in_new_loc->type == enemy && Entity->type == player){
+                    if(entitiesOBJ->ReturnPlayerOBJ()->LastMovement == 'd'){
+                        Entity->xForce = -10; Entity->yForce = -10;
+                    }
+                    else{
+                        Entity->xForce = 10; Entity->yForce = -10;
+                    }
+                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
+                }// caso player tocca il nemico
+                else if(Entity_in_new_loc->type == player && Entity->type == enemy){
+                    if(Entity->xForce >= 1)
+                        Entity_in_new_loc->xForce = 1 * 10;
+                    else
+                        Entity_in_new_loc->xForce = -1 * 10;
+
+                    Entity_in_new_loc->yForce = -10;
+
+                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
+                }//caso nemico tocca il player
             }
         }
     }
 }
-
-/*               
- else if(Entity_in_new_loc->type == enemy || (Entity_in_new_loc->type == player && Entity->type == enemy)){
-                    ens Player = entitiesOBJ->ReturnPlayerPointer();
-                    
-                    if(entitiesOBJ->ReturnPlayerOBJ()->LastMovement == 's'){
-                        Player->xForce = 10; Player->yForce = -10;
-                    }else{
-                        Player->xForce = -10; Player->yForce = -10;
-                    }
-
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
-                }*/
