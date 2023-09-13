@@ -33,7 +33,8 @@ void Events::mvdown(ens myEntity) {
         myEntity->yForce += 1;
 }
 
-void Events::JumpStraight() {
+void Events::JumpStraight()
+{
     if (!InfoPlayer->inJump) {
         // Make the entity jump only if it's on the ground (i.e., yForce is zero)
         if (PlayerPointer->yForce == 0)

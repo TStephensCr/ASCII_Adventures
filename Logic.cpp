@@ -51,7 +51,7 @@ void Logic::InitEntities(int NumberOfMap = 1){
 	if(NumberOfMap == 1){
 		entitiesOBJ->Insert(money, 23, 4);
 		entitiesOBJ->Insert(enemy, 21, 11);
-		entitiesOBJ->Insert(enemy, 35, 6);
+		entitiesOBJ->Insert(enemy, 34, 6);
 		entitiesOBJ->Insert(enemy, 55, 9);
 		entitiesOBJ->Insert(money, 78, 8);
 	}
@@ -94,21 +94,22 @@ void Logic::GiveDynamicity()
 {
     ens tmp = entitiesOBJ->ReturnList();
 
-	while (tmp) {
-		if(!tmp->death_flag){
-			entitiesOBJ->ClearPosition(tmp);
+    while (tmp) {
+        if (!tmp->death_flag) {
 
-			eventi->Gravity(tmp);
+            entitiesOBJ->ClearPosition(tmp);
 
-			collision->ManageCollisions(tmp);
+            eventi->Gravity(tmp);
 
-			entitiesOBJ->MoveEntity(tmp);
+            collision->ManageCollisions(tmp);
 
-			entitiesOBJ->DecreaseForce(tmp);
-			
-			entitiesOBJ->Display(tmp);
-		}
+            entitiesOBJ->MoveEntity(tmp);
 
-		tmp = tmp->next;
-	}
+            entitiesOBJ->DecreaseForce(tmp);
+
+            entitiesOBJ->Display(tmp);
+        }
+
+        tmp = tmp->next;
+    }
 }
