@@ -113,6 +113,8 @@ char Entities::Character(EntityType Type) {
     case shoot:
       return SHOOT;
       break;
+    case powerup:
+      return POWERUP;
     default:
       return '?';
       break;
