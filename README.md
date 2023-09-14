@@ -28,7 +28,13 @@ Collisioni:
 
 
 TO DO:
--unire mappa e logica
+-cambia mappa(include anche l'inserimento del lovello negozio)(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
+-salvataggio di stato per ogni mappa gia visitata quando si procede a una nuova, e aggiungere lista di liste per quali entities ci sono in ogni mappa per poterle ristampare
+-aggiungere healthpack(la P)
+-ideare e implementare powerup
+-aggiungere statistiche player in alto a destra(o fuori dalla window se non c'è spazio)
+-aggiungere danno per la caduta nei fossi
+-aggiungere aesthetic tipo scritta titolo/game over
 
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
