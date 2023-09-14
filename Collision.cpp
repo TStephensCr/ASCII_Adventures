@@ -43,15 +43,7 @@ void Collision::ManageCollisions(ens Entity) {
 
             if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
                 Entity->yForce = 0;
-            }
-            else if(Entity_in_new_loc){//vedo i casi in cui è un entità
-                if(Entity_in_new_loc->type == money){//caso player/soldo
-                    Entity_in_new_loc->death_flag = true;
-                    entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
-                    yPos = c;
-                }
-            }
-            else{
+            }else{
                 yPos = c;
             }
         }
@@ -70,7 +62,7 @@ void Collision::ManageCollisions(ens Entity) {
                     Entity->xForce = 0;
             }
             else if(Entity_in_new_loc){
-                if(Entity_in_new_loc->type == money){
+                if(Entity->type == player && Entity_in_new_loc->type == money){
                     Entity_in_new_loc->death_flag = true;
                     entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
                 }
