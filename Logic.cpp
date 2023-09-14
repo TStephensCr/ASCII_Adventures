@@ -45,7 +45,7 @@ void Logic::InitEntities(char NumberOfMap = '1', int curLev = 0){
 	else if(NumberOfMap == '2'){
 		entitiesOBJ->Insert(enemy, 16, 9);
 		entitiesOBJ->Insert(money, 31, 12);
-		entitiesOBJ->Insert(enemy, 38, 9);
+		entitiesOBJ->Insert(enemy, 38, 8);
 		entitiesOBJ->Insert(money, 54, 12);
 		entitiesOBJ->Insert(powerup, 68, 14);
 		entitiesOBJ->Insert(enemy, 77, 10);
