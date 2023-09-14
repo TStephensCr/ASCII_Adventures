@@ -74,7 +74,7 @@ ens Entities::SpawnPlayer(){
 
 int Entities::GetPlayerLives(){
     if(InfoPlayer){
-        return InfoPlayer->Lifes;
+        return InfoPlayer->hp;
     }else{
       return -1;
     }

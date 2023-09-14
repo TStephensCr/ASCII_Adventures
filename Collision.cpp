@@ -48,7 +48,6 @@ void Collision::ManageCollisions(ens Entity) {
                 if(Entity->type == player && Entity_in_new_loc->type == money){//caso player/soldo
                     Entity_in_new_loc->death_flag = true;
                     entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
-                    yPos = c;
                 }
                 else if(Entity_in_new_loc->type == enemy && Entity->type == player){
                     if(entitiesOBJ->ReturnPlayerOBJ()->LastMovement == 'd'){
@@ -57,14 +56,13 @@ void Collision::ManageCollisions(ens Entity) {
                     else{
                         Entity->xForce = 10; Entity->yForce = -10;
                     }
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
-                    yPos = c;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
                 }
                 else if(Entity_in_new_loc->type == powerup && Entity->type == player){
                     Entity_in_new_loc->death_flag = true;
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes++;
-                    yPos = c;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
                 }//caso nemico tocca il player
+                yPos = c;
             }
             else{
                 yPos = c;
@@ -101,7 +99,7 @@ void Collision::ManageCollisions(ens Entity) {
                     else{
                         Entity->xForce = 10; Entity->yForce = -10;
                     }
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
                 }// caso player tocca il nemico
                 else if(Entity_in_new_loc->type == player && Entity->type == enemy){
                     if(Entity->xForce >= 1)
@@ -111,11 +109,11 @@ void Collision::ManageCollisions(ens Entity) {
 
                     Entity_in_new_loc->yForce = -10;
 
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
                 }//caso nemico tocca il player
                 else if(Entity_in_new_loc->type == powerup && Entity->type == player){
                     Entity_in_new_loc->death_flag = true;
-                    entitiesOBJ->ReturnPlayerOBJ()->Lifes++;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp++;
                 }//caso nemico tocca il player
             }
         }

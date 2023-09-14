@@ -33,7 +33,7 @@ int main() {
     menu->finestraGioco();
     int scelta=menu->finestraMenu();
 
-    logica->InitMappa('5', 2);
+    logica->InitMappa('3', 2);
 
     while (1) {
 
