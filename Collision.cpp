@@ -60,6 +60,11 @@ void Collision::ManageCollisions(ens Entity) {
                     entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
                     yPos = c;
                 }
+                else if(Entity_in_new_loc->type == powerup && Entity->type == player){
+                    Entity_in_new_loc->death_flag = true;
+                    entitiesOBJ->ReturnPlayerOBJ()->Lifes++;
+                    yPos = c;
+                }//caso nemico tocca il player
             }
             else{
                 yPos = c;
@@ -107,6 +112,10 @@ void Collision::ManageCollisions(ens Entity) {
                     Entity_in_new_loc->yForce = -10;
 
                     entitiesOBJ->ReturnPlayerOBJ()->Lifes -= 1;
+                }//caso nemico tocca il player
+                else if(Entity_in_new_loc->type == powerup && Entity->type == player){
+                    Entity_in_new_loc->death_flag = true;
+                    entitiesOBJ->ReturnPlayerOBJ()->Lifes++;
                 }//caso nemico tocca il player
             }
         }
