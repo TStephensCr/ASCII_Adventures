@@ -75,7 +75,7 @@ void Logic::GiveDynamicity()
 	
     while (tmp) {
         if (!tmp->death_flag) {
-            if (tmp->type == enemy ) {
+            if (tmp->type == enemy && counter == 3) {
                 if (counter_bot < 9) {
                     // Move to the right
                     tmp->xForce = 1;
@@ -102,10 +102,12 @@ void Logic::GiveDynamicity()
     }
 
     // Increment the counters
-    counter_bot++;
 	counter++;
-	if(counter > 3)
+	if(counter > 3){
+		counter_bot++;
 		counter = 0;
+	}
+		
 	if(counter_bot == 18)
 		counter_bot = 0;
 }
