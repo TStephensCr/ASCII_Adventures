@@ -12,7 +12,7 @@ Mappa::Mappa(WINDOW * win){
     }
 };
 
-void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa deve apparire, quando il player cambia mappa e anche quando le monete/powerup vengono presi, cosi poi ci possiamo salvare lo stato della mappa senza monete mantenendo 
+void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa deve apparire e quando il player cambia mappa  
     int yM;
     int xM;
     for(xM=1;xM<=xMaxG;xM++){
@@ -23,18 +23,12 @@ void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa dev
     return;
 }
 
-void Mappa::leggimappa(char curmap){//rimane il fatto che l'apertura del file causa malloc solo quando keypad viene messo a true in finestra menu. pero ho fatto un file semplice che mostra che l'interazione tra keypad e l'apertura del file non da problemi.
+void Mappa::leggimappa(char curmap){
     char mychar;
     int i=0;
     int j=-1;
     std::ifstream myfile;
     myfile.open("mockup.mappa.txt");
-    if(!myfile.is_open()){
-        wgetch(playwin);
-        wgetch(playwin);
-        wgetch(playwin);
-        wgetch(playwin);
-    }
     do{
         mychar=myfile.get();}while(mychar!=curmap && myfile.good());
 
