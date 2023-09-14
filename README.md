@@ -33,7 +33,7 @@ TO DO:
 -aggiungere healthpack(la P) FATTO
 -ideare e implementare powerup
 -aggiungere statistiche player in alto a destra(o fuori dalla window se non c'è spazio) FATTO
--aggiungere danno per la caduta nei fossi
+-aggiungere danno per la caduta nei fossi FATTO
 -aggiungere aesthetic tipo scritta titolo/game over
 
 

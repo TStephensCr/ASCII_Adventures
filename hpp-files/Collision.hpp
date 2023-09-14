@@ -18,5 +18,7 @@ public:
 
 	void ManageJump(ens Entity);
 
+	void OutOfBounds();
+
 	void ManageCollisions(ens Entity);
 };

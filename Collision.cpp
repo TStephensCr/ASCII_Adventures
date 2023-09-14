@@ -2,9 +2,9 @@
 
 
 Collision::Collision(Entities* MyEntities) {
-	entitiesOBJ = MyEntities;
-	ListOfEntities = entitiesOBJ->ReturnList();
-	curwin = entitiesOBJ->ReturnCurwin();
+	entitiesOBJ     = MyEntities;
+	ListOfEntities  = entitiesOBJ->ReturnList();
+	curwin          = entitiesOBJ->ReturnCurwin();
 }
 
 void Collision::ManageJump(ens Entity){
@@ -27,12 +27,27 @@ void Collision::ManageJump(ens Entity){
     }
 }
 
-void Collision::ManageCollisions(ens Entity) {
+void Collision::OutOfBounds(){
+    int x, y;
+    getmaxyx(curwin, y, x);
+
+    if(entitiesOBJ->ReturnPlayerPointer()->pos->ReturnPos().y > y - 5){
+        entitiesOBJ->ReturnPlayerOBJ()->hp -= 20;
+        entitiesOBJ->ClearPosition(entitiesOBJ->ReturnPlayerPointer());
+        entitiesOBJ->ReturnPlayerPointer()->pos->SelectPosition(X_PLAYERSPAWN,Y_PLAYERSPAWN);
+    }
+
+}
+
+void Collision::ManageCollisions(ens Entity)
+{
     if(Entity){
         int xPos = Entity->pos->ReturnPos().x;
         int yPos = Entity->pos->ReturnPos().y;
 
         ManageJump(Entity);
+
+        OutOfBounds();
         
         if (Entity->yForce != 0) {
             int c = (Entity->yForce < 0) ? yPos - 1 : yPos + 1;

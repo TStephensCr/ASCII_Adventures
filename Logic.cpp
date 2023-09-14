@@ -2,19 +2,19 @@
 
 Logic::Logic(WINDOW* win) {
 
-	curwin = win;
+	curwin      = win;
 
 	entitiesOBJ = new Entities(win);
 
-	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+	InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
 
-	collision = new Collision(entitiesOBJ);
+	collision   = new Collision(entitiesOBJ);
 
-	eventi = new Events(entitiesOBJ);
+	eventi      = new Events(entitiesOBJ);
 
-	map = new Mappa(win);
+	map         = new Mappa(win);
 
-	Status = Game;
+	Status      = Game;
 }
 
 Events *Logic::ReturnEventsOBJ()
