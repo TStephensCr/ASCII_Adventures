@@ -30,9 +30,9 @@ Collisioni:
 TO DO:
 -cambia mappa(include anche l'inserimento del lovello negozio)(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
 -salvataggio di stato per ogni mappa gia visitata quando si procede a una nuova, e aggiungere lista di liste per quali entities ci sono in ogni mappa per poterle ristampare
--aggiungere healthpack(la P)
+-aggiungere healthpack(la P) FATTO
 -ideare e implementare powerup
--aggiungere statistiche player in alto a destra(o fuori dalla window se non c'è spazio)
+-aggiungere statistiche player in alto a destra(o fuori dalla window se non c'è spazio) FATTO
 -aggiungere danno per la caduta nei fossi
 -aggiungere aesthetic tipo scritta titolo/game over
 

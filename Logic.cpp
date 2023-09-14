@@ -85,10 +85,10 @@ void Logic::DisplayPlayerStats() {
     InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
 
     if (InfoPlayer) {
-        mvwprintw(curwin, 2, x - 30, "                          ");
-		mvwprintw(curwin, 3, x - 30, "                          ");
-		mvwprintw(curwin, 4, x - 30, "                          "); 
-        mvwprintw(curwin, 2, x - 30, "hp : ");
+        mvwprintw(curwin, 2, x - 28, "                          ");
+		mvwprintw(curwin, 3, x - 28, "                          ");
+		mvwprintw(curwin, 4, x - 28, "                          "); 
+        mvwprintw(curwin, 2, x - 28, "hp : ");
 
         int health = InfoPlayer->hp;
         int bars = health / 5; // Calcola il numero di / basato sulla vita
@@ -96,8 +96,8 @@ void Logic::DisplayPlayerStats() {
         for (int i = 0; i < bars; i++) {
             waddch(curwin, '/');
         }
-		mvwprintw(curwin, 3, x - 30, "soldi : %d",InfoPlayer->Money);
-		mvwprintw(curwin, 4, x - 30, "colpi : %d",InfoPlayer->colpi);
+		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
+		mvwprintw(curwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
 
     }
 }
