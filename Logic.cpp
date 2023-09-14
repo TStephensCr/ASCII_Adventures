@@ -2,6 +2,8 @@
 
 Logic::Logic(WINDOW* win) {
 
+	curwin = win;
+
 	entitiesOBJ = new Entities(win);
 
 	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
@@ -77,6 +79,30 @@ void Logic::InitEntities(char NumberOfMap = '1', int curLev = 0){
 	}
 }
 
+void Logic::DisplayPlayerStats() {
+    int x, y;
+    getmaxyx(curwin, y, x);
+    InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+
+    if (InfoPlayer) {
+        mvwprintw(curwin, 2, x - 30, "                          ");
+		mvwprintw(curwin, 3, x - 30, "                          ");
+		mvwprintw(curwin, 4, x - 30, "                          "); 
+        mvwprintw(curwin, 2, x - 30, "hp : ");
+
+        int health = InfoPlayer->hp;
+        int bars = health / 5; // Calcola il numero di / basato sulla vita
+
+        for (int i = 0; i < bars; i++) {
+            waddch(curwin, '/');
+        }
+		mvwprintw(curwin, 3, x - 30, "soldi : %d",InfoPlayer->Money);
+		mvwprintw(curwin, 4, x - 30, "colpi : %d",InfoPlayer->colpi);
+
+    }
+}
+
+
 void Logic::GiveDynamicity()
 {
     ens tmp = entitiesOBJ->ReturnList();
@@ -93,6 +119,8 @@ void Logic::GiveDynamicity()
                 }
             }
 
+			DisplayPlayerStats();
+			
             entitiesOBJ->ClearPosition(tmp);
 
             eventi->Gravity(tmp);

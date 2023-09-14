@@ -3,6 +3,7 @@
 
 class Logic {
 protected:
+	WINDOW* curwin;
 
 	Entities* entitiesOBJ;
 
@@ -31,6 +32,8 @@ public:
 	Events* ReturnEventsOBJ();
 
 	Entities* ReturnEntitiesOBJ();	
+
+	void DisplayPlayerStats();
 
 	void InitMappa(char curmap, int curLev);
 

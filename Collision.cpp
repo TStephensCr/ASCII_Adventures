@@ -44,7 +44,7 @@ void Collision::ManageCollisions(ens Entity) {
             if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
                 Entity->yForce = 0;
             }
-            else if(Entity_in_new_loc){//vedo i casi in cui è un entità
+            else if(Entity_in_new_loc && !Entity_in_new_loc->death_flag){//vedo i casi in cui è un entità
                 if(Entity->type == player && Entity_in_new_loc->type == money){//caso player/soldo
                     Entity_in_new_loc->death_flag = true;
                     entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
@@ -56,7 +56,7 @@ void Collision::ManageCollisions(ens Entity) {
                     else{
                         Entity->xForce = 10; Entity->yForce = -10;
                     }
-                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 20;
                 }
                 else if(Entity_in_new_loc->type == powerup && Entity->type == player){
                     Entity_in_new_loc->death_flag = true;
@@ -82,7 +82,7 @@ void Collision::ManageCollisions(ens Entity) {
                 else
                     Entity->xForce = 0;
             }
-            else if(Entity_in_new_loc){
+            else if(Entity_in_new_loc && !Entity_in_new_loc->death_flag){
                 if(Entity->type == player && Entity_in_new_loc->type == money){
                     Entity_in_new_loc->death_flag = true;
                     entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
@@ -99,7 +99,7 @@ void Collision::ManageCollisions(ens Entity) {
                     else{
                         Entity->xForce = 10; Entity->yForce = -10;
                     }
-                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 20;
                 }// caso player tocca il nemico
                 else if(Entity_in_new_loc->type == player && Entity->type == enemy){
                     if(Entity->xForce >= 1)
@@ -109,11 +109,11 @@ void Collision::ManageCollisions(ens Entity) {
 
                     Entity_in_new_loc->yForce = -10;
 
-                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 1;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp -= 20;
                 }//caso nemico tocca il player
                 else if(Entity_in_new_loc->type == powerup && Entity->type == player){
                     Entity_in_new_loc->death_flag = true;
-                    entitiesOBJ->ReturnPlayerOBJ()->hp++;
+                    entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
                 }//caso nemico tocca il player
             }
         }

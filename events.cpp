@@ -61,15 +61,17 @@ void Events::Shoot()
 
 	if(InfoPlayer->LastMovement == 'd'){
 		char g = mvwinch(curwin, yPos, xPos + 1);
-		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT){
+		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
 			ens sparo = entitiesOBJ->Insert(shoot, xPos + 1, yPos);
 			sparo->xForce = 200;
+			InfoPlayer->colpi--;
 		}
 	}else if(InfoPlayer->LastMovement == 's' ){
 		char g = mvwinch(curwin, yPos, xPos - 1);
-		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT){
+		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
 			ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
 			sparo->xForce = -200;
+			InfoPlayer->colpi--;
 		}
 	}
 }
