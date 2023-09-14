@@ -11,27 +11,6 @@ Logic::Logic(WINDOW* win) {
 	eventi = new Events(entitiesOBJ);
 
 	Status = Game;
-
-	/*
-	----PROVE VARIE CON LE ENTITà----
-	
-	ens l = entitiesOBJ->Insert(player, 3 , 4);
-	ens k = entitiesOBJ->Insert(enemy, 3, 5);
-	ens y = entitiesOBJ->Insert(shoot, 3, 6);
-	ens t = entitiesOBJ->Insert(money, 3, 7);
-	ens p = entitiesOBJ->Insert(enemy, 3, 8);
-
-	k->xForce = 50;
-	l->xForce = 100;
-	y->xForce = -150;
-	t->xForce = 25;
-	p->xForce = -25;
-	entitiesOBJ->Remove(k);
-	entitiesOBJ->Remove(k);
-	entitiesOBJ->Remove(l);
-	entitiesOBJ->Remove(y);
-	entitiesOBJ->Remove(t);
-	entitiesOBJ->Remove(p);*/
 }
 
 Events *Logic::ReturnEventsOBJ()
@@ -93,9 +72,18 @@ void Logic::InitEntities(int NumberOfMap = 1){
 void Logic::GiveDynamicity()
 {
     ens tmp = entitiesOBJ->ReturnList();
-
+	
     while (tmp) {
         if (!tmp->death_flag) {
+            if (tmp->type == enemy ) {
+                if (counter_bot < 9) {
+                    // Move to the right
+                    tmp->xForce = 1;
+                } else if (counter_bot >= 9 && counter_bot < 18) {
+                    // Move to the left
+                    tmp->xForce = -1;
+                }
+            }
 
             entitiesOBJ->ClearPosition(tmp);
 
@@ -112,4 +100,12 @@ void Logic::GiveDynamicity()
 
         tmp = tmp->next;
     }
+
+    // Increment the counters
+    counter_bot++;
+	counter++;
+	if(counter > 3)
+		counter = 0;
+	if(counter_bot == 18)
+		counter_bot = 0;
 }

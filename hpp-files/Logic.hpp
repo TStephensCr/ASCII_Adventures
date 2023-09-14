@@ -13,6 +13,10 @@ protected:
 
 	GameStatus Status;
 
+	int counter_bot = 0;
+
+	int counter = 0;
+
 public:
 
 	Logic(WINDOW* win);

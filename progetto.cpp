@@ -39,15 +39,12 @@ int main() {
 
     m->stampamappa();
 
-    logica->InitEntities(4);
+    logica->InitEntities(1);
 
     while (1) {
 
         int choice = eventi->getmv();
-
-        if (choice == 'q') // 'q' key to quit the game
-            break;
-
+        
         logica->GiveDynamicity();
         
         napms(NAPTIME); 
