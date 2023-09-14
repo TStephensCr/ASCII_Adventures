@@ -1,4 +1,5 @@
 #include "Collision.hpp"
+#include "Mappa.hpp"
 
 class Logic {
 protected:
@@ -17,6 +18,12 @@ protected:
 
 	int counter = 0;
 
+	int curmap = 1;
+
+	int curLev = 1;
+
+	Mappa* map;
+
 public:
 
 	Logic(WINDOW* win);
@@ -25,7 +32,9 @@ public:
 
 	Entities* ReturnEntitiesOBJ();	
 
-	void InitEntities(int NumberOfMap);
+	void InitMappa(char curmap, int curLev);
+
+	void InitEntities(char NumberOfMap, int curLev);
 
 	void GiveDynamicity();
 

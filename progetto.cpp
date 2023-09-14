@@ -22,8 +22,6 @@ int main() {
 
     box(win, 0, 0);
 
-    Mappa * m = new Mappa(win);
-
     Logic* logica = new Logic(win);
 
     Entities* entita = logica->ReturnEntitiesOBJ();
@@ -35,11 +33,7 @@ int main() {
     menu->finestraGioco();
     int scelta=menu->finestraMenu();
 
-    m->mapcaller();
-
-    m->stampamappa();
-
-    logica->InitEntities(2);
+    logica->InitMappa('1', 1);
 
     while (1) {
 
