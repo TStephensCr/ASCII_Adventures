@@ -47,6 +47,7 @@ int main() {
             menu->GameOver();
             gamestatus = MenU;
             wrefresh(win);
+            int scelta=menu->finestraMenu();
         }
     }
 
