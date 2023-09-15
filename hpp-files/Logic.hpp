@@ -15,11 +15,11 @@ protected:
 
 	GameStatus Status;
 
-	int counter_bot = 0;
+	int counter_bot[5];
 
-	int counter = 0;
+	int counter;
 
-	int curmap_ = 0;
+	int curmap_ = 1;
 
 	int curLev_ = 0;
 

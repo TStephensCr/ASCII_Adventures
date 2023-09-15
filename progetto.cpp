@@ -32,7 +32,7 @@ int main() {
     menu->finestraGioco();
     int scelta=menu->finestraMenu();
 
-    logica->InitMappa(1, 0);
+    logica->InitMappa(1, 2);
 
     while (1) {
         if(gamestatus == Game){

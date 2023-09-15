@@ -174,10 +174,10 @@ void Logic::GiveDynamicity()
     while (tmp) {
         if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot)) {
             if (tmp->type == enemy && counter == 3) {
-                if (counter_bot < 9) {
+                if (counter_bot[curmap_ - 1] < 9) {
                     // Move to the right
                     tmp->xForce = 1;
-                } else if (counter_bot >= 9 && counter_bot < 18) {
+                } else if (counter_bot[curmap_ - 1] >= 9 && counter_bot[curmap_ - 1] < 18) {
                     // Move to the left
                     tmp->xForce = -1;
                 }
@@ -204,10 +204,10 @@ void Logic::GiveDynamicity()
     // Increment the counters
 	counter++;
 	if(counter > 3){
-		counter_bot++;
+		counter_bot[curmap_ - 1]++;
 		counter = 0;
 	}
 		
-	if(counter_bot == 18)
-		counter_bot = 0;
+	if(counter_bot[curmap_ - 1] == 18)
+		counter_bot[curmap_ - 1] = 0;
 }
