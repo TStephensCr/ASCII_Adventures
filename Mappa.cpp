@@ -34,7 +34,7 @@ void Mappa::leggimappa(char curmap){
 
     mychar=myfile.get();
 
-    while(mychar!='1' && mychar!='2' && mychar!='3' && mychar!='4' && mychar!='5' && mychar!='M' && mychar!='!' && mychar!='<' && myfile.good()){
+    while(mychar!='1' && mychar!='2' && mychar!='3' && mychar!='4' && mychar!='5' && mychar!='M' && mychar!='!' && mychar!='<' && mychar!='?' && myfile.good()){
         if(mychar=='\n')
             {j++; i=0; mychar=myfile.get();}
         else{
