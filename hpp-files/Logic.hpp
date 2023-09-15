@@ -15,7 +15,7 @@ protected:
 
 	GameStatus Status;
 
-	int counter_bot[5];
+	int counter_bot[5][3];
 
 	int counter;
 
