@@ -28,16 +28,16 @@ Collisioni:
 
 
 TO DO:
--cambia mappa(include anche l'inserimento del lovello negozio)(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
--salvataggio di stato per ogni mappa gia visitata quando si procede a una nuova, e aggiungere lista di liste per quali entities ci sono in ogni mappa per poterle ristampare
--aggiungere healthpack(la P) FATTO
+-cambia mappa(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
+-salvataggio di stato(da definire quando viene eseguito)
 -ideare e implementare powerup
--aggiungere statistiche player in alto a destra(o fuori dalla window se non c'è spazio) FATTO
--aggiungere danno per la caduta nei fossi FATTO
 -collisioni livello negozio
--aggiungere aesthetic tipo scritta titolo/game over
--fare dei punti come scritto nella consegna 
+-implementare un esc per tornare al menu, cosi da poter accedere al negozio, e poi viceversa
+-fare dei punti come scritto nella consegna(10 punti per soldo e 20 per nemico uscciso?)
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 
+problemi:
+-il numero di soldi si resetta quando alzi di livello
+-i soldi che hai preso nel primo livello di difficolta

@@ -1,6 +1,6 @@
 #define CHARACTER '@'
 #define ENEMY '&'
-#define MONEY '*'
+#define MONEY '0'
 #define SHOOT '-'
 #define POWERUP 'P'
 #define HORIZONTAL_WALL '='

@@ -31,24 +31,31 @@ int main() {
     menu->titolo();
     menu->finestraGioco();
     int scelta=menu->finestraMenu();
+    if(scelta == 0){//gioco
+        logica->InitMappa(1, 0);
 
-    logica->InitMappa(5, 2);
+        while (1) {
+            if(gamestatus == Game){
+                int choice = eventi->getmv();
+            
+                logica->GiveDynamicity();
 
-    while (1) {
-        if(gamestatus == Game){
-            int choice = eventi->getmv();
-        
-            logica->GiveDynamicity();
+                napms(NAPTIME); 
+            }
 
-            napms(NAPTIME); 
+            if(logica->ReturnInfoPlayer()->hp == 0){
+                gamestatus = MenU;
+                menu->GameOver();
+                wrefresh(win);
+                int scelta=menu->finestraMenu();
+            }
         }
-
-        if(logica->ReturnInfoPlayer()->hp == 0){
-            gamestatus = MenU;
-            menu->GameOver();
-            wrefresh(win);
-            int scelta=menu->finestraMenu();
-        }
+    }
+    else if(scelta == 1){
+        //qui c'è da pensare: la scelta non la possiamo mettere nel ciclo infinito del gioco, ma senno come si fa a uscire e entrare tra il gioco e il menu?
+    }
+    else{
+        //sta opzione non so neanche che farci onesto
     }
 
     endwin();
