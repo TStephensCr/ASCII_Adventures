@@ -3,17 +3,12 @@
 Menu:: Menu(WINDOW *win1, WINDOW * win2){
       menuwin = win1;
       inputwin = win2;
-     
+      map = new Mappa(inputwin);
 }
 
 void Menu::titolo(){
-    start_color();
-    init_pair(1, COLOR_BLACK, COLOR_WHITE);
-    move(0,42);
-    attron(   COLOR_PAIR(1));
-    printw("Bardo's Adventure");
-    attroff(  COLOR_PAIR(1));
-    refresh();
+    map->leggimappa('!');
+    map->stampamappa();
 }
 
 
@@ -67,11 +62,7 @@ int Menu::finestraMenu(){
 
 
 void Menu::finestraGioco(){
-    wrefresh(inputwin);
     box(inputwin,0,0);
-    refresh();
-    mvwprintw(inputwin,2,1,"finestra iniziale");
-    wrefresh(inputwin);
     wrefresh(inputwin);
     
 }
