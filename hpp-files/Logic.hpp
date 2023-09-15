@@ -19,7 +19,7 @@ protected:
 
 	int counter = 0;
 
-	int curmap_ = '0';
+	int curmap_ = 0;
 
 	int curLev_ = 0;
 

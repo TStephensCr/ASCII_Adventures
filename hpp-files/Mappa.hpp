@@ -10,7 +10,7 @@ class Mappa{
     Mappa(WINDOW* win);
     void stampamappa();//scrive su schermo la mappa contenuta nella matrice
     void leggimappa(int curmap);//legge una mappa data in input dal file e la mette in una matrice
-    
+    int charToInt(char inputChar);
 
     private:
     WINDOW* playwin;
