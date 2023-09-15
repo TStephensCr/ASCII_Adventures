@@ -39,7 +39,7 @@ void Collision::OutOfBounds(){
 
 }
 
-void Collision::ManageCollisions(ens Entity)
+void Collision::ManageCollisions(ens Entity,int mappa)
 {
     if(Entity){
         int xPos = Entity->pos->ReturnPos().x;
@@ -54,7 +54,7 @@ void Collision::ManageCollisions(ens Entity)
             char charAboveOrBelow = mvwinch(curwin, c, xPos);
             MyPosition newP;
             newP.x = xPos; newP.y = c;
-            ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP);
+            ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, mappa);
 
             if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
                 Entity->yForce = 0;
@@ -89,7 +89,7 @@ void Collision::ManageCollisions(ens Entity)
             char charAtNewPos = mvwinch(curwin, yPos, xPos);
             MyPosition newP;
             newP.x = xPos; newP.y = yPos;
-            ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP);
+            ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, mappa);
 
             if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL || charAtNewPos == FULLFILL_POINT) {
                 if(Entity->type == shoot)

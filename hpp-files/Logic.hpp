@@ -19,9 +19,9 @@ protected:
 
 	int counter = 0;
 
-	int curmap = 1;
+	char curmap_ = '0';
 
-	int curLev = 1;
+	int curLev_ = 0;
 
 	Mappa* map;
 
@@ -37,7 +37,7 @@ public:
 
 	void InitMappa(char curmap, int curLev);
 
-	void InitEntities(char NumberOfMap, int curLev);
+	void InitEntities(int curLev);
 
 	void GiveDynamicity();
 
