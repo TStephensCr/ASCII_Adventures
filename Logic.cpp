@@ -33,7 +33,7 @@ Player* Logic::ReturnInfoPlayer()
 	return InfoPlayer;
 }
 
-void Logic::InitMappa(char curmap, int curLev){
+void Logic::InitMappa(int curmap, int curLev){
 	curmap_ = curmap;
 	map->leggimappa(curmap);
     map->stampamappa();

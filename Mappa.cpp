@@ -23,14 +23,17 @@ void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa dev
     return;
 }
 
-void Mappa::leggimappa(char curmap){
+void Mappa::leggimappa(int curmap){
     char mychar;
+    int mycharInt;
     int i=0;
     int j=-1;
     std::ifstream myfile;
     myfile.open("mockup.mappa.txt");
     do{
-        mychar=myfile.get();}while(mychar!=curmap && myfile.good());
+        mychar=myfile.get();
+        mycharInt=static_cast<int>(mychar);
+    }while(mycharInt!=curmap && myfile.good());
 
     mychar=myfile.get();
 

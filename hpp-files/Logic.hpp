@@ -19,7 +19,7 @@ protected:
 
 	int counter = 0;
 
-	char curmap_ = '0';
+	int curmap_ = '0';
 
 	int curLev_ = 0;
 
@@ -37,7 +37,7 @@ public:
 
 	void DisplayPlayerStats();
 
-	void InitMappa(char curmap, int curLev);
+	void InitMappa(int curmap, int curLev);
 
 	void InitEntities(int curLev);
 
