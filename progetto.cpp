@@ -10,9 +10,6 @@ int main() {
     start_color();
     curs_set(FALSE);
 
-    int x, y;
-    getmaxyx(stdscr, y, x);
-
     WINDOW * menuwin = newwin(5, 102, 22, 1);
     box(menuwin,0,0);
 
@@ -28,6 +25,8 @@ int main() {
 
     Events* eventi = logica->ReturnEventsOBJ();
 
+    GameStatus gamestatus = Game;
+
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
@@ -36,12 +35,19 @@ int main() {
     logica->InitMappa('1', 2);
 
     while (1) {
+        if(gamestatus == Game){
+            int choice = eventi->getmv();
+        
+            logica->GiveDynamicity();
 
-        int choice = eventi->getmv();
-        
-        logica->GiveDynamicity();
-        
-        napms(NAPTIME); 
+            napms(NAPTIME); 
+        }
+
+        if(logica->ReturnInfoPlayer()->hp == 0){
+            menu->GameOver();
+            gamestatus = MenU;
+            wrefresh(win);
+        }
     }
 
     endwin();

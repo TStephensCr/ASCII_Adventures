@@ -33,6 +33,8 @@ public:
 
 	Entities* ReturnEntitiesOBJ();	
 
+	Player* ReturnInfoPlayer();
+
 	void DisplayPlayerStats();
 
 	void InitMappa(char curmap, int curLev);
@@ -42,4 +44,6 @@ public:
 	void GiveDynamicity();
 
 	void FileSave();
+
+	void CheckGameOver();
 };

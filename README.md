@@ -36,6 +36,8 @@ TO DO:
 -aggiungere danno per la caduta nei fossi FATTO
 -collisioni livello negozio
 -aggiungere aesthetic tipo scritta titolo/game over
-
+-fare dei punti come scritto nella consegna 
+-diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
+

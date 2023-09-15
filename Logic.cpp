@@ -27,11 +27,22 @@ Entities *Logic::ReturnEntitiesOBJ()
     return entitiesOBJ;
 }
 
+Player* Logic::ReturnInfoPlayer()
+{
+	InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
+	return InfoPlayer;
+}
+
 void Logic::InitMappa(char curmap, int curLev){
 	curmap_ = curmap;
 	map->leggimappa(curmap);
     map->stampamappa();
 	InitEntities(curLev);
+}
+
+void Logic::CheckGameOver(){
+	InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
+
 }
 
 void Logic::FileSave(){//cose da salvare: curmap, curLev, position e death_flag di tutte le entita di quella mappa(incluso il player) e i counter
