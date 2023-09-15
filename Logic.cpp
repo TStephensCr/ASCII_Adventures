@@ -28,9 +28,13 @@ Entities *Logic::ReturnEntitiesOBJ()
 }
 
 void Logic::InitMappa(char curmap, int curLev){
-	map->mapcaller(curmap);
+	map->leggimappa(curmap);
     map->stampamappa();
 	InitEntities(curmap, curLev);
+}
+
+void Logic::FileSave(){//cose da salvare: curmap, curLev, position e death_flag di tutte le entita di quella mappa(incluso il player)
+
 }
 
 void Logic::InitEntities(char NumberOfMap = '1', int curLev = 0){

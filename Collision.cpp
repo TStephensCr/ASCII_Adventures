@@ -131,6 +131,7 @@ void Collision::ManageCollisions(ens Entity)
                     entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
                 }//caso nemico tocca il player
             }
+            //qua ci devo mettere un controllo su quando il player arriva nelle caselle di cambio mappa. Chiama funzione per salvataggio file e richiama InitMappa con valori nuovi
         }
     }
 }

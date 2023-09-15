@@ -46,7 +46,3 @@ void Mappa::leggimappa(char curmap){
     myfile.close();
 }
 
-void Mappa::mapcaller(char curmap){//questa deve fare i suoi controlli ogni volta per vedere se chiamare leggimappa o no, e devo decidere se far chiamare stampamappa da questa oppure se metterla nel main diretto
-    Mappa::leggimappa(curmap);
-    
-}

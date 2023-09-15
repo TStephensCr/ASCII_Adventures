@@ -41,4 +41,5 @@ public:
 
 	void GiveDynamicity();
 
+	void FileSave();
 };
