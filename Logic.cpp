@@ -54,45 +54,45 @@ void Logic::InitEntities(int curLev = 0){//facciamo initentities ogni volta che 
 										// il livello corrente è quello che metto quando faccio initEntities
 	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN)->mappa = curmap_;
 
-	// mappa 1
-	entitiesOBJ->Insert(money, 26, 4)->mappa = '1';
-	if (curLev >= 0) entitiesOBJ->Insert(enemy, 21, 11)->mappa = '1';
-	if (curLev >= 1) entitiesOBJ->Insert(enemy, 36, 6)->mappa = '1';
-	if (curLev >= 2) entitiesOBJ->Insert(enemy, 55, 9)->mappa = '1';
-	entitiesOBJ->Insert(money, 78, 8)->mappa = '1';
+	//mappa 1
+    entitiesOBJ->Insert(money, 26, 4)->mappa = 1;
+    if (curLev >= 0) entitiesOBJ->Insert(enemy, 21, 11)->mappa = 1;
+    if (curLev >= 1) entitiesOBJ->Insert(enemy, 36, 6)->mappa = 1;
+    if (curLev >= 2) entitiesOBJ->Insert(enemy, 55, 9)->mappa = 1;
+    entitiesOBJ->Insert(money, 78, 8)->mappa = 1;
 
-	// mappa 2
-	if (curLev >= 0) entitiesOBJ->Insert(enemy, 16, 9)->mappa = '2';
-	entitiesOBJ->Insert(money, 31, 12)->mappa = '2';
-	if (curLev >= 1) entitiesOBJ->Insert(enemy, 38, 8)->mappa = '2';
-	entitiesOBJ->Insert(money, 54, 12)->mappa = '2';
-	entitiesOBJ->Insert(powerup, 68, 14)->mappa = '2';
-	if (curLev >= 2) entitiesOBJ->Insert(enemy, 77, 10)->mappa = '2';
+	//mappa 2
+    if (curLev >= 0) entitiesOBJ->Insert(enemy, 16, 9)->mappa = 2;
+    entitiesOBJ->Insert(money, 31, 12)->mappa = 2;
+    if (curLev >= 1) entitiesOBJ->Insert(enemy, 38, 8)->mappa = 2;
+    entitiesOBJ->Insert(money, 54, 12)->mappa = 2;
+    entitiesOBJ->Insert(powerup, 68, 14)->mappa = 2;
+    if (curLev >= 2) entitiesOBJ->Insert(enemy, 77, 10)->mappa = 2;
 
-	// mappa 3
-	entitiesOBJ->Insert(money, 22, 5)->mappa = '3';
-	entitiesOBJ->Insert(powerup, 22, 14)->mappa = '3';
-	if (curLev >= 0) entitiesOBJ->Insert(enemy, 30, 11)->mappa = '3';
-	if (curLev >= 1) entitiesOBJ->Insert(enemy, 32, 6)->mappa = '3';
-	entitiesOBJ->Insert(money, 60, 6)->mappa = '3';
-	entitiesOBJ->Insert(money, 73, 13)->mappa = '3';
-	if (curLev >= 2) entitiesOBJ->Insert(enemy, 79, 10)->mappa = '3';
+	//mappa 3
+    entitiesOBJ->Insert(money, 22, 5)->mappa = 3;
+    entitiesOBJ->Insert(powerup, 22, 14)->mappa = 3;
+    if (curLev >= 0) entitiesOBJ->Insert(enemy, 30, 11)->mappa = 3;
+    if (curLev >= 1) entitiesOBJ->Insert(enemy, 32, 6)->mappa = 3;
+    entitiesOBJ->Insert(money, 60, 6)->mappa = 3;
+    entitiesOBJ->Insert(money, 73, 13)->mappa = 3;
+    if (curLev >= 2) entitiesOBJ->Insert(enemy, 79, 10)->mappa = 3;
 
-	// mappa 4
-	entitiesOBJ->Insert(money, 37, 7)->mappa = '4';
-	if (curLev >= 0) entitiesOBJ->Insert(enemy, 51, 7)->mappa = '4';
-	if (curLev >= 1) entitiesOBJ->Insert(enemy, 29, 13)->mappa = '4';
-	entitiesOBJ->Insert(money, 53, 13)->mappa = '4';
-	if (curLev >= 2) entitiesOBJ->Insert(enemy, 68, 11)->mappa = '4';
-	entitiesOBJ->Insert(powerup, 22, 10)->mappa = '4';
+	//mappa 4
+    entitiesOBJ->Insert(money, 37, 7)->mappa = 4;
+    if (curLev >= 0) entitiesOBJ->Insert(enemy, 51, 7)->mappa = 4;
+    if (curLev >= 1) entitiesOBJ->Insert(enemy, 29, 13)->mappa = 4;
+    entitiesOBJ->Insert(money, 53, 13)->mappa = 4;
+    if (curLev >= 2) entitiesOBJ->Insert(enemy, 68, 11)->mappa = 4;
+    entitiesOBJ->Insert(powerup, 22, 10)->mappa = 4;
 
-	// mappa 5
-	entitiesOBJ->Insert(money, 42, 5)->mappa = '5';
-	if (curLev >= 2) entitiesOBJ->Insert(enemy, 19, 13)->mappa = '5';
-	if (curLev >= 0) entitiesOBJ->Insert(enemy, 25, 9)->mappa = '5';
-	if (curLev >= 1) entitiesOBJ->Insert(enemy, 49, 9)->mappa = '5';
-	entitiesOBJ->Insert(money, 73, 10)->mappa = '5';
-	entitiesOBJ->Insert(powerup, 45, 14)->mappa = '5';
+	//mappa 5
+    entitiesOBJ->Insert(money, 42, 5)->mappa = 5;
+    if (curLev >= 2) entitiesOBJ->Insert(enemy, 19, 13)->mappa = 5;
+    if (curLev >= 0) entitiesOBJ->Insert(enemy, 25, 9)->mappa = 5;
+    if (curLev >= 1) entitiesOBJ->Insert(enemy, 49, 9)->mappa = 5;
+    entitiesOBJ->Insert(money, 73, 10)->mappa = 5;
+    entitiesOBJ->Insert(powerup, 45, 14)->mappa = 5;
 
 
 }
@@ -126,30 +126,42 @@ void Logic::CheckChangeMap(){
     getmaxyx(curwin, y, x);
 
 	if(player->pos->ReturnPos().x == 1 && player->pos->ReturnPos().y == 12){
-		if(curmap_ == 0){
+		if(curmap_ == 1){
 			if(curLev_ > 0){
 				curmap_ = 5;
 				curLev_--;
+				entitiesOBJ->ReturnPlayerPointer()->pos->SelectPosition(x - 3,Y_PLAYERSPAWN);
+				ens lista = entitiesOBJ->ReturnList();
+				lista = NULL;
+				InitEntities(curLev_);
 			}
 		}
 		else{
 			curmap_--;
+			entitiesOBJ->ReturnPlayerPointer()->pos->SelectPosition(x - 3,Y_PLAYERSPAWN);
 		}
 		
 	}
 
-	if(player->pos->ReturnPos().x == x-1 && player->pos->ReturnPos().y == 12){
+	if(player->pos->ReturnPos().x == x-2 && player->pos->ReturnPos().y == 12){
 		if(curmap_ == 5){
 			if(curLev_ < 2){
 				curLev_++;
-				curmap_ = 0;
+				curmap_ = 1;
+				entitiesOBJ->ReturnPlayerPointer()->pos->SelectPosition(X_PLAYERSPAWN,y);
+				ens lista = entitiesOBJ->ReturnList();
+				lista = NULL;
+				InitEntities(curLev_);
 			}
 		}
 		else{
 			curmap_++;
+			entitiesOBJ->ReturnPlayerPointer()->pos->SelectPosition(X_PLAYERSPAWN,Y_PLAYERSPAWN);
 		}
 	}
-	
+	entitiesOBJ->ReturnPlayerPointer()->mappa = curmap_;
+	map->leggimappa(curmap_);
+    map->stampamappa();
 
 }
 
