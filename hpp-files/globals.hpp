@@ -8,8 +8,8 @@
 #define FULLFILL_POINT '.'
 #define POWERUP 'P'
 #define PLAYERLIFES 3
-#define X_PLAYERSPAWN 3
-#define Y_PLAYERSPAWN 4
+#define X_PLAYERSPAWN 2
+#define Y_PLAYERSPAWN 12
 #define JUMPHEIGHT 12
 #define NAPTIME 30
 

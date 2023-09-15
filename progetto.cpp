@@ -44,8 +44,8 @@ int main() {
         }
 
         if(logica->ReturnInfoPlayer()->hp == 0){
-            menu->GameOver();
             gamestatus = MenU;
+            menu->GameOver();
             wrefresh(win);
             int scelta=menu->finestraMenu();
         }

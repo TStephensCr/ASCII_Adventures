@@ -45,5 +45,7 @@ public:
 
 	void FileSave();
 
+	void CheckChangeMap();
+
 	void CheckGameOver();
 };

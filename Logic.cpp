@@ -120,11 +120,45 @@ void Logic::DisplayPlayerStats() {
     }
 }
 
+void Logic::CheckChangeMap(){
+	ens player = entitiesOBJ->ReturnPlayerPointer();
+	int x, y;
+    getmaxyx(curwin, y, x);
+
+	if(player->pos->ReturnPos().x == 1 && player->pos->ReturnPos().y == 12){
+		if(curmap_ == 0){
+			if(curLev_ > 0){
+				curmap_ = 5;
+				curLev_--;
+			}
+		}
+		else{
+			curmap_--;
+		}
+		
+	}
+
+	if(player->pos->ReturnPos().x == x-1 && player->pos->ReturnPos().y == 12){
+		if(curmap_ == 5){
+			if(curLev_ < 2){
+				curLev_++;
+				curmap_ = 0;
+			}
+		}
+		else{
+			curmap_++;
+		}
+	}
+	
+
+}
 
 void Logic::GiveDynamicity()
 {
     ens tmp = entitiesOBJ->ReturnList();
 	
+	CheckChangeMap();
+
     while (tmp) {
         if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot)) {
             if (tmp->type == enemy && counter == 3) {
