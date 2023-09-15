@@ -15,6 +15,7 @@ class Menu{
         
         Menu(WINDOW *menuwin, WINDOW *inputwin);
         void titolo();
+        void GameOver();
         int finestraMenu();
         void finestraGioco();
       

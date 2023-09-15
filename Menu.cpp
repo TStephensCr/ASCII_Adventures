@@ -11,6 +11,11 @@ void Menu::titolo(){
     map->stampamappa();
 }
 
+void Menu::GameOver(){
+    map->leggimappa('?');
+    map->stampamappa();
+}
+
 
 int Menu::finestraMenu(){
       keypad(menuwin, true);
