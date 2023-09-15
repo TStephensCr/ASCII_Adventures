@@ -102,11 +102,12 @@ void Collision::ManageCollisions(ens Entity,int mappa)
                     Entity_in_new_loc->death_flag = true;
                     entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
                 }
-                else if((Entity_in_new_loc->type == enemy && Entity->type == shoot) || (Entity_in_new_loc->type == shoot && Entity->type == enemy)){
+                else if ((Entity->type == shoot && Entity_in_new_loc->type == enemy) || (Entity->type == enemy && Entity_in_new_loc->type == shoot)) {
                     Entity_in_new_loc->death_flag = true;
                     Entity->death_flag = true;
                     entitiesOBJ->ClearPosition(Entity_in_new_loc);
-                }// caso sparo/nemico e nemico/sparo [semplicemente entrambi si eliminano]
+                }
+// caso sparo/nemico e nemico/sparo [semplicemente entrambi si eliminano]
                 else if(Entity_in_new_loc->type == enemy && Entity->type == player){
                     if(entitiesOBJ->ReturnPlayerOBJ()->LastMovement == 'd'){
                         Entity->xForce = -10; Entity->yForce = -10;

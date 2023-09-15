@@ -60,18 +60,38 @@ void Events::Shoot()
 	int yPos = PlayerPointer->pos->ReturnPos().y;
 
 	if(InfoPlayer->LastMovement == 'd'){
-		char g = mvwinch(curwin, yPos, xPos + 1);
-		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
-			ens sparo = entitiesOBJ->Insert(shoot, xPos + 1, yPos);
-			sparo->xForce = 200;
-			InfoPlayer->colpi--;
+		MyPosition newP;
+        newP.x = xPos + 1; newP.y = yPos;
+        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1);
+
+		if(Entity_in_new_loc){
+			Entity_in_new_loc->death_flag = true;
+
+		}else{
+			char g = mvwinch(curwin, yPos, xPos + 1);
+			if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
+				ens sparo = entitiesOBJ->Insert(shoot, xPos + 1, yPos);
+				sparo->xForce = 200;
+				InfoPlayer->colpi--;
 		}
+			
+		}
+
 	}else if(InfoPlayer->LastMovement == 's' ){
-		char g = mvwinch(curwin, yPos, xPos - 1);
-		if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
-			ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
-			sparo->xForce = -200;
-			InfoPlayer->colpi--;
+		MyPosition newP;
+        newP.x = xPos - 1; newP.y = yPos;
+        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1);
+
+		if(Entity_in_new_loc){
+			Entity_in_new_loc->death_flag = true;
+		}else{
+			char g = mvwinch(curwin, yPos, xPos - 1);
+			if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
+				ens sparo = entitiesOBJ->Insert(shoot, xPos - 1, yPos);
+				sparo->xForce = -200;
+				InfoPlayer->colpi--;
+		}
+
 		}
 	}
 }

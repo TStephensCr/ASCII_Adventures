@@ -85,7 +85,7 @@ ens Entities::EntitiesInLocation(MyPosition Loc, int mappa) {
     ens Entity_founded = NULL;
     bool Trovato = false;
     while (entity && !Trovato) {
-        if (xLoc(entity) == Loc.x && yLoc(entity) == Loc.y && entity->mappa == mappa) {
+        if ((xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) && (entity->mappa == mappa || mappa == -1)) {
             Entity_founded = entity;
             Trovato = true;
         } else {
