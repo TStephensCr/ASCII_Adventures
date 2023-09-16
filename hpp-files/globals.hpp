@@ -23,6 +23,7 @@ struct entita {
   int yForce = 0;
   bool death_flag = false;
   int mappa = -1;
+  int livello = -1;
   entita* next;
 };
 typedef entita* ens;  // e = entit�, n = nello , s = spazio

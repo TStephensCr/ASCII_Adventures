@@ -62,7 +62,7 @@ void Events::Shoot()
 	if(InfoPlayer->LastMovement == 'd'){
 		MyPosition newP;
         newP.x = xPos + 1; newP.y = yPos;
-        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1);
+        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1, -1);
 
 		if(Entity_in_new_loc){
 			Entity_in_new_loc->death_flag = true;
@@ -80,7 +80,7 @@ void Events::Shoot()
 	}else if(InfoPlayer->LastMovement == 's' ){
 		MyPosition newP;
         newP.x = xPos - 1; newP.y = yPos;
-        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1);
+        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1, -1);
 
 		if(Entity_in_new_loc){
 			Entity_in_new_loc->death_flag = true;

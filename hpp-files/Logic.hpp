@@ -15,6 +15,8 @@ protected:
 
 	GameStatus Status;
 
+	ens PlayerPointer;
+
 	int counter_bot[5][3];
 
 	int counter;
@@ -39,7 +41,7 @@ public:
 
 	void InitMappa(int curmap, int curLev);
 
-	void InitEntities(int curLev);
+	void InitEntities();
 
 	void GiveDynamicity();
 
@@ -47,5 +49,5 @@ public:
 
 	void CheckChangeMap();
 
-	void CheckGameOver();
+	void UpdateVariables();
 };

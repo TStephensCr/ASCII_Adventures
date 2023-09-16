@@ -20,5 +20,5 @@ public:
 
 	void OutOfBounds();
 
-	void ManageCollisions(ens Entity, int mappa);
+	void ManageCollisions(ens Entity, int mappa, int livello);
 };

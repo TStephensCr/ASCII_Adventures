@@ -80,12 +80,12 @@ int Entities::GetPlayerLives(){
     }
 }
 
-ens Entities::EntitiesInLocation(MyPosition Loc, int mappa) {
+ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello) {
     ens entity = entities;
     ens Entity_founded = NULL;
     bool Trovato = false;
     while (entity && !Trovato) {
-        if ((xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) && (entity->mappa == mappa || mappa == -1 || entity->type == shoot)) {
+        if ((xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) && (entity->mappa == mappa || mappa == -1 || entity->type == shoot) && (entity->livello == livello || livello == -1 || entity->type == shoot)) {
             Entity_founded = entity;
             Trovato = true;
         } else {

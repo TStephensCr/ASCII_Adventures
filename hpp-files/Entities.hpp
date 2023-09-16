@@ -29,7 +29,7 @@ class Entities {
                                     // will show up in the game
 
   ens EntitiesInLocation(
-      MyPosition Loc, int mappa);  // Given a position returns the entity in that position
+      MyPosition Loc, int mappa, int livello);  // Given a position returns the entity in that position
                         // otherwise returns NULL
 
   void Remove(ens Entity); //SE FAI entita->Remove(j); RICORDA DI METTERE j == NULL.altrimenti 
