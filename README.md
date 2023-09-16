@@ -28,7 +28,7 @@ Collisioni:
 
 
 TO DO:
--cambia mappa(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
+-fixare i bug di cambio livello(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
 -salvataggio di stato(da definire quando viene eseguito)
 -ideare e implementare powerup
 -collisioni livello negozio
@@ -39,5 +39,5 @@ TO DO:
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 
 problemi:
--il numero di soldi si resetta quando alzi di livello
--i soldi che hai preso nel primo livello di difficolta
+-il numero di soldi e di proiettili si resetta quando alzi di livello
+-i soldi che hai preso nel primo livello di difficolta non sono prendibili nelle difficolta piu alte e hanno collisioni strane
