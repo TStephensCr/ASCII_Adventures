@@ -28,13 +28,10 @@ Collisioni:
 
 
 TO DO:
--fixare i bug di cambio livello(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
--da fixare i problemi causati dall'uscita e rientro nel gioco
 -controllo per fare in modo che InitEntities viene chiamato solo per partita nuova, e di conseguenza un nuovo InitEntities che prende i dati dal salvataggio
--salvataggio di stato(da definire quando viene eseguito)
+-salvataggio di stato
 -ideare e implementare powerup
 -collisioni livello negozio
--implementare un esc per tornare al menu, cosi da poter accedere al negozio, e poi viceversa
 -fare dei punti come scritto nella consegna(10 punti per soldo e 20 per nemico uscciso?)
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 
@@ -44,3 +41,4 @@ ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin m
 problemi:
 -il numero di soldi e di proiettili si resetta quando alzi di livello
 -i soldi che hai preso nel primo livello di difficolta non sono prendibili nelle difficolta piu alte e hanno collisioni strane
+-quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo

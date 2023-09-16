@@ -1,4 +1,5 @@
 #include "hpp-files/Logic.hpp"
+#include <fstream>
 
 Logic::Logic(WINDOW* win) {
 
@@ -53,8 +54,12 @@ void Logic::UpdateVariables()
 }
 
 
-void Logic::FileSave()
-{ // cose da salvare: curmap, curLev, position e death_flag di tutte le entita di quella mappa(incluso il player) e i counter
+void Logic::FileSave(){
+	char mychar;
+	std::ofstream myfile;
+	myfile.open("Salvataggio.txt");
+	myfile.put('A');
+	myfile.close();
 }
 
 void Logic::InitEntities(){//facciamo initentities ogni volta che il player aumenta di livello.
