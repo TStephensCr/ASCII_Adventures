@@ -32,12 +32,13 @@ int main() {
     menu->finestraGioco();
     while(1){
         int scelta=menu->finestraMenu();
-        if(scelta == 0){//gioco
+        if(scelta == 0){//gioco nuovo
             logica->InitMappa(5, 0);
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
                     if(choice==27){
+                        //funzione salvataggio
                         gamestatus=MenU;
                         menu->titolo();
                         wrefresh(win);
@@ -58,12 +59,12 @@ int main() {
                             
             }
         }
-        else if(scelta == 1){
-            //qui c'è da pensare: la scelta non la possiamo mettere nel ciclo infinito del gioco, ma senno come si fa a uscire e entrare tra il gioco e il menu?
+        else if(scelta == 1){//gioco caricato
+            
         }
-        else{
-            //sta opzione non so neanche che farci onesto
-        }
+        else{//negozio
+            
+        }//serve un'altra opzione di menu per chiudere il gioco
     }
     endwin();
     return 0;

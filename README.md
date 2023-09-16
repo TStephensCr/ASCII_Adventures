@@ -30,6 +30,7 @@ Collisioni:
 TO DO:
 -fixare i bug di cambio livello(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
 -da fixare i problemi causati dall'uscita e rientro nel gioco
+-controllo per fare in modo che InitEntities viene chiamato solo per partita nuova, e di conseguenza un nuovo InitEntities che prende i dati dal salvataggio
 -salvataggio di stato(da definire quando viene eseguito)
 -ideare e implementare powerup
 -collisioni livello negozio
