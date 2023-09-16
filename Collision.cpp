@@ -106,6 +106,7 @@ void Collision::ManageCollisions(ens Entity,int mappa,int livello)
                     Entity_in_new_loc->death_flag = true;
                     Entity->death_flag = true;
                     entitiesOBJ->ClearPosition(Entity_in_new_loc);
+                    entitiesOBJ->ReturnPlayerOBJ()->points += 20;
                 }
 // caso sparo/nemico e nemico/sparo [semplicemente entrambi si eliminano]
                 else if(Entity_in_new_loc->type == enemy && Entity->type == player){

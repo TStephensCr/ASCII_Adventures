@@ -66,7 +66,7 @@ void Events::Shoot()
 
 		if(Entity_in_new_loc){
 			Entity_in_new_loc->death_flag = true;
-
+			InfoPlayer->points += 20;
 		}else{
 			char g = mvwinch(curwin, yPos, xPos + 1);
 			if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
@@ -84,6 +84,7 @@ void Events::Shoot()
 
 		if(Entity_in_new_loc){
 			Entity_in_new_loc->death_flag = true;
+			InfoPlayer->points += 20;
 		}else{
 			char g = mvwinch(curwin, yPos, xPos - 1);
 			if(g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && InfoPlayer->colpi > 0){
