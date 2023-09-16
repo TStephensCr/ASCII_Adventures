@@ -30,15 +30,11 @@ Collisioni:
 TO DO:
 -controllo per fare in modo che InitEntities viene chiamato solo per partita nuova, e di conseguenza un nuovo InitEntities che prende i dati dal salvataggio
 -salvataggio di stato
--ideare e implementare powerup
 -collisioni livello negozio
--fare dei punti come scritto nella consegna(10 punti per soldo e 20 per nemico uscciso?)
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 
 problemi:
--il numero di soldi e di proiettili si resetta quando alzi di livello
--i soldi che hai preso nel primo livello di difficolta non sono prendibili nelle difficolta piu alte e hanno collisioni strane
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
