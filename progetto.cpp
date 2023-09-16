@@ -30,34 +30,41 @@ int main() {
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
-    int scelta=menu->finestraMenu();
-    if(scelta == 0){//gioco
-        logica->InitMappa(5, 0);
+    while(1){
+        int scelta=menu->finestraMenu();
+        if(scelta == 0){//gioco
+            logica->InitMappa(5, 0);
+            gamestatus=Game;
+            while (gamestatus==Game) {
+                    int choice = eventi->getmv();
+                    if(choice==27){
+                        gamestatus=MenU;
+                        menu->titolo();
+                        wrefresh(win);
+                    }
+                    else{
+                        logica->GiveDynamicity();
 
-        while (1) {
-            if(gamestatus == Game){
-                int choice = eventi->getmv();
-            
-                logica->GiveDynamicity();
+                            napms(NAPTIME); 
 
-                napms(NAPTIME); 
-            }
-
-            if(logica->ReturnInfoPlayer()->hp == 0){
-                gamestatus = MenU;
-                menu->GameOver();
-                wrefresh(win);
-                int scelta=menu->finestraMenu();
+                        if(logica->ReturnInfoPlayer()->hp == 0){
+                            gamestatus = MenU;
+                            menu->GameOver();
+                            wrefresh(win);
+                            //serve un anti-InitEntities
+                            //serve un annullatore del save
+                        }
+                        }
+                            
             }
         }
+        else if(scelta == 1){
+            //qui c'è da pensare: la scelta non la possiamo mettere nel ciclo infinito del gioco, ma senno come si fa a uscire e entrare tra il gioco e il menu?
+        }
+        else{
+            //sta opzione non so neanche che farci onesto
+        }
     }
-    else if(scelta == 1){
-        //qui c'è da pensare: la scelta non la possiamo mettere nel ciclo infinito del gioco, ma senno come si fa a uscire e entrare tra il gioco e il menu?
-    }
-    else{
-        //sta opzione non so neanche che farci onesto
-    }
-
     endwin();
     return 0;
 }

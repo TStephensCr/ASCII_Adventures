@@ -29,12 +29,14 @@ Collisioni:
 
 TO DO:
 -fixare i bug di cambio livello(inventarsi qualcosa per se si arriva alla fine di tutto il gioco)
+-da fixare i problemi causati dall'uscita e rientro nel gioco
 -salvataggio di stato(da definire quando viene eseguito)
 -ideare e implementare powerup
 -collisioni livello negozio
 -implementare un esc per tornare al menu, cosi da poter accedere al negozio, e poi viceversa
 -fare dei punti come scritto nella consegna(10 punti per soldo e 20 per nemico uscciso?)
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
+
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 
