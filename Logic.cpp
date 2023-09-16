@@ -202,7 +202,6 @@ void Logic::DisplayPlayerStats() {
 		mvwprintw(curwin, 3, x - 28, "                          ");
 		mvwprintw(curwin, 4, x - 28, "                          "); 
 		mvwprintw(curwin, 5, x - 28, "                          "); 
-		mvwprintw(curwin, 6, x - 28, "                          "); 
         mvwprintw(curwin, 2, x - 28, "hp : ");
 
         int health = InfoPlayer->hp;
@@ -214,7 +213,6 @@ void Logic::DisplayPlayerStats() {
 		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
 		mvwprintw(curwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
 		mvwprintw(curwin, 5, x - 28, "punti : %d",InfoPlayer->points);
-		mvwprintw(curwin, 6, x - 28, "punti : %d",PlayerPointer->pos->ReturnPos().y);
     }
 }
 
