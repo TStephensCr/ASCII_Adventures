@@ -5,7 +5,6 @@
 class Events {//Forces Modifier
 protected:
 
-
 	Entities* entitiesOBJ;
 
 	Player* InfoPlayer;

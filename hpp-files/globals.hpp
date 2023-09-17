@@ -13,6 +13,9 @@
 #define JUMPHEIGHT 12
 #define NAPTIME 30
 #define KILL_ENEMYS_POINTS 20
+#define FALL_DAMAGE 20
+#define REPELLING_FORCE_OF_ENEMYS 10
+
 
 
 enum EntityType { player, enemy, money, shoot, powerup };
