@@ -33,5 +33,7 @@ public:
 
 	void PlayerGravity();
 
+	void DecreaseForce(ens myEntity);
+
 	int getmv();
 };

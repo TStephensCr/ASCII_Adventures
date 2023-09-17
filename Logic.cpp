@@ -278,7 +278,7 @@ void Logic::GiveDynamicity()
 
             entitiesOBJ->MoveEntity(tmp);
 
-            entitiesOBJ->DecreaseForce(tmp);
+            eventi->DecreaseForce(tmp);
 
             entitiesOBJ->Display(tmp);
         }
