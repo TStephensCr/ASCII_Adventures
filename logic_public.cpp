@@ -42,14 +42,65 @@ void Logic::InitMappa(int curmap, int curLev){
     map->stampamappa();
 }
 
-void Logic::FileSave(){
+void Logic::FileWrite(){//scrive il salvataggio su file
 	char mychar;
 	std::ofstream myfile;
-	myfile.open("Salvataggio.txt");
-	myfile.put('A');
-	myfile.close();
-}
+	myfile.open("Salvataggio.txt", std::ofstream::trunc);
 
+	myfile<<'E'<<'1'<<'\n';//file contiene salvataggio
+
+	myfile<<'M'<<curmap_<<'\n';//mappa
+
+	myfile<<'L'<<curLev_<<'\n';//livello
+
+	myfile<<'C'<<counter<<'\n';//pacing del gioco
+
+	myfile<<'B'<<'\n';//pacing dei bot
+	for(int i=0;i<3;i++){
+		for(int j=0;j<5;j++){
+			myfile<<counter_bot[j][i]<<'.';
+		}
+		myfile<<'\n';
+	}
+
+	Player* tmpPlay = ReturnInfoPlayer();
+	myfile<<'U'<<'\n';
+	myfile<<'h'<<tmpPlay->hp<<'\n';
+	myfile<<'s'<<tmpPlay->Money<<'\n';
+	myfile<<'z'<<tmpPlay->LastMovement<<'n';
+	myfile<<'c'<<tmpPlay->colpi<<'\n';
+	myfile<<'p'<<tmpPlay->points<<'\n';
+	myfile<<'b'<<tmpPlay->inJump<<'\n';
+
+	Entities* tmpEns = ReturnEntitiesOBJ();
+	ens tmp = tmpEns->ReturnList();
+	while(tmp->next != NULL){
+		if(tmp->type!=3){
+			myfile<<'_'<<'\n';
+		
+			myfile<<'t'<<tmp->type<<'\n';
+
+			myfile<<'P'<<tmp->pos->ReturnPos().x<<'.'<<tmp->pos->ReturnPos().x<<'.'<<'\n';
+
+			myfile<<'D'<<tmp->death_flag<<'\n';
+
+			myfile<<'x'<<tmp->xForce<<'\n';
+
+			myfile<<'y'<<tmp->yForce<<'\n';
+
+			myfile<<'m'<<tmp->mappa<<'\n';
+
+			myfile<<'l'<<tmp->livello<<'\n';
+		}
+
+		tmp=tmp->next;
+	}
+
+	myfile<<'<';
+
+	myfile.close();
+}//considerazioni per il read: dopo ogni valore di counter bot c'è un punto, il death flag è 0 vivo e 1 morto, tra i due valori di position c'è un punto, mi servira aiuto a interpretare il LastMovement del player
+//ricorda di controllaore perchè il menu non funziona
 
 void Logic::GiveDynamicity()
 {

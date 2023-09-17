@@ -32,6 +32,7 @@ TO DO:
 -salvataggio di stato
 -collisioni livello negozio
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
+-decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
 
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 

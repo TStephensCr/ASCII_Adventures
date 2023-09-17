@@ -54,7 +54,7 @@ public:
 
 	void GiveDynamicity();
 
-	void FileSave();
+	void FileWrite();
 
 
 };

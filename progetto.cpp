@@ -26,7 +26,7 @@ int main() {
     Events* eventi = logica->ReturnEventsOBJ();
 
     GameStatus gamestatus = Game;
-
+    
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
@@ -38,7 +38,7 @@ int main() {
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
                     if(choice==27){
-                        //funzione salvataggio
+                        logica->FileWrite();
                         gamestatus=MenU;
                         menu->titolo();
                        
@@ -49,10 +49,9 @@ int main() {
                         napms(NAPTIME); 
 
                         if(logica->ReturnInfoPlayer()->hp == 0){
+                            logica->FileWrite();
                             gamestatus = MenU;
                             menu->GameOver();
-                            //serve un anti-InitEntities
-                            //serve un annullatore del save
                         }
                     }
                     wrefresh(win);               
