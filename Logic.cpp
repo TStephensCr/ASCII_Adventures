@@ -256,7 +256,8 @@ void Logic::GiveDynamicity()
 	
 	UpdateVariables();
 	CheckChangeMap();
-
+	eventi->PlayerGravity();
+	
     while (tmp) {
         if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot) && (tmp->livello == curLev_ || tmp->type == shoot)) {
             if (tmp->type == enemy && counter == 3) {
@@ -272,8 +273,6 @@ void Logic::GiveDynamicity()
 			DisplayPlayerStats();
 			
             entitiesOBJ->ClearPosition(tmp);
-
-            eventi->Gravity(tmp);
 
             collision->ManageCollisions(tmp, curmap_, curLev_);
 

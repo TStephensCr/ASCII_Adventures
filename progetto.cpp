@@ -47,7 +47,7 @@ int main() {
                     else{
                         logica->GiveDynamicity();
 
-                            napms(NAPTIME); 
+                        napms(NAPTIME); 
 
                         if(logica->ReturnInfoPlayer()->hp == 0){
                             gamestatus = MenU;
@@ -56,8 +56,7 @@ int main() {
                             //serve un anti-InitEntities
                             //serve un annullatore del save
                         }
-                        }
-                            
+                    }               
             }
         }
         else if(scelta == 1){//gioco caricato

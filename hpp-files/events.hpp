@@ -18,25 +18,20 @@ protected:
 
 private:
 	void UpdateVariables();
-public:
 
+	void mvright(int Force);
 
-	Events(Entities* MyEntities);
-
-	void mvright(ens myEntity,int Force);
-
-	void mvleft(ens myEntity, int Force);
-
-	void mvdown(ens myEntity);
+	void mvleft(int Force);
 
 	void JumpStraight();
 
 	void Jump();
 
 	void Shoot();
+public:
+	Events(Entities* MyEntities);
+
+	void PlayerGravity();
 
 	int getmv();
-
-	void Gravity(ens myEntity);
-	
 };

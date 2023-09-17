@@ -12,6 +12,7 @@
 #define Y_PLAYERSPAWN 12
 #define JUMPHEIGHT 12
 #define NAPTIME 30
+#define KILL_ENEMYS_POINTS 20
 
 
 enum EntityType { player, enemy, money, shoot, powerup };
