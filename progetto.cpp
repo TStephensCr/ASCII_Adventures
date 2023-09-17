@@ -41,7 +41,7 @@ int main() {
                         //funzione salvataggio
                         gamestatus=MenU;
                         menu->titolo();
-                        wrefresh(win);
+                       
                     }
                     else{
                         logica->GiveDynamicity();
@@ -51,11 +51,11 @@ int main() {
                         if(logica->ReturnInfoPlayer()->hp == 0){
                             gamestatus = MenU;
                             menu->GameOver();
-                            wrefresh(win);
                             //serve un anti-InitEntities
                             //serve un annullatore del save
                         }
-                    }               
+                    }
+                    wrefresh(win);               
             }
         }
         else if(scelta == 1){//gioco caricato
