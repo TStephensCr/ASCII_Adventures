@@ -30,7 +30,6 @@ int main() {
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
-    logica->InitEntities();
     while(1){
         int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo

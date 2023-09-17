@@ -1,5 +1,6 @@
 #include "Collision.hpp"
 #include "Mappa.hpp"
+#include <fstream>
 
 class Logic {
 protected:
@@ -27,6 +28,18 @@ protected:
 
 	Mappa* map;
 
+private:
+	void InitEntities();
+
+	void CheckChangeMap();
+
+	void UpdateVariables();
+
+	void DisplayPlayerStats();
+
+	void HandleBot(ens entity);
+
+	void IncrementCounters();
 public:
 
 	Logic(WINDOW* win);
@@ -37,17 +50,11 @@ public:
 
 	Player* ReturnInfoPlayer();
 
-	void DisplayPlayerStats();
-
 	void InitMappa(int curmap, int curLev);
-
-	void InitEntities();
 
 	void GiveDynamicity();
 
 	void FileSave();
 
-	void CheckChangeMap();
 
-	void UpdateVariables();
 };
