@@ -18,7 +18,6 @@ void Menu::GameOver(){
 
 
 int Menu::finestraMenu(){
-      keypad(menuwin, true);
       char space = ' ' ;
       int left, right, top, bottom,tlc, trc, blc, brc;
       top = 0;
@@ -59,8 +58,7 @@ int Menu::finestraMenu(){
       //se premo invio
        if (scelta == 10) break;
     }
-    wrefresh(menuwin);
-    keypad(menuwin, false);
+    
     return highlight;
 }
 
