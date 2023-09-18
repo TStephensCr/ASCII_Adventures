@@ -26,18 +26,19 @@ int Menu::finestraMenu(){
 
       wrefresh(menuwin);
       
-      std::string opzioni[3] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO"};
+      std::string opzioni[4] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI"};
       int highlight=0;
       int scelta=0;
 
       while(1){
-        for(int i=0; i<3; i++){
+        for(int i=0; i<4; i++){
           if(i==highlight){
             wattron(menuwin, A_REVERSE);//inverte colori
             mvwprintw(menuwin, i+2, 1, opzioni[i].c_str());
             wattroff(menuwin, A_REVERSE);
           }
           else{mvwprintw(menuwin, i+2, 1, opzioni[i].c_str());}
+          wrefresh(menuwin);
         }
 
         scelta= wgetch(menuwin);
@@ -54,8 +55,8 @@ int Menu::finestraMenu(){
           break;
           default:
           break;
-          wrefresh(menuwin);
       }
+
       //se premo invio
        if (scelta == 10) break;
     }

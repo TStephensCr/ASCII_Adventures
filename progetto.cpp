@@ -10,7 +10,7 @@ int main() {
     start_color();
     curs_set(FALSE);
 
-    WINDOW * menuwin = newwin(5, 102, 22, 1);
+    WINDOW * menuwin = newwin(6, 102, 22, 1);
     box(menuwin,0,0);
 
     WINDOW* win = newwin(20, 102, 0, 0);
@@ -52,6 +52,7 @@ int main() {
                             logica->FileWrite();
                             gamestatus = MenU;
                             menu->GameOver();
+                            logica->ReturnInfoPlayer()->hp=100;
                         }
                     }
                     wrefresh(win);               
@@ -60,9 +61,12 @@ int main() {
         else if(scelta == 1){//gioco caricato
             
         }
-        else{//negozio
+        else if(scelta == 2){//negozio
             
-        }//serve un'altra opzione di menu per chiudere il gioco
+        }
+        else{//esci
+            
+        }
     }
     endwin();
     return 0;

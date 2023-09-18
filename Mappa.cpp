@@ -23,7 +23,7 @@ void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa dev
     return;
 }
 
-int Mappa::charToInt(char inputChar) {
+int Mappa::charToInt(char inputChar) {//da togliere, thomas sa come sostituirla
     switch (inputChar) {
         case '1':
             return 1;

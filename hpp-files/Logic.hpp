@@ -56,5 +56,6 @@ public:
 
 	void FileWrite();
 
+	void FileRead();
 
 };
