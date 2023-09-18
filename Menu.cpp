@@ -26,7 +26,7 @@ int Menu::finestraMenu(){
 
       wrefresh(menuwin);
       
-      std::string opzioni[3] = {"GIOCA", "NEGOZIO", "TUTORIAL"};
+      std::string opzioni[3] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO"};
       int highlight=0;
       int scelta=0;
 
@@ -54,6 +54,7 @@ int Menu::finestraMenu(){
           break;
           default:
           break;
+          wrefresh(menuwin);
       }
       //se premo invio
        if (scelta == 10) break;
