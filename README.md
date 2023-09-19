@@ -33,9 +33,10 @@ TO DO:
 -collisioni livello negozio
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 -decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
-
+-mappa con i colori
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
+

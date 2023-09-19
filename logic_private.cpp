@@ -145,24 +145,24 @@ void Logic::InitEntities(){//facciamo initentities ogni volta che il player aume
 
 void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma non va bene perchè si aggiorna solo quando accedi al menu con esc
     int x, y;
-    getmaxyx(menuwin, y, x);
+    getmaxyx(curwin, y, x);
 
     if (InfoPlayer) {
-        mvwprintw(menuwin, 2, x - 28, "                          ");
-		mvwprintw(menuwin, 3, x - 28, "                          ");
-		mvwprintw(menuwin, 4, x - 28, "                          "); 
-		mvwprintw(menuwin, 5, x - 28, "                          "); 
-        mvwprintw(menuwin, 2, x - 28, "hp : ");
+        mvwprintw(curwin, 2, x - 28, "                          ");
+		mvwprintw(curwin, 3, x - 28, "                          ");
+		mvwprintw(curwin, 4, x - 28, "                          "); 
+		mvwprintw(curwin, 5, x - 28, "                          "); 
+        mvwprintw(curwin, 2, x - 28, "hp : ");
 
         int health = InfoPlayer->hp;
         int bars = health / 5; // Calcola il numero di / basato sulla vita
 
         for (int i = 0; i < bars; i++) {
-            waddch(menuwin, '/');
+            waddch(curwin, '/');
         }
-		mvwprintw(menuwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
-		mvwprintw(menuwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
-		mvwprintw(menuwin, 5, x - 28, "punti : %d",InfoPlayer->points);
+		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
+		mvwprintw(curwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
+		mvwprintw(curwin, 5, x - 28, "punti : %d",InfoPlayer->points);
     }
 }
 
