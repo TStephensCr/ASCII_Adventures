@@ -6,6 +6,8 @@ class Logic {
 protected:
 	WINDOW* curwin;
 
+	WINDOW* menuwin;
+
 	Entities* entitiesOBJ;
 
 	Player* InfoPlayer;
@@ -40,9 +42,15 @@ private:
 	void HandleBot(ens entity);
 
 	void IncrementCounters();
+
+	void ReadGeneral();
+
+	void ReadPlayer();
+
+	void ReadEntities();
 public:
 
-	Logic(WINDOW* win);
+	Logic(WINDOW* win, WINDOW* menuwin);
 
 	Events* ReturnEventsOBJ();
 

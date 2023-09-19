@@ -19,7 +19,7 @@ int main() {
 
     box(win, 0, 0);
 
-    Logic* logica = new Logic(win);
+    Logic* logica = new Logic(win, menuwin);
 
     Entities* entita = logica->ReturnEntitiesOBJ();
 
@@ -30,7 +30,8 @@ int main() {
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
     menu->finestraGioco();
-    while(1){
+    bool endGame = false;
+    while(!endGame){
         int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo
             logica->InitMappa(1, 0);
@@ -65,7 +66,7 @@ int main() {
             
         }
         else{//esci
-            
+            endGame = true;
         }
     }
     endwin();

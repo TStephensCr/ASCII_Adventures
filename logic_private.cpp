@@ -143,26 +143,26 @@ void Logic::InitEntities(){//facciamo initentities ogni volta che il player aume
 	}
 }
 
-void Logic::DisplayPlayerStats() {
+void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma non va bene perchè si aggiorna solo quando accedi al menu con esc
     int x, y;
-    getmaxyx(curwin, y, x);
+    getmaxyx(menuwin, y, x);
 
     if (InfoPlayer) {
-        mvwprintw(curwin, 2, x - 28, "                          ");
-		mvwprintw(curwin, 3, x - 28, "                          ");
-		mvwprintw(curwin, 4, x - 28, "                          "); 
-		mvwprintw(curwin, 5, x - 28, "                          "); 
-        mvwprintw(curwin, 2, x - 28, "hp : ");
+        mvwprintw(menuwin, 2, x - 28, "                          ");
+		mvwprintw(menuwin, 3, x - 28, "                          ");
+		mvwprintw(menuwin, 4, x - 28, "                          "); 
+		mvwprintw(menuwin, 5, x - 28, "                          "); 
+        mvwprintw(menuwin, 2, x - 28, "hp : ");
 
         int health = InfoPlayer->hp;
         int bars = health / 5; // Calcola il numero di / basato sulla vita
 
         for (int i = 0; i < bars; i++) {
-            waddch(curwin, '/');
+            waddch(menuwin, '/');
         }
-		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
-		mvwprintw(curwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
-		mvwprintw(curwin, 5, x - 28, "punti : %d",InfoPlayer->points);
+		mvwprintw(menuwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
+		mvwprintw(menuwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
+		mvwprintw(menuwin, 5, x - 28, "punti : %d",InfoPlayer->points);
     }
 }
 
@@ -217,4 +217,170 @@ void Logic::IncrementCounters() {
     if (counter_bot[curmap_ - 1][curLev_] == 18) {
         counter_bot[curmap_ - 1][curLev_] = 0;
     }
+}
+
+void Logic::ReadGeneral(){
+	char mychar;
+	std::ifstream myfile;
+	myfile.open("Salvataggio.txt");
+
+	do{//mappa
+		mychar=myfile.get();
+		}while(mychar!='M');
+		mychar = myfile.get();
+		curmap_ = mychar - '0';//per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
+
+		do{//livello
+			mychar=myfile.get();
+		}while(mychar!='L');
+		mychar = myfile.get();
+		curLev_ = mychar - '0';
+
+		do{//counter
+			mychar=myfile.get();
+		}while(mychar!='C');
+		mychar = myfile.get();
+		counter = mychar - '0';
+
+
+		char number_str[3];
+		char *output;
+		do{//counter_bot
+			mychar=myfile.get();
+		}while(mychar!='B');
+		mychar = myfile.get();//il carattere \n
+		for(int i=0;i<3;i++){
+			for(int j=0;j<5;j++){//qui ci sarebbe un
+				number_str[0]=myfile.get();
+				number_str[1]=myfile.get();
+				counter_bot[j][i] = strtol(number_str, &output, 10);
+				j++;
+				if(number_str[1] != '.')
+					mychar = myfile.get();
+			}
+			i++;
+		}
+
+	myfile.close();
+}
+
+void Logic::ReadPlayer(){
+		char mychar;
+		std::ifstream myfile;
+		myfile.open("Salvataggio.txt");
+		char number_str[3];
+		char *output;
+
+		do{//hp
+			mychar=myfile.get();
+		}while(mychar!='h');
+		mychar=myfile.get();
+		if(number_str[0] != '0'){
+			number_str[1]=myfile.get();
+			number_str[2]=myfile.get();
+			InfoPlayer->hp = strtol(number_str, &output, 10);
+		}
+		else
+			InfoPlayer->hp = 0;
+		number_str[2] = NULL;
+
+		do{//soldi
+			mychar=myfile.get();
+		}while(mychar!='s');
+		number_str[0]=myfile.get();
+		number_str[1]=myfile.get();
+		InfoPlayer->Money = strtol(number_str, &output, 10);
+
+		do{//colpi
+			mychar=myfile.get();
+		}while(mychar!='p');
+		mychar = myfile.get();
+		InfoPlayer->colpi = mychar - '0';
+
+		do{//InJump
+			mychar=myfile.get();
+		}while(mychar!='b');
+		mychar = myfile.get();
+		if(mychar == '1')
+			InfoPlayer->inJump = true;
+		else InfoPlayer->inJump = false;
+
+		myfile.close();
+}
+
+void Logic::ReadEntities(){
+		char mychar;
+		std::ifstream myfile;
+		myfile.open("Salvataggio.txt");
+		char number_str[3];
+		char *output;
+
+		Entities* tmpEns = ReturnEntitiesOBJ();
+		EntityType type;//entita
+		mychar = myfile.get();
+		while(mychar != '<'){//valore di fine file
+			do{//type
+				mychar=myfile.get();
+			}while(mychar!='t');
+			mychar = myfile.get();
+			switch(mychar){
+				case 1:
+					type = enemy;
+				case 2:
+					type = money;
+				case 4:
+					type = powerup;
+			}
+
+			int xtemp, ytemp;
+			do{//position
+				mychar=myfile.get();
+			}while(mychar!='P');
+			number_str[0]=myfile.get();
+			number_str[1]=myfile.get();
+			xtemp = strtol(number_str, &output, 10);
+			if(number_str[1] != '.')
+				mychar = myfile.get();
+			number_str[0]=myfile.get();
+			number_str[1]=myfile.get();
+			ytemp = strtol(number_str, &output, 10);
+
+			ens tmp = tmpEns->Insert(type, xtemp, ytemp);
+			
+
+			do{//death flag
+				mychar=myfile.get();
+			}while(mychar!='D');
+			if(mychar == '1')
+			tmp->death_flag = true;
+			else tmp->death_flag = false;
+
+			do{//xForce
+				mychar=myfile.get();
+			}while(mychar!='x');
+			mychar = myfile.get();
+			tmp->xForce = mychar - '0';
+
+			do{//yForce
+				mychar=myfile.get();
+			}while(mychar!='y');
+			mychar = myfile.get();
+			tmp->yForce = mychar - '0';
+
+			do{//mappa entita
+				mychar=myfile.get();
+			}while(mychar!='m');
+			mychar = myfile.get();
+			tmp->mappa = mychar - '0';
+
+			do{//livello entita
+				mychar=myfile.get();
+			}while(mychar!='l');
+			mychar = myfile.get();
+			tmp->livello = mychar - '0';
+
+			mychar = myfile.get();
+		}
+
+		myfile.close();
 }

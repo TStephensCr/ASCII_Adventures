@@ -51,8 +51,8 @@ int Menu::finestraMenu(){
           break;
           case KEY_DOWN:
           highlight++;
-          if(highlight == 3)
-          highlight = 2;
+          if(highlight == 4)
+          highlight = 3;
           break;
           default:
           break;

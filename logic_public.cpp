@@ -1,6 +1,6 @@
 #include "hpp-files/Logic.hpp"
 
-Logic::Logic(WINDOW* win) {
+Logic::Logic(WINDOW* win, WINDOW* menuuwin) {
 
 	curwin      = win;
 
@@ -17,6 +17,8 @@ Logic::Logic(WINDOW* win) {
 	Status      = Game;
 
 	PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
+
+	menuwin = menuuwin;
 
 	InitEntities();
 }
@@ -109,144 +111,11 @@ void Logic::FileRead(){
 	mychar=myfile.get();//il bool che dice se il file contiene salvataggi o no
 	if(mychar == '1' && myfile.good()){
 
-		do{//mappa
-			mychar=myfile.get();
-		}while(mychar!='M');
-		mychar = myfile.get();
-		curmap_ = mychar - '0';//per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
+		ReadGeneral();
 
-		do{//livello
-			mychar=myfile.get();
-		}while(mychar!='L');
-		mychar = myfile.get();
-		curLev_ = mychar - '0';
+		ReadPlayer();
 
-		do{//counter
-			mychar=myfile.get();
-		}while(mychar!='C');
-		mychar = myfile.get();
-		counter = mychar - '0';
-
-
-		char number_str[3];
-		char *output;
-		do{//counter_bot
-			mychar=myfile.get();
-		}while(mychar!='B');
-		mychar = myfile.get();//il carattere \n
-		for(int i=0;i<3;i++){
-			for(int j=0;j<5;j++){//qui ci sarebbe un
-				number_str[0]=myfile.get();
-				number_str[1]=myfile.get();
-				counter_bot[j][i] = strtol(number_str, &output, 10);
-				j++;
-				if(number_str[1] != '.')
-					mychar = myfile.get();
-			}
-			i++;
-		}
-
-		Player* tmpPlay = ReturnInfoPlayer();//player
-		do{//hp
-			mychar=myfile.get();
-		}while(mychar!='h');
-		mychar=myfile.get();
-		if(number_str[0] != '0'){
-			number_str[1]=myfile.get();
-			number_str[2]=myfile.get();
-			tmpPlay->hp = strtol(number_str, &output, 10);
-		}
-		else
-			tmpPlay->hp = 0;
-		number_str[2] = NULL;
-
-		do{//soldi
-			mychar=myfile.get();
-		}while(mychar!='s');
-		number_str[0]=myfile.get();
-		number_str[1]=myfile.get();
-		tmpPlay->Money = strtol(number_str, &output, 10);
-
-		do{//colpi
-			mychar=myfile.get();
-		}while(mychar!='p');
-		mychar = myfile.get();
-		tmpPlay->colpi = mychar - '0';
-
-		do{//InJump
-			mychar=myfile.get();
-		}while(mychar!='b');
-		mychar = myfile.get();
-		if(mychar == '1')
-			tmpPlay->inJump = true;
-		else tmpPlay->inJump = false;
-
-		Entities* tmpEns = ReturnEntitiesOBJ();
-		EntityType type;//entita
-		mychar = myfile.get();
-		while(mychar != '<'){//valore di fine file
-			do{//type
-				mychar=myfile.get();
-			}while(mychar!='t');
-			mychar = myfile.get();
-			switch(mychar){
-				case 1:
-					type = enemy;
-				case 2:
-					type = money;
-				case 4:
-					type = powerup;
-			}
-
-			int xtemp, ytemp;
-			do{//position
-				mychar=myfile.get();
-			}while(mychar!='P');
-			number_str[0]=myfile.get();
-			number_str[1]=myfile.get();
-			xtemp = strtol(number_str, &output, 10);
-			if(number_str[1] != '.')
-				mychar = myfile.get();
-			number_str[0]=myfile.get();
-			number_str[1]=myfile.get();
-			ytemp = strtol(number_str, &output, 10);
-
-			ens tmp = tmpEns->Insert(type, xtemp, ytemp);
-			
-
-			do{//death flag
-				mychar=myfile.get();
-			}while(mychar!='D');
-			if(mychar == '1')
-			tmp->death_flag = true;
-			else tmp->death_flag = false;
-
-			do{//xForce
-				mychar=myfile.get();
-			}while(mychar!='x');
-			mychar = myfile.get();
-			tmp->xForce = mychar - '0';
-
-			do{//yForce
-				mychar=myfile.get();
-			}while(mychar!='y');
-			mychar = myfile.get();
-			tmp->yForce = mychar - '0';
-
-			do{//mappa entita
-				mychar=myfile.get();
-			}while(mychar!='m');
-			mychar = myfile.get();
-			tmp->mappa = mychar - '0';
-
-			do{//livello entita
-				mychar=myfile.get();
-			}while(mychar!='l');
-			mychar = myfile.get();
-			tmp->livello = mychar - '0';
-
-			mychar = myfile.get();
-		}
+		ReadEntities();
 		//ritornare i valori letti/chiamare le funzioni di init da salvataggio
 	}
 	
