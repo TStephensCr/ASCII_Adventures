@@ -1,4 +1,4 @@
-# P.project2023
+git# P.project2023
 Progetto di programmazione 2023 UniBO
 
 Erik
@@ -36,6 +36,7 @@ TO DO:
 -mappa con i colori
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
+commit -a -m 'messaggio'
 
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
