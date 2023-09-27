@@ -180,8 +180,12 @@ void Logic::CheckChangeMap() {
                 curLev_--;
                 PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
             } else {
-                curmap_--;
-                PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+                if(curLev_ > 0){
+					 curmap_--; 
+					 PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+				}else{
+					 PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
+				}
             }
         } else if (playerXloc == x - 2 && playerYloc == 12) {
             if (curmap_ == 5 && curLev_ < 2) {
