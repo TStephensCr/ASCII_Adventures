@@ -35,15 +35,15 @@ if (!InfoPlayer->inJump) {
 }
 }
 
-void Events::Shoot()
+void Events::Shoot(ens Entity)
 {
-    int xPos = PlayerPointer->pos->ReturnPos().x;
-    int yPos = PlayerPointer->pos->ReturnPos().y;
+    int xPos = Entity->pos->ReturnPos().x;
+    int yPos = Entity->pos->ReturnPos().y;
     int xDelta = (InfoPlayer->LastMovement == 'd') ? 1 : -1;
 
     MyPosition newP;
     newP.x = xPos + xDelta;
-    newP.y = yPos;
+    newP.y = yPos;  
 
     ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1, -1);
 

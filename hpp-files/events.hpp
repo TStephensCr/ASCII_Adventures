@@ -26,7 +26,7 @@ private:
 
 	void Jump();
 
-	void Shoot();
+	void Shoot(ens Entity);
 public:
 	Events(Entities* MyEntities);
 

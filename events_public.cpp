@@ -40,7 +40,7 @@ int Events::getmv() {
 			mvleft(1);
 			break;
 		case KEY_DOWN:
-			Shoot();
+			Shoot(PlayerPointer);
 			break;
 		case ' ':
 			JumpStraight();
