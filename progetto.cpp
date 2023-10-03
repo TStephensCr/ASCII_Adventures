@@ -21,8 +21,6 @@ int main() {
 
     Logic* logica = new Logic(win, menuwin);
 
-    Negozio* shop = new Negozio(win, menuwin);
-
     Entities* entita = logica->ReturnEntitiesOBJ();
 
     Events* eventi = logica->ReturnEventsOBJ();
@@ -34,8 +32,7 @@ int main() {
     menu->finestraGioco();
     bool endGame = false;
     while(!endGame){
-        int scelta=menu->finestra.Menu();
-
+        int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo
             logica->InitMappa(1, 0);
             gamestatus=Game;
@@ -66,7 +63,6 @@ int main() {
             
         }
         else if(scelta == 2){//negozio
-        //creare nuova finestra per shop?
             
         }
         else{//esci

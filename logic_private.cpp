@@ -202,6 +202,12 @@ void Logic::CheckChangeMap() {
 
 void Logic::HandleBot(ens entity) {
     if (entity->type == enemy && counter == 3) {
+		if(counter_bot[curmap_ - 1][curLev_] == 4){
+			eventi->Shoot(entity,'d');
+		}
+		else if(counter_bot[curmap_ - 1][curLev_] == 13){
+			eventi->Shoot(entity,'s');
+		}
         if (counter_bot[curmap_ - 1][curLev_] < 9) {
             entity->xForce = 1;
         } else if (counter_bot[curmap_ - 1][curLev_] >= 9 && counter_bot[curmap_ - 1][curLev_] < 18) {

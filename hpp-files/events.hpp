@@ -26,9 +26,10 @@ private:
 
 	void Jump();
 
-	void Shoot(ens Entity);
 public:
 	Events(Entities* MyEntities);
+
+	void Shoot(ens Entity, char Last_movement);
 
 	void PlayerGravity();
 

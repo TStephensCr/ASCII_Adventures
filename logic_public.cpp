@@ -133,13 +133,14 @@ void Logic::GiveDynamicity()
 	
     while (tmp) {
         if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot) && (tmp->livello == curLev_ || tmp->type == shoot)) {
-            HandleBot(tmp);
 
 			DisplayPlayerStats();
 			
             entitiesOBJ->ClearPosition(tmp);
 
             collision->ManageCollisions(tmp, curmap_, curLev_);
+
+			HandleBot(tmp);
 
             entitiesOBJ->MoveEntity(tmp);
 
