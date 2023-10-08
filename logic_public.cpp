@@ -40,6 +40,7 @@ Player* Logic::ReturnInfoPlayer()
 
 void Logic::InitMappa(int curmap, int curLev){
 	curmap_ = curmap;
+	curLev_ = curLev;
 	map->leggimappa(curmap);
     map->stampamappa();
 }
@@ -138,11 +139,11 @@ void Logic::GiveDynamicity()
 			
             entitiesOBJ->ClearPosition(tmp);
 
-            collision->ManageCollisions(tmp, curmap_, curLev_);
-
 			HandleBot(tmp);
 
-            entitiesOBJ->MoveEntity(tmp);
+			entitiesOBJ->MoveEntity(tmp);
+
+            collision->ManageCollisions(tmp, curmap_, curLev_);
 
             eventi->DecreaseForce(tmp);
 

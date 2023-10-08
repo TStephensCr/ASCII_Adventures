@@ -34,7 +34,7 @@ int main() {
     while(!endGame){
         int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo
-            logica->InitMappa(1, 0);
+            logica->InitMappa(2,2);
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();

@@ -66,19 +66,12 @@ void Collision::HandleEntityCollision(ens Entity, ens OtherEntity)
         OtherEntity->death_flag = true;
         Entity->death_flag = true;
         entitiesOBJ->ClearPosition(OtherEntity);
+        entitiesOBJ->ClearPosition(Entity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
     }
     else if (Entity->type == player && OtherEntity->type == powerup) {
         OtherEntity->death_flag = true;
         entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
-    }
-    else if ((Entity->type == shoot && OtherEntity->type == player) || (Entity->type == player && OtherEntity->type == shoot)) {
-        if(OtherEntity->type == shoot)
-            OtherEntity->death_flag = true;
-        if(Entity->type == shoot)
-            Entity->death_flag = true;
-        InfoPlayer->hp -= 20;
-        PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN,Y_PLAYERSPAWN);
     }
 }
 
@@ -105,3 +98,4 @@ void Collision::HandlePlayerEnemyCollision(ens Player, ens Enemy)
     }
     InfoPlayer->hp -= 20;
 }
+
