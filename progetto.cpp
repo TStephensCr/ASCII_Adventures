@@ -62,6 +62,7 @@ int main() {
         else if(scelta == 1){//gioco caricato
             
         }
+        //Negozio* shop= new Negozio(win,menuwin);
         else if(scelta == 2){//negozio
             
         }
