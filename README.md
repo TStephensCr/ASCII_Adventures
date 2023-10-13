@@ -41,3 +41,10 @@ commit -a -m 'messaggio'
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
 -ogni tanto il respawn si bugga e il player spawna sotto la mappa
+
+PROBLEMONE DEI PROBLEMONI:
+    1)ho perso tipo 2 ore della mia vita per sto cazzo di problema
+    HANDLEBOT va prima di managecollison per far si che le collsioni tra player e bot siano giuste!
+    pero' c'e' il problema che quando i bot sparano si muovo nella stessa direzione dello sparo e quindi 
+    si killano da soli.
+    2)rimetti KillEntity in collisione per codice + leggibile

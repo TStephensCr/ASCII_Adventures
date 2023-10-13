@@ -137,10 +137,12 @@ void Logic::GiveDynamicity()
 
 			DisplayPlayerStats();
 
+			HandleBot(tmp);
+			
 			collision->ManageCollisions(tmp, curmap_, curLev_);
 
 			if(!tmp->death_flag){//questo perche' in ManageCollisions l'entita' potrebbe morire
-				HandleBot(tmp);
+				
 
             	entitiesOBJ->MoveEntity(tmp);
 
