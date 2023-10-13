@@ -79,3 +79,8 @@ void Entities::MoveEntity(ens myEntity) {
     }
     
 }
+
+void Entities::KillEntity(ens Entity){
+  Entity->death_flag = true;
+  ClearPosition(Entity);
+}

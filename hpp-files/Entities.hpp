@@ -48,6 +48,8 @@ class Entities {
 
   void ClearPosition(ens Entity);
 
+  void KillEntity(ens Entity);
+
   void MoveEntity(ens myEntity);
   
 };

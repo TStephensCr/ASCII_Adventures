@@ -136,18 +136,18 @@ void Logic::GiveDynamicity()
         if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot) && (tmp->livello == curLev_ || tmp->type == shoot)) {
 
 			DisplayPlayerStats();
-			
-            entitiesOBJ->ClearPosition(tmp);
 
-			HandleBot(tmp);
+			collision->ManageCollisions(tmp, curmap_, curLev_);
 
-			entitiesOBJ->MoveEntity(tmp);
+			if(!tmp->death_flag){//questo perche' in ManageCollisions l'entita' potrebbe morire
+				HandleBot(tmp);
 
-            collision->ManageCollisions(tmp, curmap_, curLev_);
+            	entitiesOBJ->MoveEntity(tmp);
 
-            eventi->DecreaseForce(tmp);
+            	eventi->DecreaseForce(tmp);
 
-            entitiesOBJ->Display(tmp);
+           		entitiesOBJ->Display(tmp);
+			}
         }
 
         tmp = tmp->next;
