@@ -23,9 +23,9 @@ private:
 
 	void HandleEntityCollision(ens Entity, ens OtherEntity);
 
-	void HandleEnemyPlayerCollision(ens Player, ens Enemy);
+	void HandleEnemyPlayerCollision(ens Enemy);
 
-	void HandlePlayerEnemyCollision(ens Player, ens Enemy);
+	void HandlePlayerEnemyCollision();
 public:
 
 	Collision(Entities* MyEntities);

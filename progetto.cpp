@@ -21,8 +21,6 @@ int main() {
 
     Logic* logica = new Logic(win, menuwin);
 
-    Entities* entita = logica->ReturnEntitiesOBJ();
-
     Events* eventi = logica->ReturnEventsOBJ();
 
     GameStatus gamestatus = Game;

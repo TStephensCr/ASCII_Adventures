@@ -13,13 +13,13 @@ void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos, int map
         MyPosition newP;
         newP.x = xPos;
         newP.y = c;
-        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
+        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
 
         if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
             Entity->yForce = 0;
         }
-        else if (Entity_in_new_loc && !Entity_in_new_loc->death_flag) {
-            HandleEntityCollision(Entity, Entity_in_new_loc);
+        else if (EntityInNewLoc && !EntityInNewLoc->death_flag) {
+            HandleEntityCollision(Entity, EntityInNewLoc);
             yPos = c;
         }
         else {
@@ -36,73 +36,71 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos, int m
         MyPosition newP;
         newP.x = xPos;
         newP.y = yPos;
-        ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
+        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
 
         if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL || charAtNewPos == FULLFILL_POINT) {
             if (Entity->type == shoot)
-                Entity->death_flag = true;
+                entitiesOBJ->KillEntity(Entity);
             else
                 Entity->xForce = 0;
         }
-        else if (Entity_in_new_loc && !Entity_in_new_loc->death_flag) {
-            HandleEntityCollision(Entity, Entity_in_new_loc);
+        else if (EntityInNewLoc && !EntityInNewLoc->death_flag) {
+            HandleEntityCollision(Entity, EntityInNewLoc);
         }
     }
 }
 
-void Collision::HandleEntityCollision(ens Entity, ens OtherEntity)
+void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
 {
-    if (Entity->type == player && OtherEntity->type == money) {
-        OtherEntity->death_flag = true;
+    if (Entity->type == player && CollidingEntity->type == money) {
+        entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
     }
-    else if (Entity->type == enemy && OtherEntity->type == player) {
-        HandleEnemyPlayerCollision(Entity, OtherEntity);
+    else if (Entity->type == enemy && CollidingEntity->type == player) {
+        HandleEnemyPlayerCollision(CollidingEntity);
     }
-    else if (Entity->type == player && OtherEntity->type == enemy) {
-        HandlePlayerEnemyCollision(Entity, OtherEntity);
+    else if (Entity->type == player && CollidingEntity->type == enemy) {
+        HandlePlayerEnemyCollision();
     }
-    else if ((Entity->type == shoot && OtherEntity->type == enemy) || (Entity->type == enemy && OtherEntity->type == shoot)) {
-        OtherEntity->death_flag = true;
-        Entity->death_flag = true;
-        entitiesOBJ->ClearPosition(OtherEntity);
-        entitiesOBJ->ClearPosition(Entity);
+    else if ((Entity->type == shoot && CollidingEntity->type == enemy) || (Entity->type == enemy && CollidingEntity->type == shoot)) {
+        entitiesOBJ->KillEntity(CollidingEntity);    
+        entitiesOBJ->KillEntity(Entity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
     }
-    else if (Entity->type == player && OtherEntity->type == powerup) {
-        OtherEntity->death_flag = true;
+    else if (Entity->type == player && CollidingEntity->type == powerup) {
+        entitiesOBJ->KillEntity(CollidingEntity); 
         entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
     }
-    else if ((Entity->type == shoot && OtherEntity->type == player) || (Entity->type == player && OtherEntity->type == shoot)) {
-        if(OtherEntity->type == shoot)
-            OtherEntity->death_flag = true;
+    else if ((Entity->type == shoot && CollidingEntity->type == player) || (Entity->type == player && CollidingEntity->type == shoot)) {
+        if(CollidingEntity->type == shoot)
+            entitiesOBJ->KillEntity(CollidingEntity); 
         if(Entity->type == shoot)
-            Entity->death_flag = true;
-        InfoPlayer->hp -= 20;
+            entitiesOBJ->KillEntity(Entity);
+        InfoPlayer->hp -= SHOOT_DAMAGE;
         PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN,Y_PLAYERSPAWN);
     }
 }
 
-void Collision::HandleEnemyPlayerCollision(ens Enemy, ens Player)
+void Collision::HandleEnemyPlayerCollision(ens Enemy)
 {
     if (Enemy->xForce >= 1)
-        Player->xForce = 1 * REPELLING_FORCE_OF_ENEMYS;
+        PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;
     else
-        Player->xForce = -1 * REPELLING_FORCE_OF_ENEMYS;
+        PlayerPointer->xForce = -1 * REPELLING_XFORCE_OF_ENEMYS;
 
-    Player->yForce = -10;//lo fa saltare in alto
+    PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
 
-    InfoPlayer->hp -= 20;
+    InfoPlayer->hp -= PLAYER_ENEMY_COLLISION_DAMAGE;
 }
 
 
-void Collision::HandlePlayerEnemyCollision(ens Player, ens Enemy)
+void Collision::HandlePlayerEnemyCollision()
 {
-    if(InfoPlayer->LastMovement == 'd'){
-        Player->xForce = -10; Player->yForce = -10;
-    }
-    else{
-        Player->xForce = 10; Player->yForce = -10;
-    }
-    InfoPlayer->hp -= 20;
+    if(InfoPlayer->LastMovement == 'd')
+        PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;
+    else
+        PlayerPointer->xForce = -1 * REPELLING_XFORCE_OF_ENEMYS;
+
+    PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
+    InfoPlayer->hp -= PLAYER_ENEMY_COLLISION_DAMAGE;
 }
