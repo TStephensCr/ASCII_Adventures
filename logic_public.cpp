@@ -141,8 +141,7 @@ void Logic::GiveDynamicity()
 			
 			collision->ManageCollisions(tmp, curmap_, curLev_);
 
-			if(!tmp->death_flag){//questo perche' in ManageCollisions l'entita' potrebbe morire
-				
+			if(!tmp->death_flag){//questo perche' in ManageCollisions l'entita' potrebbe morire				
 
             	entitiesOBJ->MoveEntity(tmp);
 

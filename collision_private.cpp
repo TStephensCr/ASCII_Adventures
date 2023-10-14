@@ -44,7 +44,8 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos, int m
             else
                 Entity->xForce = 0;
         }
-        else if (EntityInNewLoc && !EntityInNewLoc->death_flag) {
+        else if (EntityInNewLoc && !EntityInNewLoc->death_flag && (!entitiesOBJ->SameDir(Entity, EntityInNewLoc) ||
+            EntityInNewLoc->xForce == 0)) {
             HandleEntityCollision(Entity, EntityInNewLoc);
         }
     }

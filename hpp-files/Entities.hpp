@@ -35,8 +35,8 @@ class Entities {
 
 
   ens EntitiesInLocation(
-      MyPosition Loc, int mappa, int livello);  // Given a position returns the entity in that position
-                        // otherwise returns NULL
+      MyPosition Loc, int mappa, int livello);// Given a position returns the entity in that position
+                                             // otherwise returns NULL
 
   ens ReturnPlayerPointer();
 
@@ -51,5 +51,7 @@ class Entities {
   void KillEntity(ens Entity);
 
   void MoveEntity(ens myEntity);
+
+  bool SameDir(ens Entity,ens Entity2);
   
 };

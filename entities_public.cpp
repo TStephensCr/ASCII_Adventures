@@ -84,3 +84,10 @@ void Entities::KillEntity(ens Entity){
   Entity->death_flag = true;
   ClearPosition(Entity);
 }
+
+bool Entities::SameDir(ens Entity1,ens Entity2){
+  if((Entity1->xForce>0 == Entity2->xForce>0))
+    return true;
+  else
+    return false;
+}
