@@ -38,7 +38,8 @@ void Events::Shoot(ens Entity, char Last_movement)
 
     if (Entity_in_new_loc)
     {
-        Entity_in_new_loc->death_flag = true;
+		InfoPlayer->colpi--;
+        entitiesOBJ->KillEntity(Entity_in_new_loc);
 		if(Entity->type == player)
         	InfoPlayer->points += KILL_ENEMYS_POINTS;
     }

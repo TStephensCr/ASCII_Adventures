@@ -56,7 +56,7 @@ void Logic::FileWrite(){//scrive il salvataggio su file
 
 	myfile<<'L'<<curLev_<<'\n';//livello
 
-	myfile<<'C'<<counter<<'\n';//pacing del gioco
+	myfile<<'C'<<bot_clock<<'\n';//pacing del gioco
 
 	myfile<<'B'<<'\n';//pacing dei bot
 	for(int i=0;i<3;i++){

@@ -22,7 +22,7 @@ protected:
 
 	int counter_bot[5][3];
 
-	int counter;
+	int bot_clock = 0;
 
 	int curmap_ = 1;
 

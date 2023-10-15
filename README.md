@@ -41,4 +41,3 @@ commit -a -m 'messaggio'
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
 -ogni tanto il respawn si bugga e il player spawna sotto la mappa
--problema degli spari ai nemici gia' morti

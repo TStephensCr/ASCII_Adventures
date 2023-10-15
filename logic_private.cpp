@@ -201,7 +201,7 @@ void Logic::CheckChangeMap() {
 }
 
 void Logic::HandleBot(ens entity) {
-    if (entity->type == enemy && counter == 3) {
+    if (entity->type == enemy && bot_clock == 3) {
 		if(entity->livello == 2){
 			if(counter_bot[curmap_ - 1][curLev_] == 4){
 				eventi->Shoot(entity,'d');
@@ -219,11 +219,11 @@ void Logic::HandleBot(ens entity) {
 }
 
 void Logic::IncrementCounters() {
-    counter++;
+    bot_clock++;
 
-    if (counter > 3) {
+    if (bot_clock > 3) {
         counter_bot[curmap_ - 1][curLev_]++;
-        counter = 0;
+        bot_clock = 0;
     }
 
     if (counter_bot[curmap_ - 1][curLev_] == 18) {
@@ -248,11 +248,11 @@ void Logic::ReadGeneral(){
 		mychar = myfile.get();
 		curLev_ = mychar - '0';
 
-		do{//counter
+		do{//bot_clock
 			mychar=myfile.get();
 		}while(mychar!='C');
 		mychar = myfile.get();
-		counter = mychar - '0';
+		bot_clock = mychar - '0';
 
 
 		char number_str[3];

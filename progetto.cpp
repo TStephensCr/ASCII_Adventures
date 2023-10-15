@@ -37,10 +37,9 @@ int main() {
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
                     if(choice==27){
+                        menu->titolo();
                         logica->FileWrite();
                         gamestatus=MenU;
-                        menu->titolo();
-                       
                     }
                     else{
                         logica->GiveDynamicity();

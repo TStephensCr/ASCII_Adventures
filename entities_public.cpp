@@ -8,6 +8,10 @@ Entities::Entities(WINDOW* win) {
 
 WINDOW* Entities::ReturnCurwin() { return curwin; }
 
+ens Entities::ReturnPlayerPointer() {	return PlayerPointer; }
+
+Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
+
 ens Entities::Insert(EntityType Type, int x, int y) {
   if (Character(Type) != '?') {
     ens tmp = new entita;
@@ -24,17 +28,16 @@ ens Entities::Insert(EntityType Type, int x, int y) {
   return NULL;
 }
 
-ens Entities::ReturnPlayerPointer() {	return PlayerPointer; }
-
-Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
-
-
 ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello) {
     ens entity = entities;
     ens Entity_founded = NULL;
     bool Trovato = false;
     while (entity && !Trovato) {
-        if ((xLoc(entity) == Loc.x && yLoc(entity) == Loc.y) && (entity->mappa == mappa || mappa == -1 || entity->type == shoot) && (entity->livello == livello || livello == -1 || entity->type == shoot)) {
+        if (!entity->death_flag && 
+            xLoc(entity) == Loc.x && 
+            yLoc(entity) == Loc.y && 
+            (entity->mappa == mappa || mappa == -1 || entity->type == shoot) && 
+            (entity->livello == livello || livello == -1 || entity->type == shoot)) {
             Entity_founded = entity;
             Trovato = true;
         } else {
@@ -86,7 +89,7 @@ void Entities::KillEntity(ens Entity){
 }
 
 bool Entities::SameDir(ens Entity1,ens Entity2){
-  if((Entity1->xForce>0 == Entity2->xForce>0))
+  if((Entity1->xForce>0) == (Entity2->xForce>0))
     return true;
   else
     return false;
