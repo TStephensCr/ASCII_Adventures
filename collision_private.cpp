@@ -5,7 +5,7 @@ void Collision::UpdateVariables(){
 	InfoPlayer    = entitiesOBJ->ReturnPlayerOBJ();
 }
 
-void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos, int mappa, int livello)
+void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos)
 {
     if (Entity->yForce != 0) {
         int c = (Entity->yForce < 0) ? yPos - 1 : yPos + 1;
@@ -13,7 +13,7 @@ void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos, int map
         MyPosition newP;
         newP.x = xPos;
         newP.y = c;
-        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
+        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
         if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
             Entity->yForce = 0;
@@ -28,7 +28,7 @@ void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos, int map
     }
 }
 
-void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos, int mappa, int livello)
+void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos)
 {
     if (Entity->xForce != 0) {
         xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
@@ -36,7 +36,7 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos, int m
         MyPosition newP;
         newP.x = xPos;
         newP.y = yPos;
-        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, mappa, livello);
+        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
         if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL || charAtNewPos == FULLFILL_POINT) {
             if (Entity->type == shoot)

@@ -133,7 +133,7 @@ void Logic::GiveDynamicity()
 	eventi->PlayerGravity();
 	
     while (tmp) {
-        if ((!tmp->death_flag) && (tmp->mappa == curmap_ || tmp->type == shoot) && (tmp->livello == curLev_ || tmp->type == shoot)) {
+        if ((!tmp->death_flag) && tmp->mappa == curmap_  && tmp->livello == curLev_ ) {
 
 			DisplayPlayerStats();
 

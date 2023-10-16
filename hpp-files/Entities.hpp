@@ -30,7 +30,7 @@ class Entities {
   WINDOW* ReturnCurwin();
 
   ens Insert(EntityType tipo, int x,
-             int y);  // inserisce un'entità in base al tipo [ EntityType ] and
+             int y, int map, int level);  // inserisce un'entità in base al tipo [ EntityType ] and
                       // his position coordinates [ x , y ]
 
 

@@ -12,12 +12,14 @@ ens Entities::ReturnPlayerPointer() {	return PlayerPointer; }
 
 Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
 
-ens Entities::Insert(EntityType Type, int x, int y) {
+ens Entities::Insert(EntityType Type, int x, int y, int map = 1, int level = 0) {
   if (Character(Type) != '?') {
     ens tmp = new entita;
     tmp->type = Type;
     tmp->pos->SelectPosition(x, y);
     tmp->next = entities;
+    tmp->livello = level;
+    tmp->mappa = map;
     entities = tmp;
 	if(Type == player){
 		PlayerPointer = tmp;
@@ -36,8 +38,7 @@ ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello) {
         if (!entity->death_flag && 
             xLoc(entity) == Loc.x && 
             yLoc(entity) == Loc.y && 
-            (entity->mappa == mappa || mappa == -1 || entity->type == shoot) && 
-            (entity->livello == livello || livello == -1 || entity->type == shoot)) {
+            (entity->mappa == mappa) && (entity->livello == livello)) {
             Entity_founded = entity;
             Trovato = true;
         } else {

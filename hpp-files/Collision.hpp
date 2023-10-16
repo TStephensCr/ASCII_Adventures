@@ -17,9 +17,9 @@ protected:
 private:
 	void UpdateVariables();
 	
-	void HandleVerticalCollision(ens Entity, int xPos, int &yPos, int mappa, int livello);
+	void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
 
-	void HandleHorizontalCollision(ens Entity, int& xPos, int yPos, int mappa, int livello);
+	void HandleHorizontalCollision(ens Entity, int& xPos, int yPos);
 
 	void HandleEntityCollision(ens Entity, ens OtherEntity);
 

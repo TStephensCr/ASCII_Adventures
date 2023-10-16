@@ -34,7 +34,7 @@ void Events::Shoot(ens Entity, char Last_movement)
     newP.x = xPos + xDelta;
     newP.y = yPos;  
 
-    ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, -1, -1);
+    ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
     if (Entity_in_new_loc)
     {
@@ -48,7 +48,7 @@ void Events::Shoot(ens Entity, char Last_movement)
         char g = mvwinch(curwin, yPos, xPos + xDelta);
         if (g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && (InfoPlayer->colpi > 0 || Entity->type == enemy))
         {
-            ens sparo = entitiesOBJ->Insert(shoot, xPos + xDelta, yPos);
+            ens sparo = entitiesOBJ->Insert(shoot, xPos + xDelta, yPos,Entity->mappa,Entity->livello);
             sparo->xForce = (Last_movement == 'd') ? 200 : -200;
 			if(Entity->type == player)
             	InfoPlayer->colpi--;

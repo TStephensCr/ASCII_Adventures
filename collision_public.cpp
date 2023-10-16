@@ -50,8 +50,8 @@ void Collision::ManageCollisions(ens Entity, int mappa, int livello)
     ManageJump(Entity);
     OutOfBounds();
 
-    HandleVerticalCollision(Entity, xPos, yPos, mappa, livello);
-    HandleHorizontalCollision(Entity, xPos, yPos, mappa, livello);
+    HandleVerticalCollision(Entity, xPos, yPos);
+    HandleHorizontalCollision(Entity, xPos, yPos);
 }
 
 
