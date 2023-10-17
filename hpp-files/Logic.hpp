@@ -31,8 +31,6 @@ protected:
 	Mappa* map;
 
 private:
-	void InitEntities();
-
 	void CheckChangeMap();
 
 	void UpdateVariables();
@@ -58,6 +56,10 @@ public:
 
 	Player* ReturnInfoPlayer();
 
+	void ResetEntities();
+
+	void InitEntities();
+
 	void InitMappa(int curmap, int curLev);
 
 	void GiveDynamicity();
@@ -65,5 +67,9 @@ public:
 	void FileWrite();
 
 	void FileRead();
+
+	int returnCurMap();
+
+	int returnCurLev();
 
 };

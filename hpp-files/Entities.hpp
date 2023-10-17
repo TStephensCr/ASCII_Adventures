@@ -53,5 +53,7 @@ class Entities {
   void MoveEntity(ens myEntity);
 
   bool SameDir(ens Entity,ens Entity2);
+
+  void DeleteEntities();
   
 };

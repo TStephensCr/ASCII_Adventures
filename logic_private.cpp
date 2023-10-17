@@ -12,101 +12,6 @@ void Logic::UpdateVariables()
     map->stampamappa();
 }
 
-void Logic::InitEntities(){//facciamo initentities ogni volta che il player aumenta di livello.
-										 //e quando lo fai metti la lista entities = NULL
-										 // il livello corrente è quello che metto quando faccio initEntities
-										 //bisogna mettere una caratteristica alle entità chiamata livello
-	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN, 1, 0);
-
-	for (int x = 0; x < 3; x++) {
-		entitiesOBJ->Insert(money, 26, 4, 1, x);
-
-		if (x >= 0) {
-			entitiesOBJ->Insert(enemy, 21, 11, 1, x);
-		}
-
-		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 36, 6, 1, x);
-		}
-
-		if (x >= 2) {
-			entitiesOBJ->Insert(enemy, 55, 9, 1, x);
-		}
-
-		entitiesOBJ->Insert(money, 78, 8, 1, x);
-
-		entitiesOBJ->Insert(money, 31, 12, 2, x);
-
-		if (x >= 0) {
-			entitiesOBJ->Insert(enemy, 16, 9, 2, x);
-		}
-
-		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 38, 8, 2, x);
-		}
-
-		entitiesOBJ->Insert(money, 54, 12, 2, x);
-
-		entitiesOBJ->Insert(powerup, 68, 14, 2, x);
-
-		if (x >= 2) {
-			entitiesOBJ->Insert(enemy, 77, 10, 2, x);
-		}
-
-		entitiesOBJ->Insert(money, 22, 5, 3, x);
-
-		entitiesOBJ->Insert(powerup, 22, 14, 3, x);
-
-		if (x >= 0) {
-			entitiesOBJ->Insert(enemy, 30, 11, 3, x);
-		}
-
-		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 32, 6, 3, x);
-		}
-
-		entitiesOBJ->Insert(money, 60, 6, 3, x);
-
-		entitiesOBJ->Insert(money, 73, 13, 3, x);
-
-		entitiesOBJ->Insert(money, 37, 7, 4, x);
-
-		if (x >= 0) {
-			entitiesOBJ->Insert(enemy, 51, 7, 4, x);
-		}
-
-		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 29, 13, 4, x);
-		}
-
-		entitiesOBJ->Insert(money, 53, 13, 4, x);
-
-		if (x >= 2) {
-			entitiesOBJ->Insert(enemy, 68, 11, 4, x);
-		}
-
-		entitiesOBJ->Insert(powerup, 22, 10, 4, x);
-
-		entitiesOBJ->Insert(money, 42, 5, 5, x);
-
-		if (x >= 2) {
-			entitiesOBJ->Insert(enemy, 19, 13, 5, x);
-		}
-
-		if (x >= 0) {
-			entitiesOBJ->Insert(enemy, 25, 9, 5, x);
-		}
-
-		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 49, 9, 5, x);
-		}
-
-		entitiesOBJ->Insert(money, 73, 10, 5, x);
-
-		entitiesOBJ->Insert(powerup, 45, 14, 5, x);
-	}
-}
-
 void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma non va bene perchè si aggiorna solo quando accedi al menu con esc
     int x, y;
     getmaxyx(curwin, y, x);
@@ -226,7 +131,7 @@ void Logic::ReadGeneral(){
 		}while(mychar!='B');
 		mychar = myfile.get();//il carattere \n
 		for(int i=0;i<3;i++){
-			for(int j=0;j<5;j++){//qui ci sarebbe un
+			for(int j=0;j<5;j++){
 				number_str[0]=myfile.get();
 				number_str[1]=myfile.get();
 				counter_bot[j][i] = strtol(number_str, &output, 10);
@@ -240,12 +145,15 @@ void Logic::ReadGeneral(){
 	myfile.close();
 }
 
-void Logic::ReadPlayer(){
+void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		char mychar;
 		std::ifstream myfile;
 		myfile.open("Salvataggio.txt");
 		char number_str[3];
 		char *output;
+
+		Entities* tmpEns = ReturnEntitiesOBJ();
+		ens tmp = tmpEns->Insert(player, 0, 0,curmap_,curLev_);
 
 		do{//hp
 			mychar=myfile.get();
@@ -321,7 +229,19 @@ void Logic::ReadEntities(){
 			number_str[1]=myfile.get();
 			ytemp = strtol(number_str, &output, 10);
 
-			ens tmp = tmpEns->Insert(type, xtemp, ytemp,1,0);
+			do{//mappa entita
+				mychar=myfile.get();
+			}while(mychar!='m');
+			mychar = myfile.get();
+			int mappatemp = mychar - '0';
+
+			do{//livello entita
+				mychar=myfile.get();
+			}while(mychar!='l');
+			mychar = myfile.get();
+			int livellotemp = mychar - '0';
+
+			ens tmp = tmpEns->Insert(type, xtemp, ytemp,mappatemp,livellotemp);
 			
 
 			do{//death flag
@@ -342,18 +262,6 @@ void Logic::ReadEntities(){
 			}while(mychar!='y');
 			mychar = myfile.get();
 			tmp->yForce = mychar - '0';
-
-			do{//mappa entita
-				mychar=myfile.get();
-			}while(mychar!='m');
-			mychar = myfile.get();
-			tmp->mappa = mychar - '0';
-
-			do{//livello entita
-				mychar=myfile.get();
-			}while(mychar!='l');
-			mychar = myfile.get();
-			tmp->livello = mychar - '0';
 
 			mychar = myfile.get();
 		}

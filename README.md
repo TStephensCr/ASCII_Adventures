@@ -34,10 +34,12 @@ TO DO:
 -diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 -decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
 -mappa con i colori
+-il formato in cui vengono salvati i dati si potrebbe ottimizzare ma cambierebbe veramente poco, fare se si ha voglia
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 commit -a -m 'messaggio'
 
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
--ogni tanto il respawn si bugga e il player spawna sotto la mappa
+-ogni tanto il respawn si bugga e il player spawna sotto la mappa(o sopra il tettuccio dello start)
+-quando il player muore cliccando nuova partita non viene iniziata una nuova partita, ma viene solo respawnato

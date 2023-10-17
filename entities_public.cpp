@@ -95,3 +95,7 @@ bool Entities::SameDir(ens Entity1,ens Entity2){
   else
     return false;
 }
+
+void Entities::DeleteEntities(){
+  entities = NULL;
+}

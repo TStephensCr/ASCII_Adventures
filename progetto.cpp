@@ -21,6 +21,8 @@ int main() {
 
     Logic* logica = new Logic(win, menuwin);
 
+    Entities* entitiesOBJ = logica->ReturnEntitiesOBJ();
+
     Events* eventi = logica->ReturnEventsOBJ();
 
     GameStatus gamestatus = Game;
@@ -32,7 +34,9 @@ int main() {
     while(!endGame){
         int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo
-            logica->InitMappa(1,2);
+            logica->ResetEntities();
+            logica->InitEntities();
+            logica->InitMappa(1,0);
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
@@ -57,7 +61,31 @@ int main() {
             }
         }
         else if(scelta == 1){//gioco caricato
-            
+            logica->FileRead();
+            logica->InitMappa(logica->returnCurMap(),logica->returnCurLev());
+            logica->InitEntities();
+            gamestatus=Game;
+            while (gamestatus==Game) {
+                    int choice = eventi->getmv();
+                    if(choice==27){
+                        menu->titolo();
+                        logica->FileWrite();
+                        gamestatus=MenU;
+                    }
+                    else{
+                        logica->GiveDynamicity();
+
+                        napms(NAPTIME); 
+
+                        if(logica->ReturnInfoPlayer()->hp == 0){
+                            logica->FileWrite();
+                            gamestatus = MenU;
+                            menu->GameOver();
+                            logica->ReturnInfoPlayer()->hp=100;
+                        }
+                    }
+                    wrefresh(win);               
+            }
         }
         //Negozio* shop= new Negozio(win,menuwin);
         else if(scelta == 2){//negozio
