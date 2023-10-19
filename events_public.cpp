@@ -12,7 +12,8 @@ Events::Events(Entities* MyEntities){
 }
 
 void Events::PlayerGravity() {
-	PlayerPointer->yForce++;
+	if(PlayerPointer)
+		PlayerPointer->yForce++;
 }
 
 void Events::DecreaseForce(ens myEntity) {

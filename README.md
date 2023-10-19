@@ -35,6 +35,7 @@ TO DO:
 -decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
 -mappa con i colori
 -il formato in cui vengono salvati i dati si potrebbe ottimizzare ma cambierebbe veramente poco, fare se si ha voglia
+-mappa 5 un nemico uccide l'altro
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 commit -a -m 'messaggio'

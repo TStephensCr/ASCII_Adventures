@@ -4,9 +4,11 @@ void Logic::UpdateVariables()
 {
 	InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
 	PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
+	if(PlayerPointer){
+		PlayerPointer->livello = curLev_;
+		PlayerPointer->mappa = curmap_;
+	}
 
-	PlayerPointer->livello = curLev_;
-	PlayerPointer->mappa = curmap_;
 
 	map->leggimappa(curmap_);
     map->stampamappa();
@@ -38,35 +40,36 @@ void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma n
 void Logic::CheckChangeMap() {
     int x, y;
     getmaxyx(curwin, y, x);
+	if(PlayerPointer){
+		int playerXloc = PlayerPointer->pos->ReturnPos().x;
+		int playerYloc = PlayerPointer->pos->ReturnPos().y;
 
-    int playerXloc = PlayerPointer->pos->ReturnPos().x;
-    int playerYloc = PlayerPointer->pos->ReturnPos().y;
-
-    if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == x - 2 && playerYloc == 12)) {
-        if (playerXloc == 1 && playerYloc == 12) {
-            if (curmap_ == 1 && curLev_ > 0) {
-                curmap_ = 5;
-                curLev_--;
-                PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
-            } else {
-                if(curLev_ > 0){
-					 curmap_--; 
-					 PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
-				}else{
-					 PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
+		if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == x - 2 && playerYloc == 12)) {
+			if (playerXloc == 1 && playerYloc == 12) {
+				if (curmap_ == 1 && curLev_ > 0) {
+					curmap_ = 5;
+					curLev_--;
+					PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+				} else {
+					if(curLev_ > 0){
+						curmap_--; 
+						PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+					}else{
+						PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
+					}
 				}
-            }
-        } else if (playerXloc == x - 2 && playerYloc == 12) {
-            if (curmap_ == 5 && curLev_ < 2) {
-                curLev_++;
-                curmap_ = 1;
-                PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-            } else {
-                curmap_++;
-                PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-            }
-        }
-    }
+			} else if (playerXloc == x - 2 && playerYloc == 12) {
+				if (curmap_ == 5 && curLev_ < 2) {
+					curLev_++;
+					curmap_ = 1;
+					PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+				} else {
+					curmap_++;
+					PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+				}
+			}
+		}
+	}
 }
 
 void Logic::HandleBot(ens entity) {
@@ -152,13 +155,12 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		char number_str[3];
 		char *output;
 
-		Entities* tmpEns = ReturnEntitiesOBJ();
-		ens tmp = tmpEns->Insert(player, 0, 0,curmap_,curLev_);
-
+		ens tmp = entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN,curmap_,curLev_);
+		UpdateVariables();
 		do{//hp
 			mychar=myfile.get();
 		}while(mychar!='h');
-		mychar=myfile.get();
+		number_str[0]=myfile.get();
 		if(number_str[0] != '0'){
 			number_str[1]=myfile.get();
 			number_str[2]=myfile.get();
@@ -166,7 +168,7 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		}
 		else
 			InfoPlayer->hp = 0;
-		number_str[2] = NULL;
+		number_str[2] = '\O';
 
 		do{//soldi
 			mychar=myfile.get();
@@ -177,9 +179,23 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 
 		do{//colpi
 			mychar=myfile.get();
+		}while(mychar!='c');
+		number_str[0]=myfile.get();
+		number_str[1]=myfile.get();
+		InfoPlayer->colpi = strtol(number_str, &output, 10);
+
+		do{//punti
+			mychar=myfile.get();
 		}while(mychar!='p');
-		mychar = myfile.get();
-		InfoPlayer->colpi = mychar - '0';
+		number_str[0]=myfile.get();
+		if(number_str[0] != '0'){
+			number_str[1]=myfile.get();
+			number_str[2]=myfile.get();
+			InfoPlayer->points = strtol(number_str, &output, 10);
+		}
+		else
+			InfoPlayer->points = 0;
+		number_str[2] = '\O';
 
 		do{//InJump
 			mychar=myfile.get();
@@ -188,6 +204,20 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		if(mychar == '1')
 			InfoPlayer->inJump = true;
 		else InfoPlayer->inJump = false;
+
+		int xtemp, ytemp;
+		do{//position
+			mychar=myfile.get();
+		}while(mychar!='x');
+		number_str[0]=myfile.get();
+		number_str[1]=myfile.get();
+		xtemp = strtol(number_str, &output, 10);
+		if(number_str[1] != '.')
+			mychar = myfile.get();
+		number_str[0]=myfile.get();
+		number_str[1]=myfile.get();
+		ytemp = strtol(number_str, &output, 10);
+		tmp->pos->SelectPosition(xtemp,ytemp);
 
 		myfile.close();
 }
@@ -199,27 +229,31 @@ void Logic::ReadEntities(){
 		char number_str[3];
 		char *output;
 
-		Entities* tmpEns = ReturnEntitiesOBJ();
-		EntityType type;//entita
-		mychar = myfile.get();
-		while(mychar != '<'){//valore di fine file
+		int xtemp, ytemp, mappatemp, livellotemp;
+		while(myfile.good()){//valore di fine file
+			ens tmp = new entita;
 			do{//type
 				mychar=myfile.get();
-			}while(mychar!='t');
+			}while(mychar!='t' && myfile.good());
 			mychar = myfile.get();
 			switch(mychar){
 				case 1:
-					type = enemy;
+					tmp->type = enemy;
+					break;
 				case 2:
-					type = money;
+					tmp->type = money;
+					break;
 				case 4:
-					type = powerup;
+					tmp->type = powerup;
+					break;
+				default:
+					//va sempre qui
+					break;
 			}
-
-			int xtemp, ytemp;
+			
 			do{//position
 				mychar=myfile.get();
-			}while(mychar!='P');
+			}while(mychar!='P' && myfile.good());
 			number_str[0]=myfile.get();
 			number_str[1]=myfile.get();
 			xtemp = strtol(number_str, &output, 10);
@@ -228,42 +262,41 @@ void Logic::ReadEntities(){
 			number_str[0]=myfile.get();
 			number_str[1]=myfile.get();
 			ytemp = strtol(number_str, &output, 10);
+			tmp->pos->SelectPosition(xtemp,ytemp);
 
 			do{//mappa entita
 				mychar=myfile.get();
-			}while(mychar!='m');
+			}while(mychar!='m' && myfile.good());
 			mychar = myfile.get();
-			int mappatemp = mychar - '0';
+			tmp->mappa = mychar - '0';
 
 			do{//livello entita
 				mychar=myfile.get();
-			}while(mychar!='l');
+			}while(mychar!='l' && myfile.good());
 			mychar = myfile.get();
-			int livellotemp = mychar - '0';
-
-			ens tmp = tmpEns->Insert(type, xtemp, ytemp,mappatemp,livellotemp);
-			
+			tmp->livello = mychar - '0';
 
 			do{//death flag
 				mychar=myfile.get();
-			}while(mychar!='D');
+			}while(mychar!='D' && myfile.good());
 			if(mychar == '1')
 			tmp->death_flag = true;
 			else tmp->death_flag = false;
 
 			do{//xForce
 				mychar=myfile.get();
-			}while(mychar!='x');
+			}while(mychar!='x' && myfile.good());
 			mychar = myfile.get();
 			tmp->xForce = mychar - '0';
 
 			do{//yForce
 				mychar=myfile.get();
-			}while(mychar!='y');
+			}while(mychar!='y' && myfile.good());
 			mychar = myfile.get();
 			tmp->yForce = mychar - '0';
 
-			mychar = myfile.get();
+			entitiesOBJ->Insert(tmp->type, tmp->pos->ReturnPos().x, tmp->pos->ReturnPos().y, tmp->mappa, tmp->livello);
+			
 		}
 
 		myfile.close();

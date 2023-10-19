@@ -61,9 +61,9 @@ int main() {
             }
         }
         else if(scelta == 1){//gioco caricato
+            logica->ResetEntities();
             logica->FileRead();
             logica->InitMappa(logica->returnCurMap(),logica->returnCurLev());
-            logica->InitEntities();
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();

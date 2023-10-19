@@ -176,26 +176,26 @@ void Logic::FileWrite(){//scrive il salvataggio su file
 	myfile<<'c'<<tmpPlay->colpi<<'\n';
 	myfile<<'p'<<tmpPlay->points<<'\n';
 	myfile<<'b'<<tmpPlay->inJump<<'\n';
+	myfile<<'x'<<PlayerPointer->pos->ReturnPos().x<<'.'<<PlayerPointer->pos->ReturnPos().y<<'.'<<'\n';
 
-	Entities* tmpEns = ReturnEntitiesOBJ();
-	ens tmp = tmpEns->ReturnList();
-	while(tmp->next != NULL){
+	ens tmp = entitiesOBJ->ReturnList();
+	while(tmp != NULL){
 		if(tmp->type!=3){
 			myfile<<'_'<<'\n';
 		
 			myfile<<'t'<<tmp->type<<'\n';
 
-			myfile<<'P'<<tmp->pos->ReturnPos().x<<'.'<<tmp->pos->ReturnPos().x<<'.'<<'\n';
+			myfile<<'P'<<tmp->pos->ReturnPos().x<<'.'<<tmp->pos->ReturnPos().y<<'.'<<'\n';
+
+			myfile<<'m'<<tmp->mappa<<'\n';
+
+			myfile<<'l'<<tmp->livello<<'\n';
 
 			myfile<<'D'<<tmp->death_flag<<'\n';
 
 			myfile<<'x'<<tmp->xForce<<'\n';
 
 			myfile<<'y'<<tmp->yForce<<'\n';
-
-			myfile<<'m'<<tmp->mappa<<'\n';
-
-			myfile<<'l'<<tmp->livello<<'\n';
 		}
 
 		tmp=tmp->next;
