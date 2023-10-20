@@ -13,7 +13,7 @@ ens Entities::ReturnPlayerPointer() {	return PlayerPointer; }
 Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
 
 ens Entities::Insert(EntityType Type, int x, int y, int map = 1, int level = 0) {
-  if (Character(Type) != '?') {
+  //if (Character(Type) != '?') {
     ens tmp = new entita;
     tmp->type = Type;
     tmp->pos->SelectPosition(x, y);
@@ -21,13 +21,13 @@ ens Entities::Insert(EntityType Type, int x, int y, int map = 1, int level = 0) 
     tmp->livello = level;
     tmp->mappa = map;
     entities = tmp;
-	if(Type == player){
-		PlayerPointer = tmp;
-    InfoPlayer = new Player;
-	}
+    if(Type == player){
+      PlayerPointer = tmp;
+      InfoPlayer = new Player;
+    }
     return entities;
-  }
-  return NULL;
+  //}
+  //return NULL;
 }
 
 ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello) {

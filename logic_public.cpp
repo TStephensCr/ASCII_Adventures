@@ -251,6 +251,8 @@ void Logic::GiveDynamicity()
 
            		entitiesOBJ->Display(tmp);
 			}
+			else
+				RemoveEntity();//DA SCRIVERE
         }
 
         tmp = tmp->next;

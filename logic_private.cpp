@@ -14,6 +14,8 @@ void Logic::UpdateVariables()
     map->stampamappa();
 }
 
+void RemoveEntity();
+
 void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma non va bene perchè si aggiorna solo quando accedi al menu con esc
     int x, y;
     getmaxyx(curwin, y, x);
@@ -155,7 +157,7 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		char number_str[3];
 		char *output;
 
-		ens tmp = entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN,curmap_,curLev_);
+		ens tmp = entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN,curmap_,curLev_);//nella lista la pos del player viene aggiornata quando cambio la pos di Infoplayer(perche?)
 		UpdateVariables();
 		do{//hp
 			mychar=myfile.get();
@@ -230,25 +232,24 @@ void Logic::ReadEntities(){
 		char *output;
 
 		int xtemp, ytemp, mappatemp, livellotemp;
-		while(myfile.good()){//valore di fine file
+		while(myfile.good() && mychar!='<'){//valore di fine file
 			ens tmp = new entita;
 			do{//type
 				mychar=myfile.get();
 			}while(mychar!='t' && myfile.good());
 			mychar = myfile.get();
-			switch(mychar){
-				case 1:
+			switch(mychar){					
+				case '1':
 					tmp->type = enemy;
 					break;
-				case 2:
+				case '2':
 					tmp->type = money;
 					break;
-				case 4:
+				case '4':
 					tmp->type = powerup;
 					break;
 				default:
-					//va sempre qui
-					break;
+					continue;
 			}
 			
 			do{//position
@@ -295,8 +296,11 @@ void Logic::ReadEntities(){
 			mychar = myfile.get();
 			tmp->yForce = mychar - '0';
 
+			
 			entitiesOBJ->Insert(tmp->type, tmp->pos->ReturnPos().x, tmp->pos->ReturnPos().y, tmp->mappa, tmp->livello);
 			
+			mychar = myfile.get();
+			mychar = myfile.get();//due get nel caso sia l'ultimo elemento, in tal caso questo mychar sarebbe <(fine file)
 		}
 
 		myfile.close();
