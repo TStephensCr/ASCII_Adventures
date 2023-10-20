@@ -42,5 +42,4 @@ commit -a -m 'messaggio'
 
 problemi:
 -quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
--ogni tanto il respawn si bugga e il player spawna sotto la mappa(o sopra il tettuccio dello start)
 -quando il player muore cliccando nuova partita non viene iniziata una nuova partita, ma viene solo respawnato

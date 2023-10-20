@@ -99,3 +99,28 @@ bool Entities::SameDir(ens Entity1,ens Entity2){
 void Entities::DeleteEntities(){
   entities = NULL;
 }
+
+void Entities::RemoveDeadEntities() {
+  ens currentEntity = entities;
+  ens prevEntity = NULL;
+
+  while (currentEntity) {
+    if (currentEntity->death_flag) {
+      // Remove the entity with death_flag set to true
+      if (prevEntity) {
+        prevEntity->next = currentEntity->next;
+        delete currentEntity;
+        currentEntity = prevEntity->next;
+      } else {
+        // If the first entity has death_flag set to true
+        entities = currentEntity->next;
+        delete currentEntity;
+        currentEntity = entities;
+      }
+    } else {
+      // Move to the next entity
+      prevEntity = currentEntity;
+      currentEntity = currentEntity->next;
+    }
+  }
+}

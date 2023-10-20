@@ -55,5 +55,7 @@ class Entities {
   bool SameDir(ens Entity,ens Entity2);
 
   void DeleteEntities();
+
+  void RemoveDeadEntities(); 
   
 };
