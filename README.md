@@ -28,18 +28,14 @@ Collisioni:
 
 
 TO DO:
--controllo per fare in modo che InitEntities viene chiamato solo per partita nuova, e di conseguenza un nuovo InitEntities che prende i dati dal salvataggio
--salvataggio di stato
 -collisioni livello negozio
--diversi tipi di nemici(magari alcuni che ti mandano in alto e basta)
 -decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
 -mappa con i colori
 -il formato in cui vengono salvati i dati si potrebbe ottimizzare ma cambierebbe veramente poco, fare se si ha voglia
--mappa 5 un nemico uccide l'altro
+-Serve una funzione RemoveEntity che rimuove le entita che muoiono dalla lista
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 commit -a -m 'messaggio'
 
 problemi:
--quando premi esc il titolo ci mette un secondo ad apparire, ma se premi una freccia per muovere il menu diventa instantaneo
--quando il player muore cliccando nuova partita non viene iniziata una nuova partita, ma viene solo respawnato
+-(difficile da replicare)se un nemico ti colpisce e spara allo stesso tempo diventi invisibile?(metti sulla quinta casella di una piattaforma partendo da sinistra, cosi ti spara e colpisce allo stesso tempo)
