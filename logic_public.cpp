@@ -132,7 +132,7 @@ void Logic::InitEntities(){//facciamo initentities ogni volta che il player aume
 		}
 
 		if (x >= 1) {
-			entitiesOBJ->Insert(enemy, 49, 9, 5, x);
+			entitiesOBJ->Insert(enemy, 49, 8, 5, x);
 		}
 
 		entitiesOBJ->Insert(money, 73, 10, 5, x);
