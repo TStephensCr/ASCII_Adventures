@@ -36,7 +36,7 @@ int main() {
         if(scelta == 0){//gioco nuovo
             logica->ResetEntities();
             logica->InitEntities();
-            logica->InitMappa(5,2);
+            logica->InitMappa(1,0);
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
