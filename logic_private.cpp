@@ -14,9 +14,32 @@ void Logic::UpdateVariables()
     map->stampamappa();
 }
 
-void RemoveEntity();
+void Logic::RemoveDeadEntities(){
+	/*ens tmp = entitiesOBJ->ReturnList();
+	ens prev = NULL;
+	while(tmp){
+		if(tmp->death_flag){
+			if(tmp->type == player){
+				if(prev){
+					prev->next = tmp->next;
+					delete tmp;
+					tmp = prev->next;
+				}
+				else{
+					entitiesOBJ->ReturnList() = tmp->next;
+					delete tmp;
+					tmp = entitiesOBJ->ReturnList();
+				}
+			}
+		}
+		else{
+			prev = tmp;
+			tmp = tmp->next;
+		}
+	}*/
+}
 
-void Logic::DisplayPlayerStats() {//al momento vengono stampati un menuwin, ma non va bene perchè si aggiorna solo quando accedi al menu con esc
+void Logic::DisplayPlayerStats() {
     int x, y;
     getmaxyx(curwin, y, x);
 
@@ -170,7 +193,7 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		}
 		else
 			InfoPlayer->hp = 0;
-		number_str[2] = '\O';
+		number_str[2] = 'f';
 
 		do{//soldi
 			mychar=myfile.get();
@@ -197,7 +220,7 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		}
 		else
 			InfoPlayer->points = 0;
-		number_str[2] = '\O';
+		number_str[2] = 'f';
 
 		do{//InJump
 			mychar=myfile.get();

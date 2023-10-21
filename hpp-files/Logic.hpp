@@ -46,6 +46,8 @@ private:
 	void ReadPlayer();
 
 	void ReadEntities();
+
+	void RemoveDeadEntities();
 public:
 
 	Logic(WINDOW* win, WINDOW* menuwin);
