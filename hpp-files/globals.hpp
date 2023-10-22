@@ -2,7 +2,7 @@
 #define ENEMY '&'
 #define MONEY '0'
 #define SHOOT '-'
-#define POWERUP 'P'
+#define POWERUP 'H'
 #define HORIZONTAL_WALL '='
 #define VERTICAL_WALL '|'
 #define FULLFILL_POINT '.'

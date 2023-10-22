@@ -1,20 +1,6 @@
 git# P.project2023
 Progetto di programmazione 2023 UniBO
 
-Erik
--logica gioco
--collisioni
--player  X
--npc
-
-Thomas
--mappa
--menu  X
--negozio
--potenziamenti
--salvataggio di stato
-
-
 NOTE:
 -nelle mappe ci sono P per power-up, che dovranno essere diversi dai power-up che si comprano nello shop.
 
@@ -28,7 +14,8 @@ Collisioni:
 
 
 TO DO:
--collisioni livello negozio
+-livello negozio
+-powerup
 -decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
 -mappa con i colori
 -il formato in cui vengono salvati i dati si potrebbe ottimizzare ma cambierebbe veramente poco, fare se si ha voglia
@@ -39,3 +26,4 @@ commit -a -m 'messaggio'
 problemi:
 -(difficile da replicare)se un nemico ti colpisce e spara allo stesso tempo diventi invisibile?(metti sulla quinta casella di una piattaforma partendo da sinistra, cosi ti spara e colpisce allo stesso tempo)
 -non funziona il cambio mappa al contrario
+-nel livello 5 non si riesce a fare l'ultimo salto per via degli stats

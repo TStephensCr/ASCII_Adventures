@@ -14,31 +14,6 @@ void Logic::UpdateVariables()
     map->stampamappa();
 }
 
-void Logic::RemoveDeadEntities(){
-	/*ens tmp = entitiesOBJ->ReturnList();
-	ens prev = NULL;
-	while(tmp){
-		if(tmp->death_flag){
-			if(tmp->type == player){
-				if(prev){
-					prev->next = tmp->next;
-					delete tmp;
-					tmp = prev->next;
-				}
-				else{
-					entitiesOBJ->ReturnList() = tmp->next;
-					delete tmp;
-					tmp = entitiesOBJ->ReturnList();
-				}
-			}
-		}
-		else{
-			prev = tmp;
-			tmp = tmp->next;
-		}
-	}*/
-}
-
 void Logic::DisplayPlayerStats() {
     int x, y;
     getmaxyx(curwin, y, x);
