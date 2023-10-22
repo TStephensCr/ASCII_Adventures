@@ -9,7 +9,6 @@ void Logic::UpdateVariables()
 		PlayerPointer->mappa = curmap_;
 	}
 
-
 	map->leggimappa(curmap_);
     map->stampamappa();
 }
@@ -51,11 +50,12 @@ void Logic::CheckChangeMap() {
 					curLev_--;
 					PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
 				} else {
-					if(curLev_ > 0){
+					if(curLev_ == 0 && curmap_ == 1){
+						PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
+					}					
+					else{
 						curmap_--; 
 						PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
-					}else{
-						PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
 					}
 				}
 			} else if (playerXloc == x - 2 && playerYloc == 12) {

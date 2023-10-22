@@ -25,5 +25,3 @@ commit -a -m 'messaggio'
 
 problemi:
 -(difficile da replicare)se un nemico ti colpisce e spara allo stesso tempo diventi invisibile?(metti sulla quinta casella di una piattaforma partendo da sinistra, cosi ti spara e colpisce allo stesso tempo)
--non funziona il cambio mappa al contrario
--nel livello 5 non si riesce a fare l'ultimo salto per via degli stats
