@@ -105,7 +105,7 @@ void Entities::RemoveDeadEntities() {
   ens prevEntity = NULL;
 
   while (currentEntity) {
-    if (currentEntity->death_flag) {
+    if (currentEntity->death_flag && currentEntity->type != player) {
       // Remove the entity with death_flag set to true
       if (prevEntity) {
         prevEntity->next = currentEntity->next;
