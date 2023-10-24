@@ -138,11 +138,9 @@ void Logic::ReadGeneral(){
 				number_str[0]=myfile.get();
 				number_str[1]=myfile.get();
 				counter_bot[j][i] = strtol(number_str, &output, 10);
-				j++;
 				if(number_str[1] != '.')
 					mychar = myfile.get();
 			}
-			i++;
 		}
 
 	myfile.close();
