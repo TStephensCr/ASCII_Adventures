@@ -25,3 +25,10 @@ commit -a -m 'messaggio'
 
 problemi:
 -(difficile da replicare)se un nemico ti colpisce e spara allo stesso tempo diventi invisibile?(metti sulla quinta casella di una piattaforma partendo da sinistra, cosi ti spara e colpisce allo stesso tempo)
+
+
+IDEE CONTINUO:(cio che succede dopo mappa 5 livello 2)
+-incrementa la velocità dei bot
+-cap sulla vita massima
+-cap sui proiettili?
+-
