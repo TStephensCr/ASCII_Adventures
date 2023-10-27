@@ -1,6 +1,8 @@
-//#include "hpp-files/negozio.hpp"
 
+/*
+#include "hpp-files/negozio.hpp"
 
-//Negozio::Negozio(WINDOW * win){
+Negozio::negozio(WINDOW* win, WINDOW* menuuwin) {
 
-//}
+	
+}*/
