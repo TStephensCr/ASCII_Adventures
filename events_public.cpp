@@ -65,10 +65,12 @@ int Events::getmv() {
 	if (PlayerPointer && InfoPlayer) {
 		switch (choice) {
 		case KEY_RIGHT:
+		case (int)'d':
 			InfoPlayer->LastMovement = 'd';
 			mvright(1);
 			break;
 		case KEY_LEFT:
+		case (int)'a':
 			InfoPlayer->LastMovement = 's';
 			mvleft(1);
 			break;
@@ -79,6 +81,7 @@ int Events::getmv() {
 			JumpStraight();
 			break;
 		case KEY_UP:
+		case (int)'w':
 			Jump();
 			break;
 		}
