@@ -27,7 +27,7 @@ void Logic::DisplayPlayerStats() {
         int health = InfoPlayer->hp;
         int bars = health / 5; // Calcola il numero di / basato sulla vita
 
-        for (int i = 0; i < bars; i++) {
+        for (int i = 0; i < bars && i < 20; i++) {
             waddch(curwin, '/');
         }
 		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);

@@ -28,6 +28,8 @@ protected:
 
 	int curLev_ = 0;
 
+	bool Developer_mode = false;
+
 	Mappa* map;
 
 private:
@@ -74,4 +76,7 @@ public:
 
 	int returnCurLev();
 
+	void set_dev_mode(bool on);
+
+	bool return_DevMode_status();
 };

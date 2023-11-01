@@ -266,3 +266,16 @@ int Logic::returnCurMap(){
 int Logic::returnCurLev(){
 	return curLev_;
 }
+
+void Logic::set_dev_mode(bool on){
+	InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
+	Developer_mode = on;
+	if(InfoPlayer && on){
+		InfoPlayer->colpi = 10000;
+		InfoPlayer->hp = 10000;
+	}
+}
+
+bool Logic::return_DevMode_status(){
+	return Developer_mode;
+}

@@ -32,6 +32,8 @@ char Entities::Character(EntityType type) {
       return SHOOT;
     case powerup:
       return POWERUP;
+    case follower:
+      return FOLLOWER;
     default:
       return '?';
   }

@@ -7,6 +7,7 @@
 #define VERTICAL_WALL '|'
 #define FULLFILL_POINT '.'
 #define POWERUP 'P'
+#define FOLLOWER 'F'
 #define PLAYERLIFES 3
 #define X_PLAYERSPAWN 2
 #define Y_PLAYERSPAWN 12
@@ -19,7 +20,7 @@
 #define REPELLING_XFORCE_OF_ENEMYS 10
 #define REPELLING_YFORCE_OF_ENEMYS -10
 
-enum EntityType { player, enemy, money, shoot, powerup };
+enum EntityType { player, enemy, money, shoot, powerup, follower };
 
 struct entita {
   EntityType type;

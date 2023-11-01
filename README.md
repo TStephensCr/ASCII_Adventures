@@ -24,7 +24,7 @@ ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin m
 commit -a -m 'messaggio'
 
 problemi:
--(difficile da replicare)se un nemico ti colpisce e spara allo stesso tempo diventi invisibile?(metti sulla quinta casella di una piattaforma partendo da sinistra, cosi ti spara e colpisce allo stesso tempo)
+
 
 
 IDEE CONTINUO:(cio che succede dopo mappa 5 livello 2)
