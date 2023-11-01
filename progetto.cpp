@@ -31,6 +31,7 @@ int main() {
     menu->titolo();
     menu->finestraGioco();
     bool endGame = false;
+
     while(!endGame){
         int scelta=menu->finestraMenu();
         if(scelta == 0){//gioco nuovo
@@ -89,7 +90,26 @@ int main() {
         }
         //Negozio* shop= new Negozio(win,menuwin);
         else if(scelta == 2){//negozio
-            
+            entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, logica->returnCurMap(),logica->returnCurLev());
+            while(true){
+                int choice = eventi->getmv();
+                if(choice==27){
+                    menu->titolo();
+                    gamestatus=MenU;
+                }
+                else{
+                    logica->GiveDynamicity();
+                        
+                    napms(NAPTIME); 
+
+                    if(logica->ReturnInfoPlayer()->hp == 0){
+                        gamestatus = MenU;
+                        menu->GameOver();
+                        logica->ReturnInfoPlayer()->hp=100;
+                    }
+                }
+                wrefresh(win); 
+            }
         }
         else{//esci
             endGame = true;
