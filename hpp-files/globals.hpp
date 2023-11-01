@@ -46,14 +46,15 @@ typedef Node* node;
 
 struct Queue{
   node front, rear;
-
+  int size;
   Queue(){ 
     front = rear = NULL;
+    size = 0;
   }
 
   void enqueue(MyPosition pos){
     node temp = new Node(pos);
-
+    size++;
     if(rear == NULL){
       front = rear = temp;
       return;
@@ -69,7 +70,7 @@ struct Queue{
       return tmp; //return (-1,-1)
     }
       
-    
+    size--;
     node temp = front;
     front = front->next;
 
@@ -78,6 +79,10 @@ struct Queue{
     }
 
     return temp->element;
+  }
+
+  int Size(){
+    return size;
   }
 };
 
