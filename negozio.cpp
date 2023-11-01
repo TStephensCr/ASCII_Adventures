@@ -1,4 +1,4 @@
-#include "hpp-files/negozio.hpp"
+/*#include "hpp-files/negozio.hpp"
 
 Negozio::Negozio(WINDOW* win, InfoPlayer* InfoPlayer) {
     win=win;
@@ -10,5 +10,5 @@ void werase(WINDOW *win){ werase(win) }
 void create_Shop(WINDOW *win) {
 
 }
-
+*/
 	

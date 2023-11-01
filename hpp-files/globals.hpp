@@ -33,4 +33,51 @@ struct entita {
 };
 typedef entita* ens;  // e = entit�, n = nello , s = spazio
 
+struct Node{
+    MyPosition element;
+    Node* next;
+    Node(MyPosition pos){
+      element = pos;
+      next = NULL;
+    }     
+};
+typedef Node* node; 
+
+struct Queue{
+  node front, rear;
+
+  Queue(){ 
+    front = rear = NULL;
+  }
+
+  void enqueue(MyPosition pos){
+    node temp = new Node(pos);
+
+    if(rear == NULL){
+      front = rear = temp;
+      return;
+    }
+
+    rear->next = temp;
+    rear = temp;
+  }
+
+  MyPosition dequeue(){
+    if(front == NULL){
+      MyPosition tmp;
+      return tmp; //return (-1,-1)
+    }
+      
+    
+    node temp = front;
+    front = front->next;
+
+    if(front == NULL){
+      rear = NULL;
+    }
+
+    return temp->element;
+  }
+};
+
 enum GameStatus { MenU, Game };

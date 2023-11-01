@@ -2,6 +2,7 @@ struct MyPosition {
   int x = -1;
   int y = -1;
 };
+typedef MyPosition* pos;
 
 class Position {
  protected:
