@@ -12,8 +12,8 @@ void Collision::ManageJump(ens Entity) {
     if (Entity != PlayerPointer)
         return;
 
-    int xPos = Entity->pos->ReturnPos().x;
-    int yPos = Entity->pos->ReturnPos().y;
+    int xPos = Entity->pos.x;
+    int yPos = Entity->pos.y;
     char charBelow = mvwinch(curwin, yPos + 1, xPos);
 
     if (charBelow != HORIZONTAL_WALL && charBelow != FULLFILL_POINT) {
@@ -29,10 +29,10 @@ void Collision::OutOfBounds(){
     int x, y;
     getmaxyx(curwin, y, x);
 
-    if(PlayerPointer->pos->ReturnPos().y > y - 5){
+    if(PlayerPointer->pos.y > y - 5){
         InfoPlayer->hp -= FALL_DAMAGE;
         entitiesOBJ->ClearPosition(PlayerPointer);
-        PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN,5);
+        PlayerPointer->pos.Select(X_PLAYERSPAWN,5);
     }
 
 }
@@ -44,8 +44,8 @@ void Collision::ManageCollisions(ens Entity, int mappa, int livello)
 
     UpdateVariables();
 
-    int xPos = Entity->pos->ReturnPos().x;
-    int yPos = Entity->pos->ReturnPos().y;
+    int xPos = Entity->pos.x;
+    int yPos = Entity->pos.y;
 
     ManageJump(Entity);
     OutOfBounds();

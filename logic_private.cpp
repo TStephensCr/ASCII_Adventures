@@ -40,32 +40,32 @@ void Logic::CheckChangeMap() {
     int x, y;
     getmaxyx(curwin, y, x);
 	if(PlayerPointer){
-		int playerXloc = PlayerPointer->pos->ReturnPos().x;
-		int playerYloc = PlayerPointer->pos->ReturnPos().y;
+		int playerXloc = PlayerPointer->pos.x;
+		int playerYloc = PlayerPointer->pos.y;
 
 		if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == x - 2 && playerYloc == 12)) {
 			if (playerXloc == 1 && playerYloc == 12) {
 				if (curmap_ == 1 && curLev_ > 0) {
 					curmap_ = 5;
 					curLev_--;
-					PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+					PlayerPointer->pos.Select(x - 3, Y_PLAYERSPAWN);
 				} else {
 					if(curLev_ == 0 && curmap_ == 1){
-						PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
+						PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
 					}					
 					else{
 						curmap_--; 
-						PlayerPointer->pos->SelectPosition(x - 3, Y_PLAYERSPAWN);
+						PlayerPointer->pos.Select(x - 3, Y_PLAYERSPAWN);
 					}
 				}
 			} else if (playerXloc == x - 2 && playerYloc == 12) {
 				if (curmap_ == 5 && curLev_ < 2) {
 					curLev_++;
 					curmap_ = 1;
-					PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+					PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 				} else {
 					curmap_++;
-					PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+					PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 				}
 			}
 		}
@@ -215,7 +215,7 @@ void Logic::ReadPlayer(){//manca leggere posizione per l'insert
 		number_str[0]=myfile.get();
 		number_str[1]=myfile.get();
 		ytemp = strtol(number_str, &output, 10);
-		tmp->pos->SelectPosition(xtemp,ytemp);
+		tmp->pos.Select(xtemp,ytemp);
 
 		myfile.close();
 }
@@ -259,7 +259,7 @@ void Logic::ReadEntities(){
 			number_str[0]=myfile.get();
 			number_str[1]=myfile.get();
 			ytemp = strtol(number_str, &output, 10);
-			tmp->pos->SelectPosition(xtemp,ytemp);
+			tmp->pos.Select(xtemp,ytemp);
 
 			do{//mappa entita
 				mychar=myfile.get();
@@ -293,7 +293,7 @@ void Logic::ReadEntities(){
 			tmp->yForce = mychar - '0';
 
 			
-			entitiesOBJ->Insert(tmp->type, tmp->pos->ReturnPos().x, tmp->pos->ReturnPos().y, tmp->mappa, tmp->livello);
+			entitiesOBJ->Insert(tmp->type, tmp->pos.x, tmp->pos.y, tmp->mappa, tmp->livello);
 			
 			mychar = myfile.get();
 			mychar = myfile.get();//due get nel caso sia l'ultimo elemento, in tal caso questo mychar sarebbe <(fine file)

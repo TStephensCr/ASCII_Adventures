@@ -176,7 +176,7 @@ void Logic::FileWrite(){//scrive il salvataggio su file
 	myfile<<'c'<<tmpPlay->colpi<<'\n';
 	myfile<<'p'<<tmpPlay->points<<'\n';
 	myfile<<'b'<<tmpPlay->inJump<<'\n';
-	myfile<<'x'<<PlayerPointer->pos->ReturnPos().x<<'.'<<PlayerPointer->pos->ReturnPos().y<<'.'<<'\n';
+	myfile<<'x'<<PlayerPointer->pos.x<<'.'<<PlayerPointer->pos.y<<'.'<<'\n';
 
 	ens tmp = entitiesOBJ->ReturnList();
 	while(tmp != NULL){
@@ -185,7 +185,7 @@ void Logic::FileWrite(){//scrive il salvataggio su file
 		
 			myfile<<'t'<<tmp->type<<'\n';
 
-			myfile<<'P'<<tmp->pos->ReturnPos().x<<'.'<<tmp->pos->ReturnPos().y<<'.'<<'\n';
+			myfile<<'P'<<tmp->pos.x<<'.'<<tmp->pos.y<<'.'<<'\n';
 
 			myfile<<'m'<<tmp->mappa<<'\n';
 

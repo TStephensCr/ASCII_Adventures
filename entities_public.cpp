@@ -16,7 +16,7 @@ ens Entities::Insert(EntityType Type, int x, int y, int map = 1, int level = 0) 
   //if (Character(Type) != '?') {
     ens tmp = new entita;
     tmp->type = Type;
-    tmp->pos->SelectPosition(x, y);
+    tmp->pos.Select(x, y);
     tmp->next = entities;
     tmp->livello = level;
     tmp->mappa = map;
@@ -69,16 +69,16 @@ void Entities::MoveEntity(ens myEntity) {
     int yForce = myEntity->yForce;
     if(myEntity){
         if(yForce > 0){
-          myEntity->pos->Move(0,1);
+          myEntity->pos.Move(0,1);
         }    
         else if(yForce < 0){
-          myEntity->pos->Move(0,-1);
+          myEntity->pos.Move(0,-1);
         }
         if(xForce > 0){
-          myEntity->pos->Move(1,0);
+          myEntity->pos.Move(1,0);
         }    
         else if(xForce < 0){
-          myEntity->pos->Move(-1,0);
+          myEntity->pos.Move(-1,0);
         }
     }
     

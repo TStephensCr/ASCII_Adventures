@@ -79,7 +79,7 @@ void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
             if(Entity->type == shoot)
                 entitiesOBJ->KillEntity(Entity);
             InfoPlayer->hp -= SHOOT_DAMAGE;
-            PlayerPointer->pos->SelectPosition(X_PLAYERSPAWN,Y_PLAYERSPAWN);
+            PlayerPointer->pos.Select(X_PLAYERSPAWN,Y_PLAYERSPAWN);
         }
     }
 }

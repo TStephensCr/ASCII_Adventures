@@ -24,7 +24,7 @@ enum EntityType { player, enemy, money, shoot, powerup, follower };
 
 struct entita {
   EntityType type;
-  Position* pos = new Position();
+  MyPosition pos;
   int xForce = 0;
   int yForce = 0;
   bool death_flag = false;

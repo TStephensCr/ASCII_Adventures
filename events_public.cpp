@@ -27,8 +27,8 @@ void Events::DecreaseForce(ens myEntity) {
 
 void Events::Shoot(ens Entity, char Last_movement)
 {
-    int xPos = Entity->pos->ReturnPos().x;
-    int yPos = Entity->pos->ReturnPos().y;
+    int xPos = Entity->pos.x;
+    int yPos = Entity->pos.y;
     int xDelta = (Last_movement == 'd') ? 1 : -1;
 
     MyPosition newP;

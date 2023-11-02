@@ -40,9 +40,9 @@ char Entities::Character(EntityType type) {
 }
 
 int Entities::yLoc(ens entity) { 
-  return entity->pos->ReturnPos().y; 
+  return entity->pos.y; 
 }
 
 int Entities::xLoc(ens entity) { 
-  return entity->pos->ReturnPos().x; 
+  return entity->pos.x; 
 }
