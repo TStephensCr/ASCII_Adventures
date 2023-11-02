@@ -14,15 +14,12 @@ void Logic::UpdateVariables()
 }
 
 void Logic::DisplayPlayerStats() {
-    int x, y;
-    getmaxyx(curwin, y, x);
-
     if (InfoPlayer) {
-        mvwprintw(curwin, 2, x - 28, "                          ");
-		mvwprintw(curwin, 3, x - 28, "                          ");
-		mvwprintw(curwin, 4, x - 28, "                          "); 
-		mvwprintw(curwin, 5, x - 28, "                          "); 
-        mvwprintw(curwin, 2, x - 28, "hp : ");
+        mvwprintw(curwin, 2, maxX - 28, "                          ");
+		mvwprintw(curwin, 3, maxX - 28, "                          ");
+		mvwprintw(curwin, 4, maxX - 28, "                          "); 
+		mvwprintw(curwin, 5, maxX - 28, "                          "); 
+        mvwprintw(curwin, 2, maxX - 28, "hp : ");
 
         int health = InfoPlayer->hp;
         int bars = health / 5; // Calcola il numero di / basato sulla vita
@@ -30,35 +27,33 @@ void Logic::DisplayPlayerStats() {
         for (int i = 0; i < bars && i < 20; i++) {
             waddch(curwin, '/');
         }
-		mvwprintw(curwin, 3, x - 28, "soldi : %d",InfoPlayer->Money);
-		mvwprintw(curwin, 4, x - 28, "colpi : %d",InfoPlayer->colpi);
-		mvwprintw(curwin, 5, x - 28, "punti : %d",InfoPlayer->points);
+		mvwprintw(curwin, 3, maxX - 28, "soldi : %d",InfoPlayer->Money);
+		mvwprintw(curwin, 4, maxX - 28, "colpi : %d",InfoPlayer->colpi);
+		mvwprintw(curwin, 5, maxX - 28, "punti : %d",InfoPlayer->points);
     }
 }
 
 void Logic::CheckChangeMap() {
-    int x, y;
-    getmaxyx(curwin, y, x);
 	if(PlayerPointer){
 		int playerXloc = PlayerPointer->pos.x;
 		int playerYloc = PlayerPointer->pos.y;
 
-		if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == x - 2 && playerYloc == 12)) {
+		if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == maxX - 2 && playerYloc == 12)) {
 			if (playerXloc == 1 && playerYloc == 12) {
 				if (curmap_ == 1 && curLev_ > 0) {
 					curmap_ = 5;
 					curLev_--;
-					PlayerPointer->pos.Select(x - 3, Y_PLAYERSPAWN);
+					PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 				} else {
 					if(curLev_ == 0 && curmap_ == 1){
 						PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN); 
 					}					
 					else{
 						curmap_--; 
-						PlayerPointer->pos.Select(x - 3, Y_PLAYERSPAWN);
+						PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 					}
 				}
-			} else if (playerXloc == x - 2 && playerYloc == 12) {
+			} else if (playerXloc == maxX - 2 && playerYloc == 12) {
 				if (curmap_ == 5 && curLev_ < 2) {
 					curLev_++;
 					curmap_ = 1;
@@ -227,7 +222,7 @@ void Logic::ReadEntities(){
 		char number_str[3];
 		char *output;
 
-		int xtemp, ytemp, mappatemp, livellotemp;
+		int xtemp, ytemp;
 		while(myfile.good() && mychar!='<'){//valore di fine file
 			ens tmp = new entita;
 			do{//type

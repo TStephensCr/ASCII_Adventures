@@ -8,23 +8,23 @@ void Collision::UpdateVariables(){
 void Collision::HandleVerticalCollision(ens Entity, int xPos, int& yPos)
 {
     if (Entity->yForce != 0) {
-        int c = (Entity->yForce < 0) ? yPos - 1 : yPos + 1;
-        char charAboveOrBelow = mvwinch(curwin, c, xPos);
+        int  dir = (Entity->yForce < 0) ? - 1 : 1;
+        char charAboveOrBelow = mvwinch(curwin, yPos + dir, xPos);
+
         MyPosition newP;
-        newP.x = xPos;
-        newP.y = c;
+        newP.Select(xPos, yPos + dir);
+
         ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
         if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT) {
             Entity->yForce = 0;
+            return;
         }
-        else if (EntityInNewLoc && !EntityInNewLoc->death_flag) {
+        else if (EntityInNewLoc && !EntityInNewLoc->death_flag){
             HandleEntityCollision(Entity, EntityInNewLoc);
-            yPos = c;
         }
-        else {
-            yPos = c;
-        }
+        
+        yPos = yPos + dir;
     }
 }
 
@@ -33,9 +33,10 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos)
     if (Entity->xForce != 0) {
         xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
         char charAtNewPos = mvwinch(curwin, yPos, xPos);
+
         MyPosition newP;
-        newP.x = xPos;
-        newP.y = yPos;
+        newP.Select(xPos, yPos);
+
         ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
         if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL || charAtNewPos == FULLFILL_POINT) {
@@ -105,5 +106,6 @@ void Collision::HandlePlayerEnemyCollision()
         PlayerPointer->xForce = -1 * REPELLING_XFORCE_OF_ENEMYS;
 
     PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
+
     InfoPlayer->hp -= PLAYER_ENEMY_COLLISION_DAMAGE;
 }

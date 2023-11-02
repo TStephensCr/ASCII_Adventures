@@ -26,8 +26,8 @@ void Collision::ManageJump(ens Entity) {
 
 
 void Collision::OutOfBounds(){
-    int x, y;
-    getmaxyx(curwin, y, x);
+    int y;
+    y = getmaxy(curwin);
 
     if(PlayerPointer->pos.y > y - 5){
         InfoPlayer->hp -= FALL_DAMAGE;
@@ -37,7 +37,7 @@ void Collision::OutOfBounds(){
 
 }
 
-void Collision::ManageCollisions(ens Entity, int mappa, int livello)
+void Collision::ManageCollisions(ens Entity)
 {
     if (!Entity)
         return;

@@ -2,11 +2,10 @@
 #define ENEMY '&'
 #define MONEY '0'
 #define SHOOT '-'
-#define POWERUP 'H'
+#define POWERUP 'P'
 #define HORIZONTAL_WALL '='
 #define VERTICAL_WALL '|'
 #define FULLFILL_POINT '.'
-#define POWERUP 'P'
 #define FOLLOWER 'F'
 #define PLAYERLIFES 3
 #define X_PLAYERSPAWN 2
@@ -81,9 +80,6 @@ struct Queue{
     return temp->element;
   }
 
-  int Size(){
-    return size;
-  }
 };
 
 enum GameStatus { MenU, Game };

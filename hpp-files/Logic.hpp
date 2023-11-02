@@ -30,6 +30,8 @@ protected:
 
 	bool Developer_mode = false;
 
+	int maxX;
+
 	Mappa* map;
 
 private:

@@ -19,6 +19,8 @@ Logic::Logic(WINDOW* win, WINDOW* menuuwin) {
 	PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
 
 	menuwin = menuuwin;
+
+	maxX = getmaxx(curwin);
 }
 
 Events *Logic::ReturnEventsOBJ()
@@ -149,7 +151,6 @@ void Logic::InitMappa(int curmap, int curLev){
 }
 
 void Logic::FileWrite(){//scrive il salvataggio su file
-	char mychar;
 	std::ofstream myfile;
 	myfile.open("Salvataggio.txt", std::ofstream::trunc);
 
@@ -241,7 +242,7 @@ void Logic::GiveDynamicity()
 
 			HandleBot(tmp);
 			
-			collision->ManageCollisions(tmp, curmap_, curLev_);
+			collision->ManageCollisions(tmp);
 
 			if(!tmp->death_flag){//questo perche' in ManageCollisions l'entita' potrebbe morire				
 
