@@ -27,12 +27,12 @@ int Menu::finestraMenu(){
 
       wrefresh(menuwin);
       
-      std::string opzioni[4] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI"};
+      std::string opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
       int highlight=0;
       int scelta=0;
 
       while(1){
-        for(int i=0; i<4; i++){
+        for(int i=0; i<5; i++){
           if(i==highlight){
             wattron(menuwin, A_REVERSE);//inverte colori
             mvwprintw(menuwin, i+2, 1, opzioni[i].c_str());
@@ -51,8 +51,8 @@ int Menu::finestraMenu(){
           break;
           case KEY_DOWN:
           highlight++;
-          if(highlight == 4)
-          highlight = 3;
+          if(highlight == 5)
+          highlight = 4;
           break;
           default:
           break;
