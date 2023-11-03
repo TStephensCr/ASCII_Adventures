@@ -1,6 +1,6 @@
-#include "hpp-files/negozio.hpp"
+/*#include "hpp-files/negozio.hpp"
 #include <string>
-/*
+
 Negozio::Negozio(WINDOW* win, InfoPlayer* InfoPlayer) {
     win=win;
     InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();

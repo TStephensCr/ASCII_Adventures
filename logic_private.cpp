@@ -68,7 +68,16 @@ void Logic::CheckChangeMap() {
 }
 
 void Logic::HandleBot(ens entity) {
-    if (entity->type == enemy && bot_clock == 3) {
+    if (entity->type == enemy) {
+		handleEnemys(entity);
+    }
+	else if(entity->type == follower){
+		handleFollower(entity);
+	}
+}
+
+void Logic::handleEnemys(ens entity){
+	if(bot_clock == 3){
 		if(entity->livello == 2){
 			if(counter_bot[curmap_ - 1][curLev_] == 4){
 				eventi->Shoot(entity,'d');
@@ -82,7 +91,41 @@ void Logic::HandleBot(ens entity) {
         } else if (counter_bot[curmap_ - 1][curLev_] >= 9 && counter_bot[curmap_ - 1][curLev_] < 18) {
             entity->xForce = -1;
         }
-    }
+	}
+}
+
+void Logic::handleFollower(ens entity){
+	if(!PlayerPointer->death_flag){
+		if(PlayerTrackingQueue.size < FOLLOWER_DELAY){ // fill with blank spaces equal to the delay 
+												   // i want to give to the follower
+		MyPosition nullPos;
+		PlayerTrackingQueue.enqueue(nullPos);
+		}else{
+			bool stuck = false;
+			MyPosition positionWithDelay = PlayerTrackingQueue.dequeue();
+
+			if(positionWithDelay.checkValidPos()){ 
+				
+				if(entity->pos.x != positionWithDelay.x){
+					int direction = (entity->pos.x > positionWithDelay.x) ? -1 : 1; 
+					char nextBlock = mvwinch(curwin, entity->pos.y, entity->pos.x + direction);
+
+					if(nextBlock != CHARACTER and nextBlock != SPACE and nextBlock != SHOOT){
+						entity->yForce = -1;
+						stuck = true;
+					}
+					entity->xForce = direction;
+				}
+				if(entity->pos.y > positionWithDelay.y)
+					entity->yForce = -1;
+				else if(entity->pos.y < positionWithDelay.y && !stuck)
+					entity->yForce = 1;
+				
+				stuck = false;  
+			}
+			PlayerTrackingQueue.enqueue(PlayerPointer->pos);
+		}
+	}	
 }
 
 void Logic::IncrementCounters() {
@@ -141,7 +184,7 @@ void Logic::ReadGeneral(){
 	myfile.close();
 }
 
-void Logic::ReadPlayer(){//manca leggere posizione per l'insert
+void Logic::ReadPlayer(){//manca leggere positionWithDelay per l'insert
 		char mychar;
 		std::ifstream myfile;
 		myfile.open("Salvataggio.txt");

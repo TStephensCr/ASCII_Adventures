@@ -3,6 +3,7 @@
 #define MONEY '0'
 #define SHOOT '-'
 #define POWERUP 'P'
+#define SPACE ' '
 #define HORIZONTAL_WALL '='
 #define VERTICAL_WALL '|'
 #define FULLFILL_POINT '.'
@@ -12,7 +13,10 @@
 #define Y_PLAYERSPAWN 12
 #define JUMPHEIGHT 12
 #define NAPTIME 30
+#define FOLLOWER_DELAY 40
 #define KILL_ENEMYS_POINTS 20
+#define KILL_FOLLOWER_POINTS 20
+#define FOLLOWER_DAMAGE 20
 #define FALL_DAMAGE 20
 #define SHOOT_DAMAGE 20
 #define PLAYER_ENEMY_COLLISION_DAMAGE 20
@@ -80,6 +84,10 @@ struct Queue{
     return temp->element;
   }
 
+  void clear(){
+    front = rear = NULL;
+    size = 0;
+  }
 };
 
 enum GameStatus { MenU, Game };

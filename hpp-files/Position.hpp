@@ -11,6 +11,10 @@ struct MyPosition {
     x = newX;
     y = newY;
   }
+  
+  bool checkValidPos(){
+    return (x != -1 and y != -1);
+  }
 };
 typedef MyPosition* pos;
 

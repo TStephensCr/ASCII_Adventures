@@ -32,6 +32,8 @@ protected:
 
 	int maxX;
 
+	Queue PlayerTrackingQueue;
+
 	Mappa* map;
 
 private:
@@ -40,6 +42,10 @@ private:
 	void UpdateVariables();
 
 	void DisplayPlayerStats();
+
+	void handleEnemys(ens entity);
+
+	void handleFollower(ens entity);
 
 	void HandleBot(ens entity);
 

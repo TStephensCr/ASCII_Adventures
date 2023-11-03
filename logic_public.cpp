@@ -41,6 +41,7 @@ Player* Logic::ReturnInfoPlayer()
 void Logic::ResetEntities(){
 	entitiesOBJ->DeleteEntities();
 	bot_clock = 0;
+	PlayerTrackingQueue.clear();
 	for(int i=0;i<3;i++){
 		for(int j=0;j<5;j++){
 			counter_bot[j][i]=0;
@@ -48,14 +49,11 @@ void Logic::ResetEntities(){
 	}
 }
 
-void Logic::InitEntities(){//facciamo initentities ogni volta che il player aumenta di livello.
-										 //e quando lo fai metti la lista entities = NULL
-										 // il livello corrente è quello che metto quando faccio initEntities
-										 //bisogna mettere una caratteristica alle entità chiamata livello
+void Logic::InitEntities(){
 	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN, 1, 0);
 
 	for (int x = 0; x < 3; x++) {
-		entitiesOBJ->Insert(money, 26, 4, 1, x);
+		entitiesOBJ->Insert(follower, 26, 4, 1, x);
 
 		if (x >= 0) {
 			entitiesOBJ->Insert(enemy, 21, 11, 1, x);
@@ -253,6 +251,10 @@ void Logic::GiveDynamicity()
            		entitiesOBJ->Display(tmp);
 			}
         }
+		if(PlayerPointer and InfoPlayer->hp > 0 and PlayerPointer->death_flag){
+			PlayerPointer->death_flag = false;
+			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+		}
 
         tmp = tmp->next;
     }

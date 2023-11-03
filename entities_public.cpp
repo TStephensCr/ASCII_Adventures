@@ -85,10 +85,10 @@ void Entities::MoveEntity(ens myEntity) {
 }
 
 void Entities::KillEntity(ens Entity){
-  if(Entity->type != player){
-    Entity->death_flag = true;
-    ClearPosition(Entity);
-  }
+  
+  Entity->death_flag = true;
+  ClearPosition(Entity);
+  
 }
 
 bool Entities::SameDir(ens Entity1,ens Entity2){

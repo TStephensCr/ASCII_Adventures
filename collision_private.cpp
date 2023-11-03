@@ -55,7 +55,7 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos)
 void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
 {
     if(PlayerPointer && InfoPlayer){
-            if (Entity->type == player && CollidingEntity->type == money) {
+        if (Entity->type == player && CollidingEntity->type == money) {
             entitiesOBJ->KillEntity(CollidingEntity);
             entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
         }
@@ -81,6 +81,18 @@ void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
                 entitiesOBJ->KillEntity(Entity);
             InfoPlayer->hp -= SHOOT_DAMAGE;
             PlayerPointer->pos.Select(X_PLAYERSPAWN,Y_PLAYERSPAWN);
+        }
+        else if((Entity->type == follower && CollidingEntity->type == player) || (Entity->type == player && CollidingEntity->type == follower)){
+            if(CollidingEntity->type == follower)
+                entitiesOBJ->KillEntity(CollidingEntity); 
+            if(Entity->type == follower)
+                entitiesOBJ->KillEntity(Entity);
+            entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
+        }
+        else if((Entity->type == follower && CollidingEntity->type == shoot) || (Entity->type == shoot && CollidingEntity->type == follower)){
+            entitiesOBJ->KillEntity(CollidingEntity);    
+            entitiesOBJ->KillEntity(Entity);
+            entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
         }
     }
 }
