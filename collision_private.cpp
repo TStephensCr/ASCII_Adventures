@@ -87,6 +87,7 @@ void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
                 entitiesOBJ->KillEntity(CollidingEntity); 
             if(Entity->type == follower)
                 entitiesOBJ->KillEntity(Entity);
+            entitiesOBJ->explosionEffect(PlayerPointer);
             entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
         }
         else if((Entity->type == follower && CollidingEntity->type == shoot) || (Entity->type == shoot && CollidingEntity->type == follower)){

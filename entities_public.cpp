@@ -126,3 +126,28 @@ void Entities::RemoveDeadEntities() {
     }
   }
 }
+
+void Entities::explosionEffect(ens entity){
+  init_pair(1, COLOR_RED, COLOR_BLACK);
+
+  chtype redCell = ' ' | COLOR_PAIR(1);
+
+  int x = xLoc(entity);
+  int y = yLoc(entity);
+
+  for (int dx = -1; dx <= 1;dx++){
+    for (int dy = -1; dy <= 1;dy++){
+      if(dx == 0 and dy == 0)
+        continue;
+      
+      int nearX = x + dx;
+      int nearY = y + dy;
+
+      mvwaddch(curwin, nearY, nearX, redCell);
+    } 
+  }
+  wattroff(curwin,COLOR_PAIR(1));
+}
+
+ 
+ 

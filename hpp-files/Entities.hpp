@@ -57,5 +57,7 @@ class Entities {
   void DeleteEntities();
 
   void RemoveDeadEntities(); 
+
+  void explosionEffect(ens entity);
   
 };

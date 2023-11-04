@@ -254,6 +254,7 @@ void Logic::GiveDynamicity()
 		if(PlayerPointer and InfoPlayer->hp > 0 and PlayerPointer->death_flag){
 			PlayerPointer->death_flag = false;
 			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+			PlayerTrackingQueue.clear();
 		}
 
         tmp = tmp->next;
