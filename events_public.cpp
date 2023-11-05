@@ -32,17 +32,15 @@ void Events::Shoot(ens Entity, char Last_movement)
     int xDelta = (Last_movement == 'd') ? 1 : -1;
 
     MyPosition newP;
-    newP.x = xPos + xDelta;
-    newP.y = yPos;  
+	newP.Select(xPos + xDelta, yPos);
 
     ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
 
     if (Entity_in_new_loc)
     {
-		InfoPlayer->colpi--;
-        entitiesOBJ->KillEntity(Entity_in_new_loc);
 		if(Entity->type == player)
-        	InfoPlayer->points += KILL_ENEMYS_POINTS;
+            InfoPlayer->colpi--;
+        entitiesOBJ->KillEntity(Entity_in_new_loc);
     }
     else
     {
@@ -66,11 +64,13 @@ int Events::getmv() {
 		switch (choice) {
 		case KEY_RIGHT:
 		case (int)'d':
+		case (int)'D':
 			InfoPlayer->LastMovement = 'd';
 			mvright(1);
 			break;
 		case KEY_LEFT:
 		case (int)'a':
+		case (int)'A':
 			InfoPlayer->LastMovement = 's';
 			mvleft(1);
 			break;
@@ -82,6 +82,7 @@ int Events::getmv() {
 			break;
 		case KEY_UP:
 		case (int)'w':
+		case (int)'W':
 			Jump();
 			break;
 		}
