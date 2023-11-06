@@ -85,9 +85,10 @@ void Entities::MoveEntity(ens myEntity) {
 }
 
 void Entities::KillEntity(ens Entity){
-  
-  Entity->death_flag = true;
-  ClearPosition(Entity);
+  if(Entity->type != player){
+    Entity->death_flag = true;
+    ClearPosition(Entity);
+  }
   
 }
 

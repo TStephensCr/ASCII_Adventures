@@ -88,6 +88,13 @@ struct Queue{
     front = rear = NULL;
     size = 0;
   }
+
+  void initialize(int queueInitialLenght){
+    for(int i = 0; i < queueInitialLenght; i++){
+      MyPosition nullPos;
+	    enqueue(nullPos);
+    }
+  }
 };
 
 enum GameStatus { MenU, Game };
