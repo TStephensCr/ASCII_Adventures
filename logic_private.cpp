@@ -94,30 +94,34 @@ void Logic::handleEnemys(ens entity){
 	}
 }
 
-void Logic::handleFollower(ens entity){
-	bool stuck = false;
-	MyPosition positionWithDelay = PlayerTrackingQueue.dequeue();
+void Logic::handleFollower(ens follower){
+	if(PlayerTrackingQueue.size < FOLLOWER_DELAY){
+		MyPosition nullPos;
+		PlayerTrackingQueue.enqueue(nullPos);
+	}else{
+		bool stuck = false;
+		MyPosition positionWithDelay = PlayerTrackingQueue.dequeue();
+		if(positionWithDelay.checkValidPos()){ 
+			if(follower->pos.x != positionWithDelay.x){
+				int direction = (follower->pos.x > positionWithDelay.x) ? -1 : 1; 
+				char nextBlock = mvwinch(curwin, follower->pos.y, follower->pos.x + direction);
 
-	if(positionWithDelay.checkValidPos()){ 
-		
-		if(entity->pos.x != positionWithDelay.x){
-			int direction = (entity->pos.x > positionWithDelay.x) ? -1 : 1; 
-			char nextBlock = mvwinch(curwin, entity->pos.y, entity->pos.x + direction);
-
-			if(nextBlock != CHARACTER and nextBlock != SPACE and nextBlock != SHOOT){
-				entity->yForce = -1;
-				stuck = true;
+				if(nextBlock != CHARACTER and nextBlock != SPACE and nextBlock != SHOOT){
+					follower->yForce = -1;
+					stuck = true;
+				}
+				follower->xForce = direction;
 			}
-			entity->xForce = direction;
+			if(follower->pos.y > positionWithDelay.y)
+				follower->yForce = -1;
+			else if(follower->pos.y < positionWithDelay.y && !stuck)
+				follower->yForce = 1;
+			
+			stuck = false;
+			  
 		}
-		if(entity->pos.y > positionWithDelay.y)
-			entity->yForce = -1;
-		else if(entity->pos.y < positionWithDelay.y && !stuck)
-			entity->yForce = 1;
-		
-		stuck = false;  
+		PlayerTrackingQueue.enqueue(PlayerPointer->pos);
 	}
-	PlayerTrackingQueue.enqueue(PlayerPointer->pos);
 }
 
 

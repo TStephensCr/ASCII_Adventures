@@ -22,7 +22,7 @@ Logic::Logic(WINDOW* win, WINDOW* menuuwin) {
 
 	maxX = getmaxx(curwin);
 
-	PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
+	//PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
 }
 
 Events *Logic::ReturnEventsOBJ()
@@ -56,7 +56,7 @@ void Logic::InitEntities(){
 	entitiesOBJ->Insert(player, X_PLAYERSPAWN , Y_PLAYERSPAWN, 1, 0);
 
 	for (int x = 0; x < 3; x++) {
-		entitiesOBJ->Insert(money, 26, 4, 1, x);
+		entitiesOBJ->Insert(follower, 5, 4, 1, x);//26 x
 
 		if (x >= 0) {
 			entitiesOBJ->Insert(enemy, 21, 11, 1, x);

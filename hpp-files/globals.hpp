@@ -90,8 +90,8 @@ struct Queue{
   }
 
   void initialize(int queueInitialLenght){
+    MyPosition nullPos;
     for(int i = 0; i < queueInitialLenght; i++){
-      MyPosition nullPos;
 	    enqueue(nullPos);
     }
   }
