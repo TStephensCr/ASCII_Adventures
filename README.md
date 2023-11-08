@@ -48,7 +48,8 @@ cosa fare quando chiudo il negozio
 
 COSA MANCA DA FARE?
 1)negozio(comprare proiettili e powerup)
-3)adattare il codice alle nuove mappe (ora abbiamo 10 mappa)
+2)controllare ovunque che l'aggiunta di mappe non abbia creato errori
+3)aggiungere entita a mappe nuove
 4)mettere dei colori?
 5)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),
              si puo' avanzare di una mappa con le monete]
