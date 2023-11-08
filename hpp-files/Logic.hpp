@@ -20,7 +20,7 @@ protected:
 
 	ens PlayerPointer;
 
-	int counter_bot[5][3];
+	int counter_bot[8][3];
 
 	int bot_clock = 0;
 
