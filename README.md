@@ -12,14 +12,6 @@ Collisioni:
 -nemico/soldo ->lo attraversa
 
 
-
-TO DO:
--livello negozio
--powerup
--decidere possibilità per cosa puo succedere alla fine di mappa 5 livello 2
--mappa con i colori
--il formato in cui vengono salvati i dati si potrebbe ottimizzare ma cambierebbe veramente poco, fare se si ha voglia
-
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 commit -a -m 'messaggio'
 
@@ -53,3 +45,12 @@ sezioni del negozio all interno dei quali devo creare funzioni per aumentare e d
 COSA CI FACCIAMO CON I PUNTI?   discussione
 
 cosa fare quando chiudo il negozio
+
+COSA MANCA DA FARE?
+1)negozio(comprare proiettili e powerup)
+2)salvare i follower
+3)adattare il codice alle nuove mappe (ora abbiamo 10 mappa)
+4)si ribagga il giocatore quando muore e perde tutte le vite(vedi i commit vecchi)
+5)mettere dei colori?
+6)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),
+             si puo' avanzare di una mappa con le monete]
