@@ -6,6 +6,7 @@ struct Player
     int points = 0;
     char LastMovement = 'd';
     bool inJump = false;
+    MyPosition previusPosition;
 };
 
 

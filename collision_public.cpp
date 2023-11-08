@@ -12,8 +12,8 @@ void Collision::ManageJump(ens Entity) {
     if (Entity != PlayerPointer)
         return;
 
-    int xPos = Entity->pos.x;
-    int yPos = Entity->pos.y;
+    int xPos = InfoPlayer->previusPosition.x;
+    int yPos = InfoPlayer->previusPosition.y;
     char charBelow = mvwinch(curwin, yPos + 1, xPos);
 
     if (charBelow != HORIZONTAL_WALL && charBelow != FULLFILL_POINT) {

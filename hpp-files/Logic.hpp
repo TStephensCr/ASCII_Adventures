@@ -34,6 +34,8 @@ protected:
 
 	Queue PlayerTrackingQueue;
 
+	MyPosition PlayerPriviusPosition;
+
 	Mappa* map;
 
 private:

@@ -236,6 +236,9 @@ void Logic::GiveDynamicity()
 	
 	eventi->PlayerGravity();
 	
+	MyPosition rememberPosition;
+	rememberPosition.Select(PlayerPointer->pos.x, PlayerPointer->pos.y);
+
     while (tmp) {
         if ((!tmp->death_flag) && tmp->mappa == curmap_  && tmp->livello == curLev_ ) {
 
@@ -257,6 +260,8 @@ void Logic::GiveDynamicity()
 
         tmp = tmp->next;
     }
+
+	InfoPlayer->previusPosition.Select(rememberPosition.x, rememberPosition.y);
 	entitiesOBJ->RemoveDeadEntities();
     IncrementCounters();
 }

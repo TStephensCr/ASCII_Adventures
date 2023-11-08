@@ -1,6 +1,6 @@
 #include <ncurses.h>
-#include "Player.hpp"
 #include "Position.hpp"
+#include "Player.hpp"
 #include "globals.hpp"
 #pragma once
 
