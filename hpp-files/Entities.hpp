@@ -2,6 +2,7 @@
 #include "Player.hpp"
 #include "Position.hpp"
 #include "globals.hpp"
+#pragma once
 
 class Entities {
  protected:
