@@ -50,7 +50,6 @@ COSA MANCA DA FARE?
 1)negozio(comprare proiettili e powerup)
 2)salvare i follower
 3)adattare il codice alle nuove mappe (ora abbiamo 10 mappa)
-4)si ribagga il giocatore quando muore e perde tutte le vite(vedi i commit vecchi)
-5)mettere dei colori?
-6)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),
+4)mettere dei colori?
+5)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),
              si puo' avanzare di una mappa con le monete]
