@@ -1,7 +1,7 @@
 #ifndef NEGOZIO_HPP
 #define NEGOZIO_HPP
 #include "Entities.hpp"
-#include <string>
+
 
 class Negozio {
 protected:

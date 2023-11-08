@@ -1,5 +1,4 @@
 #include "hpp-files/Negozio.hpp"
-#include <string>
 
 Negozio::Negozio(WINDOW* win,Entities* MyEntities) {
     curwin = win;
@@ -9,20 +8,42 @@ Negozio::Negozio(WINDOW* win,Entities* MyEntities) {
 
 void Negozio::create_Shop() {
 //coi punti cosa faccio?
-    std::string scelte[2]={"ACQUISTA COLPI", "ACQUISTA VITE"};
-}
-
-void Negozio::buyshots(){   //10 spari 20 monete?
+   char* scelte[]={"ACQUISTA 1 VITA", "ACQUISTA 10 VITE", "ACQUISTA 1 COLPO", "ACQUISTA 10 COLPI", "ACQUISTA 1 ARMATURA", "ACQUISTA 5 ARMATURE"};
 
 }
 
-void Negozio::buyLives(){   //10 monete 1 vita -> vita infinita?
+void Negozio::buyshots(){   
+
+}
+
+void Negozio::buyLives(){   
     
 }
 
 
-void Negozio::colorPlayer(){   //con 500 punti si puo cambiare colore al player?
-std::string colori[4]={"Blue" ,"Green", "Yellow", "Red"};
-}
+
+
+/*
+
+====================================================================================================
+|             (  ____ \    (  )    (  )    /         \     (  ____  )                              |
+|             | (   \/     |  |    |  |   (    ___    )    | (    ) |                              |
+|             | (_____     |  (____)  |   |   /   \   |    | (____) |                              |
+|             (_____  )    |   ____   |   |  |     |  |    |  ______)                              |
+|                   ) |    |  (    )  |   |   \___/   |    |  |                                    |
+|             /\____) |    |  |    |  |   (           )    |  |                                    |
+|             \_______)    (__)    (__)    \_________/     (__)                                    |
+|                                                                                                  |
+|                                                                                                  |
+|      ACQUISTA VITE:                  ACQUISTA COLPI                   ACQUISTA ARMATURA:         |
+|                                                                                                  |
+|    1 vita = 20 monete              1 colpo = 10 monete              1 armatura = 30 monete       |
+|                                                                                                  |
+|   10 vite =  150 monete           10 colpi = 50 monete              5 armature=  100 monete      |
+|                                                                                                  |
+|                                                                                                  |
+====================================================================================================
+
+*/
 
 
