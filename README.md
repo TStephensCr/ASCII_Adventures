@@ -48,7 +48,6 @@ cosa fare quando chiudo il negozio
 
 COSA MANCA DA FARE?
 1)negozio(comprare proiettili e powerup)
-2)salvare i follower
 3)adattare il codice alle nuove mappe (ora abbiamo 10 mappa)
 4)mettere dei colori?
 5)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),

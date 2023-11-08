@@ -279,6 +279,9 @@ void Logic::ReadEntities(){
 				case '4':
 					tmp->type = powerup;
 					break;
+				case '5':
+					tmp->type = follower;
+					break;
 				default:
 					continue;
 			}
