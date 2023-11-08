@@ -31,7 +31,7 @@ void Mappa::leggimappa(int curmap){
     myfile.open("mockup.mappa.txt");
     do{
         mychar=myfile.get();
-    }while(charToInt(mychar)!=curmap && myfile.good());
+    }while((mychar - '0')!=curmap && myfile.good());
 
     mychar=myfile.get();
 

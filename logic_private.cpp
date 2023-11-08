@@ -41,7 +41,7 @@ void Logic::CheckChangeMap() {
 		if ((playerXloc == 1 && playerYloc == 12) || (playerXloc == maxX - 2 && playerYloc == 12)) {
 			if (playerXloc == 1 && playerYloc == 12) {
 				if (curmap_ == 1 && curLev_ > 0) {
-					curmap_ = 5;
+					curmap_ = 8;
 					curLev_--;
 					PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 				} else {
@@ -54,13 +54,18 @@ void Logic::CheckChangeMap() {
 					}
 				}
 			} else if (playerXloc == maxX - 2 && playerYloc == 12) {
-				if (curmap_ == 5 && curLev_ < 2) {
+				if (curmap_ == 8 && curLev_ < 2) {
 					curLev_++;
 					curmap_ = 1;
 					PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 				} else {
-					curmap_++;
-					PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+					if(curLev_ == 2 && curmap_ == 8){
+						PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN); 
+					}
+					else{
+						curmap_++;
+						PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+					}
 				}
 			}
 		}
