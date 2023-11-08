@@ -38,8 +38,9 @@ dopodiche ti serviranno le funzioni che si avviano quando il giocatore sceglie d
 
 -Infoplayer è un puntatore alla struttura dati player che si trova in Player.hpp
 
-NEGOZIO: monete, colpi ,vite, punti
-sezioni del negozio all interno dei quali devo creare funzioni per aumentare e diminuire le cose che ho comprato/speso -> private
+NEGOZIO:
+La schermata del negozio è in negozio. cpp (commentata al momento). Gestisco la scelta delle cose da comprare tramite un menu come quello nella home, e in base a quello che il giocatore sceglie, richiamo le funzioni dove controllo se si riescono a comprare le quantità scelte.
+in alto a destra voglio inserire i dati del player ( quante vite ha, quante monete .. ) che si aggiornano ogni volta che compor qualcosa
 
 
 COSA CI FACCIAMO CON I PUNTI?   discussione

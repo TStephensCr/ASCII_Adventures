@@ -13,11 +13,14 @@ void Negozio::create_Shop() {
 }
 
 void Negozio::buyshots(){   
-
+//int hp = 100;
+//    int Money = 0;
+//  int colpi = 10;
+  
 }
 
 void Negozio::buyLives(){   
-    
+    //int hp = 100;
 }
 
 
