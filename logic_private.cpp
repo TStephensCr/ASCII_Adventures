@@ -174,7 +174,7 @@ void Logic::ReadGeneral(){
 		}while(mychar!='B');
 		mychar = myfile.get();//il carattere \n
 		for(int i=0;i<3;i++){
-			for(int j=0;j<5;j++){
+			for(int j=0;j<8;j++){
 				number_str[0]=myfile.get();
 				number_str[1]=myfile.get();
 				counter_bot[j][i] = strtol(number_str, &output, 10);

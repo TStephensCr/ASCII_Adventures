@@ -165,7 +165,7 @@ void Logic::FileWrite(){//scrive il salvataggio su file
 
 	myfile<<'B'<<'\n';//pacing dei bot
 	for(int i=0;i<3;i++){
-		for(int j=0;j<5;j++){
+		for(int j=0;j<8;j++){
 			myfile<<counter_bot[j][i]<<'.';
 		}
 		myfile<<'\n';
