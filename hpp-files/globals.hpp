@@ -22,6 +22,13 @@
 #define PLAYER_ENEMY_COLLISION_DAMAGE 20
 #define REPELLING_XFORCE_OF_ENEMYS 10
 #define REPELLING_YFORCE_OF_ENEMYS -10
+#define PLAYER_COLOR 1
+#define ENEMY_COLOR 2
+#define MONEY_COLOR 3
+#define SHOOT_COLOR 4
+#define POWERUP_COLOR 5
+#define FOLLOWER_COLOR 6
+
 
 enum EntityType { player, enemy, money, shoot, powerup, follower };
 
