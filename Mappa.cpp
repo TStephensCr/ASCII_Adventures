@@ -23,30 +23,6 @@ void Mappa::stampamappa(){//deve venire chiamata all'inizio quando una mappa dev
     return;
 }
 
-int Mappa::charToInt(char inputChar) {//da togliere, thomas sa come sostituirla
-    switch (inputChar) {
-        case '1':
-            return 1;
-        case '2':
-            return 2;
-        case '3':
-            return 3;
-        case '4':
-            return 4;
-        case '5':
-            return 5;
-        case '6':
-            return 6;
-        case '7':
-            return 7;
-        case '8':
-            return 8;
-        default:
-            return 0;
-    }
-}
-
-
 void Mappa::leggimappa(int curmap){
     char mychar;
     int i=0;
@@ -59,7 +35,7 @@ void Mappa::leggimappa(int curmap){
 
     mychar=myfile.get();
 
-    while(mychar!='1' && mychar!='2' && mychar!='3' && mychar!='4' && mychar!='5' && mychar!='6' && mychar!='7' && mychar!='8' && mychar!='<' && myfile.good()){
+    while(myfile.good() && std::string("0123456789<").find(mychar) == std::string::npos){
         if(mychar=='\n')
             {j++; i=0; mychar=myfile.get();}
         else{

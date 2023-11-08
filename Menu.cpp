@@ -7,12 +7,12 @@ Menu:: Menu(WINDOW *win1, WINDOW * win2){
 }
 
 void Menu::titolo(){
-    map->leggimappa(7);
+    map->leggimappa(!);
     map->stampamappa();
 }
 
 void Menu::GameOver(){
-    map->leggimappa(8);
+    map->leggimappa(?);
     map->stampamappa();
 }
 
