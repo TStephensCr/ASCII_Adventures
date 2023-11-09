@@ -51,6 +51,11 @@ COSA MANCA DA FARE?
 1)negozio(comprare proiettili e powerup)
 2)controllare ovunque che l'aggiunta di mappe non abbia creato errori
 3)aggiungere entita a mappe nuove
-5)power up [ armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo),
-             si puo' avanzare di una mappa con le monete]
+5)power up
+    -armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo)
+    -si puo' avanzare di una mappa con le monete
+    -aumentare il range del proiettile
+    -comprare extra vita, vista come barre viola nella barra della vita
 6)salvare queue
+7)aggiungere tasti per cambiare direzione senza muoversi
+8)mettere nelle statistiche la dirzione in cui il player sta guardando
