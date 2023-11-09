@@ -60,5 +60,6 @@ class Entities {
   void RemoveDeadEntities(); 
 
   void explosionEffect(ens entity);
-  
+   
+  void DisplayPlayerStats();
 };

@@ -242,7 +242,7 @@ void Logic::GiveDynamicity()
     while (tmp) {
         if ((!tmp->death_flag) && tmp->mappa == curmap_  && tmp->livello == curLev_ ) {
 
-			DisplayPlayerStats();
+			entitiesOBJ->DisplayPlayerStats();
 
 			HandleBot(tmp);
 			

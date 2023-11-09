@@ -43,8 +43,6 @@ private:
 
 	void UpdateVariables();
 
-	void DisplayPlayerStats();
-
 	void handleEnemys(ens entity);
 
 	void handleFollower(ens entity);

@@ -152,5 +152,30 @@ void Entities::explosionEffect(ens entity){
   wattroff(curwin,COLOR_PAIR(1));
 }
 
- 
+ void Entities::DisplayPlayerStats() {
+    int maxX = getmaxx(curwin);
+    if (InfoPlayer) {
+        mvwprintw(curwin, 2, maxX - 28, "                          ");
+        mvwprintw(curwin, 3, maxX - 28, "                          ");
+        mvwprintw(curwin, 4, maxX - 28, "                          "); 
+        mvwprintw(curwin, 5, maxX - 28, "                          "); 
+        mvwprintw(curwin, 6, maxX - 28, "                          "); 
+        mvwprintw(curwin, 2, maxX - 28, "hp : ");
+
+        int health = InfoPlayer->hp;
+        int bars = health / 5; // Calcola il numero di / basato sulla vita
+
+        for (int i = 0; i < bars && i < 20; i++) {
+            waddch(curwin, '/');
+        }
+        mvwprintw(curwin, 3, maxX - 28, "soldi : %d",InfoPlayer->Money);
+        mvwprintw(curwin, 4, maxX - 28, "colpi : %d",InfoPlayer->colpi);
+        mvwprintw(curwin, 5, maxX - 28, "punti : %d",InfoPlayer->points);
+        if(InfoPlayer->LastMovement == 'd')
+          mvwprintw(curwin, 6, maxX - 28, "last direction : -->");
+        else	
+          mvwprintw(curwin, 6, maxX - 28, "last direction : <--");
+    }
+}
+
  
