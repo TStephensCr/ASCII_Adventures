@@ -75,6 +75,7 @@ int Events::getmv() {
 			mvleft(1);
 			break;
 		case KEY_DOWN:
+		case (int)'s':
 			Shoot(PlayerPointer,InfoPlayer->LastMovement);
 			break;
 		case ' ':

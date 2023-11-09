@@ -52,51 +52,95 @@ void Collision::HandleHorizontalCollision(ens Entity, int& xPos, int yPos)
     }
 }
 
-void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
-{
-    if(PlayerPointer && InfoPlayer){
-        if (Entity->type == player && CollidingEntity->type == money) {
-            entitiesOBJ->KillEntity(CollidingEntity);
-            entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
-        }
-        else if (Entity->type == enemy && CollidingEntity->type == player) {
-            HandleEnemyPlayerCollision(CollidingEntity);
-        }
-        else if (Entity->type == player && CollidingEntity->type == enemy) {
-            HandlePlayerEnemyCollision();
-        }
-        else if ((Entity->type == shoot && CollidingEntity->type == enemy) || (Entity->type == enemy && CollidingEntity->type == shoot)) {
-            entitiesOBJ->KillEntity(CollidingEntity);    
-            entitiesOBJ->KillEntity(Entity);
-            entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
-        }
-        else if (Entity->type == player && CollidingEntity->type == powerup) {
-            entitiesOBJ->KillEntity(CollidingEntity); 
-            entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
-        }
-        else if ((Entity->type == shoot && CollidingEntity->type == player) || (Entity->type == player && CollidingEntity->type == shoot)) {
-            if(CollidingEntity->type == shoot)
-                entitiesOBJ->KillEntity(CollidingEntity); 
-            if(Entity->type == shoot)
-                entitiesOBJ->KillEntity(Entity);
-            InfoPlayer->hp -= SHOOT_DAMAGE;
-            PlayerPointer->pos.Select(X_PLAYERSPAWN,Y_PLAYERSPAWN);
-        }
-        else if((Entity->type == follower && CollidingEntity->type == player) || (Entity->type == player && CollidingEntity->type == follower)){
-            if(CollidingEntity->type == follower)
-                entitiesOBJ->KillEntity(CollidingEntity); 
-            if(Entity->type == follower)
-                entitiesOBJ->KillEntity(Entity);
-            //entitiesOBJ->explosionEffect(PlayerPointer);
-            entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
-        }
-        else if((Entity->type == follower && CollidingEntity->type == shoot) || (Entity->type == shoot && CollidingEntity->type == follower)){
-            entitiesOBJ->KillEntity(CollidingEntity);    
-            entitiesOBJ->KillEntity(Entity);
-            entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
-        }
+void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity) {
+    if (!PlayerPointer || !InfoPlayer) {
+        return;
+    }
+
+    switch (Entity->type) {
+        case player:
+            HandlePlayerCollision(CollidingEntity);
+            break;
+
+        case enemy:
+            HandleEnemyCollision(Entity, CollidingEntity);
+            break;
+
+        case shoot:
+            HandleShootCollision(Entity, CollidingEntity);
+            break;
+
+        case follower:
+            HandleFollowerCollision(Entity, CollidingEntity);
+            break;
+
+        default:
+            // Handle other cases or do nothing
+            break;
     }
 }
+
+void Collision::HandlePlayerCollision(ens CollidingEntity) {
+    if (CollidingEntity->type == money) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
+    } else if (CollidingEntity->type == enemy) {
+        HandlePlayerEnemyCollision();
+    } else if (CollidingEntity->type == powerup) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
+    } else if (CollidingEntity->type == shoot) {
+        InfoPlayer->hp -= SHOOT_DAMAGE;
+        PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+        if (CollidingEntity->type == shoot) {
+            entitiesOBJ->KillEntity(CollidingEntity);
+        }
+    } else if(CollidingEntity->type == follower) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
+    }
+}
+
+void Collision::HandleEnemyCollision(ens Entity, ens CollidingEntity) {
+    if (CollidingEntity->type == player) {
+        HandleEnemyPlayerCollision(CollidingEntity);
+    } else if (CollidingEntity->type == shoot) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->KillEntity(Entity);
+        entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
+    }
+}
+
+void Collision::HandleShootCollision(ens Entity, ens CollidingEntity) {
+    if (CollidingEntity->type == enemy) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->KillEntity(Entity);
+        entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
+    } else if (CollidingEntity->type == player) {
+        InfoPlayer->hp -= SHOOT_DAMAGE;
+        PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+        if (CollidingEntity->type == shoot) {
+            entitiesOBJ->KillEntity(CollidingEntity);
+        }
+    } else if (CollidingEntity->type == follower) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->KillEntity(Entity);
+        entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
+    }
+}
+
+void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity) {
+    if (CollidingEntity->type == player) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->KillEntity(Entity);
+        entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
+    } else if (CollidingEntity->type == shoot) {
+        entitiesOBJ->KillEntity(CollidingEntity);
+        entitiesOBJ->KillEntity(Entity);
+        entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
+    }
+}
+
 
 void Collision::HandleEnemyPlayerCollision(ens Enemy)
 {
