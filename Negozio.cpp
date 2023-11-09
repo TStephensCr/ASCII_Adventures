@@ -5,74 +5,79 @@ Negozio::Negozio(WINDOW* win,Entities* MyEntities) {
     entitiesOBJ = MyEntities;
     InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
 }
-
+void Negozio::updateVariables(){
+    InfoPlayer  = entitiesOBJ->ReturnPlayerOBJ();
+}
 int Negozio::create_Shop() {
-    keypad(curwin, true);
-    int xMax, yMax;
-    getmaxyx(curwin, yMax, xMax);
-    const char scelte[]="|BUY|";
-    int highlight=0;
-    int scelta=0;
-    bool endWhile = false;
-    while(!endWhile){
-        for(int i=0; i<5; i++){
-            if(i==highlight)
-                wattron(curwin, A_REVERSE);//inverte colori
-            mvwprintw(curwin, 1+(3*(i+1)), 3, scelte);
-            if(i==highlight)
-                wattroff(curwin, A_REVERSE);
-            wrefresh(curwin);
+    int highlight = 0;
+    int scelta = 0;
+
+    while (true) {
+        updateVariables();
+        entitiesOBJ->DisplayPlayerStats();
+        displayMenu( highlight);
+
+        scelta = wgetch(curwin);
+        switch (scelta) {
+            case KEY_UP:
+                highlight = (highlight - 1 + 5) % 5;
+                break;
+            case KEY_DOWN:
+                highlight = (highlight + 1) % 5;
+                break;
+            case 10: // Enter
+                eventiShop(highlight);
+                break;
+            case 27: // Esc
+                return -1; // Exit the function
+            default:
+                break;
         }
-            scelta = wgetch(curwin);
-            switch(scelta){
-                case KEY_UP:
-                    highlight--;
-                    if(highlight == -1)
-                    highlight = 4;
-                    break;
-                case KEY_DOWN:
-                    highlight++;
-                    if(highlight == 5)
-                    highlight = 0;
-                    break;
-                case 10://enter
-                    endWhile = true;
-                    break;
-                case 27://esc
-                    endWhile = true;
-                    highlight = -1;
-                    break;
-                default:
-                    break;
-            }
     }
+
     wrefresh(curwin);
     return highlight;
 }
 
-void Negozio::eventiShop(int scelta){//Questa funzione da segmentation fault, sicuramente per qualche motivo legato alla modifica di InfoPlayer
-    switch(scelta){
-        case 0://20 hp
-            if(InfoPlayer->Money>0){
-                InfoPlayer->hp+=20;
-                InfoPlayer->Money-=1;
-            }
-            break;
-        case 1:
-            if(InfoPlayer->Money>1){
-                InfoPlayer->colpi+=5;
-                InfoPlayer->Money-=2;
-            }
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        default:
-            break;
-     }
+void Negozio::displayMenu(int highlight) {
+    const char scelte[] = "|BUY|";
+    for (int i = 0; i < 5; i++) {
+        if (i == highlight) {
+            wattron(curwin, A_REVERSE);
+        }
+        mvwprintw(curwin, 1 + (3 * (i + 1)), 3, scelte);
+        if (i == highlight) {
+            wattroff(curwin, A_REVERSE);
+        }
+    }
+}
+
+
+void Negozio::eventiShop(int scelta){
+    if(InfoPlayer){
+        switch(scelta){
+            case 0://20 hp
+                if(InfoPlayer->Money>0){
+                    InfoPlayer->hp+=20;
+                    InfoPlayer->Money-=1;
+                }
+                break;
+            case 1:
+                if(InfoPlayer->Money>1){
+                    InfoPlayer->colpi+=5;
+                    InfoPlayer->Money-=2;
+                }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void Negozio::buyshots(){   
