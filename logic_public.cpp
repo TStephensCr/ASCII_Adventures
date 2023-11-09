@@ -286,3 +286,12 @@ void Logic::set_dev_mode(bool on){
 bool Logic::return_DevMode_status(){
 	return Developer_mode;
 }
+
+void Logic::InitColors(){
+	init_pair(PLAYER_COLOR, COLOR_WHITE, COLOR_WHITE);
+    init_pair(ENEMY_COLOR, COLOR_RED, COLOR_RED);
+    init_pair(MONEY_COLOR, COLOR_YELLOW, COLOR_BLACK);
+    init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
+    init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
+    init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
+}

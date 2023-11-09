@@ -55,13 +55,6 @@ ens Entities::ReturnList() { return entities; }
 
 void Entities::Display(ens MyEntity) {
   if (MyEntity && !MyEntity->death_flag) {
-    start_color();
-    init_pair(PLAYER_COLOR, COLOR_WHITE, COLOR_WHITE);
-    init_pair(ENEMY_COLOR, COLOR_RED, COLOR_RED);
-    init_pair(MONEY_COLOR, COLOR_YELLOW, COLOR_BLACK);
-    init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
-    init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
-    init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
     wattron(curwin, COLOR_PAIR(MyEntity->type + 1));
     mvwaddch(curwin, yLoc(MyEntity), xLoc(MyEntity), Character(MyEntity->type));
     wattroff(curwin, COLOR_PAIR(MyEntity->type + 1));

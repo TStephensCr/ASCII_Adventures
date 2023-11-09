@@ -89,4 +89,6 @@ public:
 	void set_dev_mode(bool on);
 
 	bool return_DevMode_status();
+
+	void InitColors();
 };
