@@ -2,6 +2,7 @@
 #include "hpp-files/Logic.hpp"
 #include "hpp-files/Mappa.hpp"
 #include "hpp-files/Menu.hpp" 
+#include "hpp-files/Negozio.hpp"
 
 int main() {
     initscr();
@@ -33,6 +34,8 @@ int main() {
     Events* eventi = logica->ReturnEventsOBJ();
 
     GameStatus gamestatus = Game;
+
+    Negozio* shop= new Negozio(win, entitiesOBJ);
     
     Menu * menu = new Menu(menuwin, win);
     menu->titolo();
@@ -96,28 +99,23 @@ int main() {
                     wrefresh(win);               
             }
         }
-        //Negozio* shop= new Negozio(win,menuwin);
         else if(scelta == 2){//negozio
-            entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, logica->returnCurMap(),logica->returnCurLev());
-            while(true){
-                int choice = eventi->getmv();
-                if(choice==27){
-                    menu->titolo();
-                    gamestatus=MenU;
+            logica->ResetEntities();
+            logica->FileRead();
+            logica->InitMappa(10, 0);
+            int choice;
+            gamestatus = Game;
+            while(gamestatus==Game){
+                entitiesOBJ->DisplayPlayerStats();
+                choice = shop->create_Shop();
+                shop->eventiShop(choice);
+                if(choice==-1){
+                        logica->InitMappa(0,0);
+                        logica->FileWrite();
+                        gamestatus=MenU;
                 }
-                else{
-                    logica->GiveDynamicity();
-                        
-                    napms(NAPTIME); 
-
-                    if(logica->ReturnInfoPlayer()->hp == 0){
-                        gamestatus = MenU;
-                        menu->GameOver();
-                        logica->ReturnInfoPlayer()->hp=100;
-                    }
-                }
-                wrefresh(win); 
             }
+            wrefresh(win);
         }
         else{//esci
             endGame = true;

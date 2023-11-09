@@ -30,8 +30,8 @@ int Menu::finestraMenu(){
       std::string opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
       int highlight=0;
       int scelta=0;
-
-      while(1){
+      bool endWhile = false;
+      while(!endWhile){
         for(int i=0; i<5; i++){
           if(i==highlight){
             wattron(menuwin, A_REVERSE);//inverte colori
@@ -59,7 +59,7 @@ int Menu::finestraMenu(){
       }
 
       //se premo invio
-       if (scelta == 10) break;
+       if (scelta == 10) endWhile = true;
     }
      wrefresh(menuwin);
     keypad(menuwin, false);

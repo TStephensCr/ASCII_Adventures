@@ -59,3 +59,13 @@ COSA MANCA DA FARE?
 6)salvare queue
 7)aggiungere tasti per cambiare direzione senza muoversi
 8)mettere nelle statistiche la dirzione in cui il player sta guardando
+9)fixare numerino in alto a sinistra
+
+
+
+cose nel negozio:
+-vita
+-colpi
+-armatura
+-extravita viola
+-range proiettili

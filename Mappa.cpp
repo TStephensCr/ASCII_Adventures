@@ -29,13 +29,24 @@ void Mappa::leggimappa(int curmap){
     int j=-1;
     std::ifstream myfile;
     myfile.open("mockup.mappa.txt");
-    do{
-        mychar=myfile.get();
-    }while((mychar - '0')!=curmap && myfile.good());
+    if(curmap!=10){
+        do{
+            mychar=myfile.get();
+        }while((mychar - '0')!=curmap && myfile.good());
+    }else{
+        do{
+            mychar=myfile.get();
+        }while(mychar!=';' && myfile.good());
+    }
 
     mychar=myfile.get();
 
-    while(myfile.good() && std::string("0123456789<").find(mychar) == std::string::npos){
+    bool endWhile = false;
+    while(myfile.good() && !endWhile){
+        if(std::string("0123456789;<").find(mychar) != std::string::npos)
+            if(curmap!=10)
+                endWhile=true;
+            
         if(mychar=='\n')
             {j++; i=0; mychar=myfile.get();}
         else{

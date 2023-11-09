@@ -10,7 +10,8 @@ protected:
     Player* InfoPlayer;
 public:
     Negozio(WINDOW* win, Entities* MyEntities);
-    void create_Shop();
+    int create_Shop();
+    void eventiShop(int scelta);
     void buyshots();
     void buyLives();
     void colorPlayer();
