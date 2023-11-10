@@ -47,7 +47,7 @@ int main() {
         if(scelta == 0){//gioco nuovo
             logica->ResetEntities();
             logica->InitEntities();
-            logica->InitMappa(1,0);
+            logica->InitMappa(1,2);
             gamestatus=Game;
             logica->set_dev_mode(0);
             while (gamestatus==Game) {
