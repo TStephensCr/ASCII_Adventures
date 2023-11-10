@@ -60,7 +60,6 @@ COSA MANCA DA FARE?
 7)aggiungere tasti per cambiare direzione senza muoversi
 8)mettere nelle statistiche la dirzione in cui il player sta guardando
 9)fixare numerino in alto a sinistra
-10)se fai nuova partita,poi esc, poi vai in negozio,fai esc, e vai in carica partita si bugga
 
 
 

@@ -47,7 +47,7 @@ int main() {
         if(scelta == 0){//gioco nuovo
             logica->ResetEntities();
             logica->InitEntities();
-            logica->InitMappa(1,2);
+            logica->InitMappa(1,0, true);
             gamestatus=Game;
             logica->set_dev_mode(0);
             while (gamestatus==Game) {
@@ -75,7 +75,7 @@ int main() {
         else if(scelta == 1){//gioco caricato
             logica->ResetEntities();
             logica->FileRead();
-            logica->InitMappa(logica->returnCurMap(),logica->returnCurLev());
+            logica->InitMappa(logica->returnCurMap(),logica->returnCurLev(), true);
             gamestatus=Game;
             while (gamestatus==Game) {
                     int choice = eventi->getmv();
@@ -102,7 +102,7 @@ int main() {
         else if(scelta == 2){//negozio
             logica->ResetEntities();
             logica->FileRead();
-            logica->InitMappa(10, 0);
+            logica->InitMappa(10, 0, false);
             int choice;
             gamestatus = Game;
             while(gamestatus==Game){
@@ -110,7 +110,7 @@ int main() {
                 choice = shop->create_Shop();
                 shop->eventiShop(choice);
                 if(choice==-1){
-                        logica->InitMappa(0,0);
+                        logica->InitMappa(0,0, false);
                         logica->FileWrite();
                         gamestatus=MenU;
                 }

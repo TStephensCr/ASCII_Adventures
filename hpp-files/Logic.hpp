@@ -72,7 +72,7 @@ public:
 
 	void InitEntities();
 
-	void InitMappa(int curmap, int curLev);
+	void InitMappa(int curmap, int curLev, bool check);
 
 	void GiveDynamicity();
 

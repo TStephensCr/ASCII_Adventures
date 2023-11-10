@@ -144,9 +144,11 @@ void Logic::InitEntities(){
 	}
 }
 
-void Logic::InitMappa(int curmap, int curLev){
-	curmap_ = curmap;
-	curLev_ = curLev;
+void Logic::InitMappa(int curmap, int curLev, bool check){
+	if(check){
+		curmap_ = curmap;
+		curLev_ = curLev;
+	}
 	map->leggimappa(curmap);
     map->stampamappa();
 }
