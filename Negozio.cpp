@@ -58,17 +58,33 @@ void Negozio::eventiShop(int scelta){
         switch(scelta){
             case 0://20 hp
                 if(InfoPlayer->Money>0){
-                    InfoPlayer->hp+=20;
-                    InfoPlayer->Money-=1;
+                    if(InfoPlayer->hp<80){
+                        InfoPlayer->hp+=20;
+                        InfoPlayer->Money-=1;
+                    }
+                    else if(InfoPlayer->hp<100){
+                        InfoPlayer->hp=100;
+                        InfoPlayer->Money-=1;
+                    }
                 }
                 break;
-            case 1:
+            case 1://5 proiettili
                 if(InfoPlayer->Money>1){
                     InfoPlayer->colpi+=5;
                     InfoPlayer->Money-=2;
                 }
                 break;
-            case 2:
+            case 2://shield
+                /*if(InfoPlayer->Money>1){
+                    if(InfoPlayer->shield<80){
+                        InfoPlayer->shield+=20;
+                        InfoPlayer->Money-=2;
+                    }
+                    else if(InfoPlayer->shield<100){
+                        InfoPlayer->shield=100;
+                        InfoPlayer->Money-=2;
+                    }
+                } */
                 break;
             case 3:
                 break;

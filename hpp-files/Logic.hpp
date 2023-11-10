@@ -57,7 +57,6 @@ private:
 
 	void ReadEntities();
 
-	void RemoveDeadEntities();
 public:
 
 	Logic(WINDOW* win, WINDOW* menuwin);
