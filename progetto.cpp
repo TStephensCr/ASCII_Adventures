@@ -104,8 +104,8 @@ int main() {
             logica->FileRead();
             logica->InitMappa(10, 0, false);
             int choice;
-            gamestatus = Game;
-            while(gamestatus==Game){
+            gamestatus = Shop;
+            while(gamestatus==Shop){
                 entitiesOBJ->DisplayPlayerStats();
                 choice = shop->create_Shop();
                 shop->eventiShop(choice);

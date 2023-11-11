@@ -19,9 +19,9 @@ void Events::PlayerGravity() {
 void Events::DecreaseForce(ens myEntity) {
 	if(myEntity){
 		if (myEntity->xForce <= -1)myEntity->xForce++;
-		if (myEntity->xForce >= 1)myEntity->xForce--;
+		else if (myEntity->xForce >= 1)myEntity->xForce--;
 		if (myEntity->yForce <= -1)myEntity->yForce++;
-		if (myEntity->yForce >= 1)myEntity->yForce--;
+		else if (myEntity->yForce >= 1)myEntity->yForce--;
 	}
 }
 

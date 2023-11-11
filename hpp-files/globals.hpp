@@ -104,4 +104,4 @@ struct Queue{
   }
 };
 
-enum GameStatus { MenU, Game };
+enum GameStatus { MenU, Game, Shop};
