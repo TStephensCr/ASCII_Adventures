@@ -54,6 +54,9 @@ void Negozio::displayMenu(int highlight) {
 
 
 void Negozio::eventiShop(int scelta){
+    /*const char* message = "Non hai abbastanza monete!";
+    mvwprintw(curwin, row, col, "%s", message);
+    */
     if(InfoPlayer){
         switch(scelta){
             case 0://20 hp
