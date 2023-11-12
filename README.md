@@ -69,3 +69,22 @@ cose nel negozio:
 -armatura
 -extravita viola
 -range proiettili
+
+
+
+bisogna resettare la queue ogni volta che si cambia mappa
+
+creare una classe game in cui organizzo il gioco
+
+while running:
+    # Handle player input
+    handle_input()
+
+    # Update game logic based on input
+    update_game_logic()
+
+    # Render the game
+    render()
+
+    # Optionally, add a delay to control the frame rate
+    sleep_for_a_while()

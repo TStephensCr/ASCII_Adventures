@@ -1,6 +1,6 @@
 #define CHARACTER '@'
 #define ENEMY '&'
-#define MONEY '0'
+#define MONEY 'o'
 #define SHOOT '-'
 #define POWERUP 'H'
 #define SPACE ' '
@@ -28,9 +28,13 @@
 #define SHOOT_COLOR 4
 #define POWERUP_COLOR 5
 #define FOLLOWER_COLOR 6
+#define ESC_KEY 27
 
+enum menuChoice { NewGame, LoadGame, Shop, Exit };
 
 enum EntityType { player, enemy, money, shoot, powerup, follower };
+
+enum GameStatus { MenU, Running , Shopping};
 
 struct entita {
   EntityType type;
@@ -104,4 +108,3 @@ struct Queue{
   }
 };
 
-enum GameStatus { MenU, Game, Shop};

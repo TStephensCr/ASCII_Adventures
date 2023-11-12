@@ -14,7 +14,7 @@ Logic::Logic(WINDOW* win, WINDOW* menuuwin) {
 
 	map         = new Mappa(win);
 
-	Status      = Game;
+	Status      = Running;
 
 	PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
 
