@@ -2,14 +2,16 @@
 #include <iostream>
 
 Game::Game(){
-    getmaxyx(stdscr, maxScreenX, maxScreenY);
+    int xMax, yMax;
+    getmaxyx(stdscr, yMax, xMax);
+    yMax/=2;
+    xMax/=2;
 
-    menuwin = newwin(6, 102, (maxScreenY / 2), (maxScreenX / 2) - 51);
+    WINDOW * menuwin = newwin(6, 102, yMax, xMax-51);
     box(menuwin,0,0);
 
-    win = newwin(20, 102, (maxScreenY / 2) - 20, (maxScreenX / 2) - 51);
+    WINDOW* win = newwin(20, 102, yMax-20, xMax-51);
     nodelay(win, true);
-    box(win, 0, 0);
 
     logic = new Logic(win, menuwin);
 
@@ -22,13 +24,14 @@ Game::Game(){
     shop = new Negozio(win, entitiesOBJ);
     
     menu = new Menu(menuwin, win);
+
+    logic->InitColors();
 }
 
 
 void Game::initMenuWindow(){
     menu->titolo();
     menu->finestraGioco();
-    logic->InitColors();
 }
 
 void Game::startGameLoop(){
@@ -38,7 +41,7 @@ void Game::startGameLoop(){
     initMenuWindow();
 
     while(!endGame){
-        int scelta=menu->finestraMenu();
+        int scelta = menu->finestraMenu();
 
         switch (scelta)
         {
@@ -57,12 +60,12 @@ void Game::startGameLoop(){
                 endGame = true;
                 break;
         }
-    }
-    wrefresh(win);
+        wrefresh(win);
+    }   
 }
 
 void Game::runGame(){
-    gamestatus=Running;
+    gamestatus = Running;
 
     logic->set_dev_mode(0);
 
