@@ -28,7 +28,7 @@ int Menu::finestraMenu(){
 
       wrefresh(menuwin);
       
-      std::string opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
+      char* opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
       int highlight=0;
       int scelta=0;
       bool endWhile = false;
@@ -36,10 +36,10 @@ int Menu::finestraMenu(){
         for(int i=0; i<5; i++){
           if(i==highlight){
             wattron(menuwin, A_REVERSE);//inverte colori
-            mvwprintw(menuwin, i+2, 1, opzioni[i].c_str());
+            mvwprintw(menuwin, i+2, 1, opzioni[i]);
             wattroff(menuwin, A_REVERSE);
           }
-          else{mvwprintw(menuwin, i+2, 1, opzioni[i].c_str());}
+          else mvwprintw(menuwin, i+2, 1, opzioni[i]);
           wrefresh(menuwin);
         }
 

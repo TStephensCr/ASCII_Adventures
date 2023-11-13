@@ -54,9 +54,6 @@ void Negozio::displayMenu(int highlight) {
 
 
 void Negozio::eventiShop(int scelta){
-    /*const char* message = "Non hai abbastanza monete!";
-    mvwprintw(curwin, row, col, "%s", message);
-    */
     if(InfoPlayer){
         switch(scelta){
             case 0://20 hp
@@ -65,17 +62,14 @@ void Negozio::eventiShop(int scelta){
                         InfoPlayer->hp+=20;
                         InfoPlayer->Money-=1;
                     }
-                    else if(InfoPlayer->hp<100){
-                        InfoPlayer->hp=100;
-                        InfoPlayer->Money-=1;
-                    }
-                }
+                    else if (mvwprintw(curwin, 9, 65, "%s", "Hai vita al massimo"));
+                }else mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete");
                 break;
             case 1://5 proiettili
                 if(InfoPlayer->Money>1){
                     InfoPlayer->colpi+=5;
                     InfoPlayer->Money-=2;
-                }
+                }else mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete");
                 break;
             case 2://shield
                 /*if(InfoPlayer->Money>1){
