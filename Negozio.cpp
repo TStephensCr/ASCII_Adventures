@@ -58,18 +58,23 @@ void Negozio::eventiShop(int scelta){
         switch(scelta){
             case 0://20 hp
                 if(InfoPlayer->Money>0){
-                    if(InfoPlayer->hp<80){
-                        InfoPlayer->hp+=20;
-                        InfoPlayer->Money-=1;
+                    if(InfoPlayer->hp<=80){
+                        if(InfoPlayer->hp>0){
+                            InfoPlayer->hp+=20;
+                            InfoPlayer->Money-=1;
+                        }
+                        else mvwprintw(curwin, 9, 55, "%s", "Sei morto! Iniza una nuova partita!");
                     }
-                    else if (mvwprintw(curwin, 9, 65, "%s", "Hai vita al massimo"));
-                }else mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete");
+                    else if (mvwprintw(curwin, 9, 65, "%s", "Hai già vita al massimo!"));
+                }else mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete!");
                 break;
             case 1://5 proiettili
                 if(InfoPlayer->Money>1){
-                    InfoPlayer->colpi+=5;
-                    InfoPlayer->Money-=2;
-                }else mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete");
+                    if(InfoPlayer->hp>0){
+                        InfoPlayer->colpi+=5;
+                        InfoPlayer->Money-=2;
+                    }else mvwprintw(curwin, 10, 55, "%s", "Sei morto! Iniza una nuova partita!");
+                }else mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete!");
                 break;
             case 2://shield
                 /*if(InfoPlayer->Money>1){

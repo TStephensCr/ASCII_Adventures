@@ -45,7 +45,6 @@ cosa fare quando chiudo il negozio
 
 COSA MANCA DA FARE?
 1)negozio(comprare proiettili e powerup)
-2)controllare ovunque che l'aggiunta di mappe non abbia creato errori
 5)power up
     -armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo)
     -si puo' avanzare di una mappa con le monete
@@ -54,8 +53,7 @@ COSA MANCA DA FARE?
 6)aggiungere tasti per cambiare direzione senza muoversi
 8)fixare numerino in alto a sinistra
 9)mettere le entita' nelle mappe nuove
-10)In questo momento se il player perde il game e va a comprare la vita nel negozio, se fa carica partita lo fa tornare in game(!)
-
+11)Aggiungere controllo che non ti fa raccogliere il powerup di vita se sei gia full
 
 
 

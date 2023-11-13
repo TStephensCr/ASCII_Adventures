@@ -62,7 +62,7 @@ void Logic::ResetEntities()
 	PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
 	for (int i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < 5; j++)
+		for (int j = 0; j < 8; j++)
 		{
 			counter_bot[j][i] = 0;
 		}
@@ -75,6 +75,7 @@ void Logic::InitEntities()
 
 	for (int x = 0; x < 3; x++)
 	{
+		//MAPPA 1
 		entitiesOBJ->Insert(follower, 5, 4, 1, x); // 26 x
 
 		if (x >= 0)
@@ -94,6 +95,7 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(money, 78, 8, 1, x);
 
+		//MAPPA 2
 		entitiesOBJ->Insert(money, 31, 12, 2, x);
 
 		if (x >= 0)
@@ -115,6 +117,7 @@ void Logic::InitEntities()
 			entitiesOBJ->Insert(enemy, 77, 10, 2, x);
 		}
 
+		//MAPPA 3
 		entitiesOBJ->Insert(money, 22, 5, 3, x);
 
 		entitiesOBJ->Insert(powerup, 22, 14, 3, x);
@@ -133,6 +136,7 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(money, 73, 13, 3, x);
 
+		//MAPPA 4
 		entitiesOBJ->Insert(money, 37, 7, 4, x);
 
 		if (x >= 0)
@@ -154,6 +158,7 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(powerup, 22, 10, 4, x);
 
+		//MAPPA 5
 		entitiesOBJ->Insert(money, 42, 5, 5, x);
 
 		if (x >= 2)
@@ -174,6 +179,64 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 73, 10, 5, x);
 
 		entitiesOBJ->Insert(powerup, 45, 14, 5, x);
+
+		//MAPPA 6
+		if (x >= 0)
+		{
+			entitiesOBJ->Insert(enemy, 19, 14, 6, x);
+		}
+
+		if (x >= 1)
+		{
+			entitiesOBJ->Insert(enemy, 45, 14, 6, x);
+		}
+
+		if (x >= 2)
+		{
+			entitiesOBJ->Insert(enemy, 76, 9, 6, x);
+		}
+
+		entitiesOBJ->Insert(money, 35, 11, 6, x);
+
+		entitiesOBJ->Insert(powerup, 64, 11, 6, x);
+
+		//MAPPA 7
+		if (x >= 0)
+		{
+			entitiesOBJ->Insert(enemy, 15, 8, 7, x);
+		}
+
+		if (x >= 1)
+		{
+			entitiesOBJ->Insert(enemy, 44, 9, 7, x);
+		}
+
+		if (x >= 2)
+		{
+			entitiesOBJ->Insert(enemy, 73, 10, 7, x);
+		}
+
+		entitiesOBJ->Insert(money, 62, 12, 7, x);
+
+		//MAPPA 8
+		if (x >= 0)
+		{
+			entitiesOBJ->Insert(enemy, 17, 7, 8, x);
+		}
+
+		if (x >= 1)
+		{
+			entitiesOBJ->Insert(enemy, 31, 10, 8, x);
+		}
+
+		if (x >= 2)
+		{
+			entitiesOBJ->Insert(enemy, 58, 8, 8, x);
+		}
+
+		entitiesOBJ->Insert(money, 49, 13, 8, x);
+
+		entitiesOBJ->Insert(powerup, 79, 7, 8, x);
 	}
 }
 
