@@ -52,7 +52,7 @@ void Game::openShop()
         shop->eventiShop(choice);
         if (choice == -1)
         {
-            logic->InitMappa(0, 0, false);
+            initMenuWindow();
             logic->FileWrite();
             gamestatus = MenU;
         }
