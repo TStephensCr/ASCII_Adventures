@@ -58,6 +58,7 @@ COSA MANCA DA FARE?
 6)aggiungere tasti per cambiare direzione senza muoversi
 8)fixare numerino in alto a sinistra
 9)mettere le entita' nelle mappe nuove
+10)In questo momento se il player perde il game e va a comprare la vita nel negozio, se fa carica partita lo fa tornare in game(!)
 
 
 
