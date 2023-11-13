@@ -8,10 +8,12 @@
 #define VERTICAL_WALL '|'
 #define FULLFILL_POINT '.'
 #define FOLLOWER 'F'
+
 #define PLAYERLIFES 3
 #define X_PLAYERSPAWN 2
 #define Y_PLAYERSPAWN 12
 #define JUMPHEIGHT 12
+
 #define NAPTIME 40
 #define FOLLOWER_DELAY 40
 #define KILL_ENEMYS_POINTS 20
@@ -22,21 +24,43 @@
 #define PLAYER_ENEMY_COLLISION_DAMAGE 20
 #define REPELLING_XFORCE_OF_ENEMYS 10
 #define REPELLING_YFORCE_OF_ENEMYS -10
+
 #define PLAYER_COLOR 1
 #define ENEMY_COLOR 2
 #define MONEY_COLOR 3
 #define SHOOT_COLOR 4
 #define POWERUP_COLOR 5
 #define FOLLOWER_COLOR 6
+
 #define ESC_KEY 27
 
-enum menuChoice { NewGame, LoadGame, Shop, Exit };
+enum menuChoice
+{
+  NewGame,
+  LoadGame,
+  Shop,
+  Exit
+};
 
-enum EntityType { player, enemy, money, shoot, powerup, follower };
+enum EntityType
+{
+  player,
+  enemy,
+  money,
+  shoot,
+  powerup,
+  follower
+};
 
-enum GameStatus { MenU, Running , Shopping};
+enum GameStatus
+{
+  MenU,
+  Running,
+  Shopping
+};
 
-struct entita {
+struct entita
+{
   EntityType type;
   MyPosition pos;
   int xForce = 0;
@@ -44,32 +68,38 @@ struct entita {
   bool death_flag = false;
   int mappa = -1;
   int livello = -1;
-  entita* next;
+  entita *next;
 };
-typedef entita* ens;  // e = entit�, n = nello , s = spazio
+typedef entita *ens; // e = entit�, n = nello , s = spazio
 
-struct Node{
-    MyPosition element;
-    Node* next;
-    Node(MyPosition pos){
-      element = pos;
-      next = NULL;
-    }     
+struct Node
+{
+  MyPosition element;
+  Node *next;
+  Node(MyPosition pos)
+  {
+    element = pos;
+    next = NULL;
+  }
 };
-typedef Node* node; 
+typedef Node *node;
 
-struct Queue{
+struct Queue
+{
   node front, rear;
   int size;
-  Queue(){ 
+  Queue()
+  {
     front = rear = NULL;
     size = 0;
   }
 
-  void enqueue(MyPosition pos){
+  void enqueue(MyPosition pos)
+  {
     node temp = new Node(pos);
     size++;
-    if(rear == NULL){
+    if (rear == NULL)
+    {
       front = rear = temp;
       return;
     }
@@ -78,33 +108,38 @@ struct Queue{
     rear = temp;
   }
 
-  MyPosition dequeue(){
-    if(front == NULL){
+  MyPosition dequeue()
+  {
+    if (front == NULL)
+    {
       MyPosition tmp;
-      return tmp; //return (-1,-1)
+      return tmp; // return (-1,-1)
     }
-      
+
     size--;
     node temp = front;
     front = front->next;
 
-    if(front == NULL){
+    if (front == NULL)
+    {
       rear = NULL;
     }
 
     return temp->element;
   }
 
-  void clear(){
+  void clear()
+  {
     front = rear = NULL;
     size = 0;
   }
 
-  void initialize(int queueInitialLenght){
+  void initialize(int queueInitialLenght)
+  {
     MyPosition nullPos;
-    for(int i = 0; i < queueInitialLenght; i++){
-	    enqueue(nullPos);
+    for (int i = 0; i < queueInitialLenght; i++)
+    {
+      enqueue(nullPos);
     }
   }
 };
-

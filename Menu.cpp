@@ -14,6 +14,7 @@ void Menu::titolo(){
 void Menu::GameOver(){
     map->leggimappa(9);
     map->stampamappa();
+    wrefresh(inputwin);
 }
 
 

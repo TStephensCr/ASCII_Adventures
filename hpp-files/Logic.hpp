@@ -73,7 +73,9 @@ public:
 
 	void InitMappa(int curmap, int curLev, bool check);
 
-	void GiveDynamicity();
+	void update_game_logic();
+
+	void render();
 
 	void FileWrite();
 

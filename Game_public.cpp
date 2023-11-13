@@ -34,19 +34,19 @@ void Game::startGameLoop(){
     initMenuWindow();
 
     while(!endGame){
-        int scelta = menu->finestraMenu();
+        menuChoice playerMenuChoice = (menuChoice)menu->finestraMenu();
 
-        switch (scelta)
+        switch (playerMenuChoice)
         {
-            case 0:
+            case NewGame:
                 initializeEntitiesForNewGame();
                 runGame();
                 break;
-            case 1:
+            case LoadGame:
                 initializeEntitiesForLoadGame();
                 runGame();
                 break;
-            case 2:
+            case Shop:
                 openShop();
                 break;
             default:

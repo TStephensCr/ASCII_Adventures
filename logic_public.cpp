@@ -21,8 +21,6 @@ Logic::Logic(WINDOW* win, WINDOW* menuuwin) {
 	menuwin = menuuwin;
 
 	maxX = getmaxx(curwin);
-
-	//PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
 }
 
 Events *Logic::ReturnEventsOBJ()
@@ -38,6 +36,18 @@ Entities *Logic::ReturnEntitiesOBJ()
 Player* Logic::ReturnInfoPlayer()
 {
 	return InfoPlayer;
+}
+
+int Logic::returnCurMap(){
+	return curmap_;
+}
+
+int Logic::returnCurLev(){
+	return curLev_;
+}
+
+bool Logic::return_DevMode_status(){
+	return Developer_mode;
 }
 
 void Logic::ResetEntities(){
@@ -228,7 +238,7 @@ void Logic::FileRead(){
 	myfile.close();
 }
 
-void Logic::GiveDynamicity()
+void Logic::update_game_logic()
 {
     ens tmp = entitiesOBJ->ReturnList();
 	
@@ -255,8 +265,6 @@ void Logic::GiveDynamicity()
             	entitiesOBJ->MoveEntity(tmp);
 
             	eventi->DecreaseForce(tmp);
-
-           		entitiesOBJ->Display(tmp);
 			}
         }
 
@@ -268,12 +276,14 @@ void Logic::GiveDynamicity()
     IncrementCounters();
 }
 
-int Logic::returnCurMap(){
-	return curmap_;
-}
+void Logic::render(){
+	ens tmp = entitiesOBJ->ReturnList();
 
-int Logic::returnCurLev(){
-	return curLev_;
+	while(tmp){
+		if(tmp->mappa == curmap_  && tmp->livello == curLev_)
+			entitiesOBJ->Display(tmp);
+		tmp = tmp->next; 
+	}
 }
 
 void Logic::set_dev_mode(bool on){
@@ -283,10 +293,6 @@ void Logic::set_dev_mode(bool on){
 		InfoPlayer->colpi = 10000;
 		InfoPlayer->hp = 10000;
 	}
-}
-
-bool Logic::return_DevMode_status(){
-	return Developer_mode;
 }
 
 void Logic::InitColors(){
