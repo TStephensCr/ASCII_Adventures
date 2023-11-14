@@ -56,9 +56,6 @@ void Game::openShop()
 
         shop->eventiShop(choice);
 
-        if (choice == 3)
-            logic->increaseMap();
-
         if (choice == -1)
         {
             returnToMenu();

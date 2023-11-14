@@ -1,5 +1,5 @@
 #include "hpp-files/Game.hpp"
-
+#include <iostream>
 Game::Game()
 {
     int xMax, yMax;
@@ -30,7 +30,6 @@ Game::Game()
 
 void Game::startGameLoop()
 {
-
     bool endGame = false;
 
     initMenuWindow();
