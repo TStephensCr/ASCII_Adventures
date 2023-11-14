@@ -75,8 +75,9 @@ void Logic::InitEntities()
 
 	for (int x = 0; x < 3; x++)
 	{
-		//MAPPA 1
-		if(x>0){
+		// MAPPA 1
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 1, x);
 		}
 
@@ -97,8 +98,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(money, 78, 8, 1, x);
 
-		//MAPPA 2
-		if(x>0){
+		// MAPPA 2
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 2, x);
 		}
 
@@ -123,8 +125,9 @@ void Logic::InitEntities()
 			entitiesOBJ->Insert(enemy, 77, 10, 2, x);
 		}
 
-		//MAPPA 3
-		if(x>0){
+		// MAPPA 3
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 3, x);
 		}
 
@@ -146,8 +149,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(money, 73, 13, 3, x);
 
-		//MAPPA 4
-		if(x>0){
+		// MAPPA 4
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 4, x);
 		}
 
@@ -172,8 +176,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(powerup, 22, 10, 4, x);
 
-		//MAPPA 5
-		if(x>0){
+		// MAPPA 5
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 5, x);
 		}
 
@@ -198,8 +203,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(powerup, 45, 14, 5, x);
 
-		//MAPPA 6
-		if(x>0){
+		// MAPPA 6
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 6, x);
 		}
 
@@ -222,8 +228,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(powerup, 64, 11, 6, x);
 
-		//MAPPA 7
-		if(x>0){
+		// MAPPA 7
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 7, x);
 		}
 
@@ -244,8 +251,9 @@ void Logic::InitEntities()
 
 		entitiesOBJ->Insert(money, 62, 12, 7, x);
 
-		//MAPPA 8
-		if(x>0){
+		// MAPPA 8
+		if (x > 0)
+		{
 			entitiesOBJ->Insert(follower, 5, 4, 8, x);
 		}
 
@@ -364,7 +372,7 @@ void Logic::update_game_logic()
 
 	UpdateVariables();
 
-	CheckChangeMap();
+	updateMapRelativeToPlayer();
 
 	eventi->PlayerGravity();
 
@@ -432,4 +440,53 @@ void Logic::InitColors()
 	init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
 	init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
 	init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
+}
+
+void Logic::decreaseMap()
+{
+	if (curmap_ == 1 && curLev_ > 0)
+	{
+		curmap_ = 8;
+		curLev_--;
+		PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+		PlayerTrackingQueue.clear();
+	}
+	else
+	{
+		if (curLev_ == 0 && curmap_ == 1)
+		{
+			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+		}
+		else
+		{
+			curmap_--;
+			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+			PlayerTrackingQueue.clear();
+		}
+	}
+}
+
+void Logic::increaseMap()
+{
+	if (curmap_ == 8 && curLev_ < 2)
+	{
+		curLev_++;
+		curmap_ = 1;
+		PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+		PlayerTrackingQueue.clear();
+	}
+	else
+	{
+		if (curLev_ == 2 && curmap_ == 8)
+		{
+			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+			// need to circle back to the first map
+		}
+		else
+		{
+			curmap_++;
+			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+			PlayerTrackingQueue.clear();
+		}
+	}
 }

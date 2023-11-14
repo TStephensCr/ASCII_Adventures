@@ -6,6 +6,12 @@ void Game::initMenuWindow()
     menu->finestraGioco();
 }
 
+void Game::updateVariables()
+{
+    curmap_ = logic->returnCurMap();
+    curLev_ = logic->returnCurLev();
+}
+
 void Game::runGame()
 {
     gamestatus = Running;
@@ -19,9 +25,7 @@ void Game::runGame()
 
         if (playerKeyPressed == ESC_KEY)
         {
-            initMenuWindow();
-            logic->FileWrite();
-            gamestatus = MenU;
+            returnToMenu();
         }
         else
         {
@@ -40,21 +44,24 @@ void Game::runGame()
 
 void Game::openShop()
 {
-    logic->ResetEntities();
-    logic->FileRead();
-    logic->InitMappa(10, 0, false);
-    int choice;
     gamestatus = Shopping;
+
+    int choice;
+
     while (gamestatus == Shopping)
     {
         entitiesOBJ->DisplayPlayerStats();
+
         choice = shop->create_Shop();
+
         shop->eventiShop(choice);
+
+        if (choice == 3)
+            logic->increaseMap();
+
         if (choice == -1)
         {
-            initMenuWindow();
-            logic->FileWrite();
-            gamestatus = MenU;
+            returnToMenu();
         }
     }
     wrefresh(win);
@@ -87,4 +94,22 @@ void Game::initializeEntitiesForLoadGame()
     logic->FileRead();
 
     logic->InitMappa(logic->returnCurMap(), logic->returnCurLev(), true);
+}
+
+void Game::initializeEntitiesForShop()
+{
+    logic->ResetEntities();
+
+    logic->FileRead();
+
+    logic->InitMappa(10, 0, false);
+}
+
+void Game::returnToMenu()
+{
+    initMenuWindow();
+
+    logic->FileWrite();
+
+    gamestatus = MenU;
 }

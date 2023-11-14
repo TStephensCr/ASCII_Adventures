@@ -1,23 +1,22 @@
 #include "events.hpp"
 
-
-class Collision {
+class Collision
+{
 protected:
+    Entities *entitiesOBJ;
 
-	Entities* entitiesOBJ;
+    WINDOW *curwin;
 
-	WINDOW* curwin;
+    ens ListOfEntities;
 
-	ens ListOfEntities;
+    ens PlayerPointer = NULL;
 
-	ens PlayerPointer = NULL;
-
-	Player* InfoPlayer;
+    Player *InfoPlayer;
 
 private:
     void UpdateVariables();
     void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
-    void HandleHorizontalCollision(ens Entity, int& xPos, int yPos);
+    void HandleHorizontalCollision(ens Entity, int &xPos, int yPos);
     void HandleEntityCollision(ens Entity, ens OtherEntity);
     void HandleEnemyPlayerCollision(ens Enemy);
     void HandlePlayerEnemyCollision();
@@ -27,12 +26,11 @@ private:
     void HandleFollowerCollision(ens Entity, ens CollidingEntity);
 
 public:
+    Collision(Entities *MyEntities);
 
-	Collision(Entities* MyEntities);
+    void ManageJump(ens Entity);
 
-	void ManageJump(ens Entity);
+    void OutOfBounds(ens Entity);
 
-	void OutOfBounds();
-
-	void ManageCollisions(ens Entity);
+    void ManageCollisions(ens Entity);
 };

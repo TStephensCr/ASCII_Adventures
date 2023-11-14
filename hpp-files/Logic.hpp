@@ -2,19 +2,20 @@
 #include "Mappa.hpp"
 #include <fstream>
 
-class Logic {
+class Logic
+{
 protected:
-	WINDOW* curwin;
+	WINDOW *curwin;
 
-	WINDOW* menuwin;
+	WINDOW *menuwin;
 
-	Entities* entitiesOBJ;
+	Entities *entitiesOBJ;
 
-	Player* InfoPlayer;
+	Player *InfoPlayer;
 
 	Collision *collision;
 
-	Events* eventi;
+	Events *eventi;
 
 	GameStatus Status;
 
@@ -36,10 +37,10 @@ protected:
 
 	MyPosition PlayerPriviusPosition;
 
-	Mappa* map;
+	Mappa *map;
 
 private:
-	void CheckChangeMap();
+	void updateMapRelativeToPlayer();
 
 	void UpdateVariables();
 
@@ -58,20 +59,37 @@ private:
 	void ReadEntities();
 
 public:
+	//---constructor---//
 
-	Logic(WINDOW* win, WINDOW* menuwin);
+	Logic(WINDOW *win, WINDOW *menuwin);
 
-	Events* ReturnEventsOBJ();
+	//---return functions---//
 
-	Entities* ReturnEntitiesOBJ();	
+	Events *ReturnEventsOBJ();
 
-	Player* ReturnInfoPlayer();
+	Entities *ReturnEntitiesOBJ();
+
+	Player *ReturnInfoPlayer();
+
+	int returnCurMap();
+
+	int returnCurLev();
+
+	//---set or reset functions---//
 
 	void ResetEntities();
 
 	void InitEntities();
 
+	void InitColors();
+
+	void set_dev_mode(bool on);
+
+	bool return_DevMode_status();
+
 	void InitMappa(int curmap, int curLev, bool check);
+
+	//---logic functions---//
 
 	void update_game_logic();
 
@@ -81,13 +99,7 @@ public:
 
 	void FileRead();
 
-	int returnCurMap();
+	void increaseMap();
 
-	int returnCurLev();
-
-	void set_dev_mode(bool on);
-
-	bool return_DevMode_status();
-
-	void InitColors();
+	void decreaseMap();
 };

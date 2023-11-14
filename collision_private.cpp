@@ -100,7 +100,7 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     {
         HandlePlayerEnemyCollision();
     }
-    else if (CollidingEntity->type == powerup)
+    else if (CollidingEntity->type == powerup && InfoPlayer->hp < 100)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->ReturnPlayerOBJ()->hp = 100;
@@ -140,24 +140,20 @@ void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
     if (CollidingEntity->type == enemy)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
-        entitiesOBJ->KillEntity(Entity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
     }
     else if (CollidingEntity->type == player)
     {
         InfoPlayer->hp -= SHOOT_DAMAGE;
         PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-        if (CollidingEntity->type == shoot)
-        {
-            entitiesOBJ->KillEntity(CollidingEntity);
-        }
     }
     else if (CollidingEntity->type == follower)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
-        entitiesOBJ->KillEntity(Entity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
     }
+
+    entitiesOBJ->KillEntity(Entity); // every time a shoot collides with something, it dies
 }
 
 void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)

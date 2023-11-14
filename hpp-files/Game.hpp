@@ -1,44 +1,55 @@
 #include <ncurses.h>
 #include "Logic.hpp"
 #include "Mappa.hpp"
-#include "Menu.hpp" 
+#include "Menu.hpp"
 #include "Negozio.hpp"
 
-class Game{
-    protected:
-        WINDOW * menuwin;
+class Game
+{
+protected:
+    WINDOW *menuwin;
 
-        WINDOW* win;
+    WINDOW *win;
 
-        Logic* logic;
+    Logic *logic;
 
-        Entities* entitiesOBJ;
+    Entities *entitiesOBJ;
 
-        Events* events;
+    Events *events;
 
-        Negozio* shop;
+    Negozio *shop;
 
-        Menu* menu;
+    Menu *menu;
 
-        GameStatus gamestatus;
+    GameStatus gamestatus;
 
-        int maxScreenX, maxScreenY;
-    private:
-        void initMenuWindow();
+    int curmap_ = 1;
 
-        void runGame();
+    int curLev_ = 0;
 
-        void openShop();
+    int maxScreenX, maxScreenY;
 
-        void checkEndGame();
+private:
+    void updateVariables();
 
-        void initializeEntitiesForNewGame();
+    void initMenuWindow();
 
-        void initializeEntitiesForLoadGame();
-    public:
-        Game();
+    void runGame();
 
-        void startGameLoop();
+    void openShop();
 
+    void checkEndGame();
 
+    void initializeEntitiesForNewGame();
+
+    void initializeEntitiesForLoadGame();
+
+    void initializeEntitiesForShop();
+
+    void returnToMenu();
+
+public:
+    Game();
+
+    void startGameLoop();
 };
