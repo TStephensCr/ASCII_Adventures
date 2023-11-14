@@ -76,7 +76,9 @@ void Logic::InitEntities()
 	for (int x = 0; x < 3; x++)
 	{
 		//MAPPA 1
-		entitiesOBJ->Insert(follower, 5, 4, 1, x); // 26 x
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 1, x);
+		}
 
 		if (x >= 0)
 		{
@@ -96,6 +98,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 78, 8, 1, x);
 
 		//MAPPA 2
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 2, x);
+		}
+
 		entitiesOBJ->Insert(money, 31, 12, 2, x);
 
 		if (x >= 0)
@@ -118,6 +124,10 @@ void Logic::InitEntities()
 		}
 
 		//MAPPA 3
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 3, x);
+		}
+
 		entitiesOBJ->Insert(money, 22, 5, 3, x);
 
 		entitiesOBJ->Insert(powerup, 22, 14, 3, x);
@@ -137,6 +147,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 73, 13, 3, x);
 
 		//MAPPA 4
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 4, x);
+		}
+
 		entitiesOBJ->Insert(money, 37, 7, 4, x);
 
 		if (x >= 0)
@@ -159,6 +173,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(powerup, 22, 10, 4, x);
 
 		//MAPPA 5
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 5, x);
+		}
+
 		entitiesOBJ->Insert(money, 42, 5, 5, x);
 
 		if (x >= 2)
@@ -181,6 +199,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(powerup, 45, 14, 5, x);
 
 		//MAPPA 6
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 6, x);
+		}
+
 		if (x >= 0)
 		{
 			entitiesOBJ->Insert(enemy, 19, 14, 6, x);
@@ -201,6 +223,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(powerup, 64, 11, 6, x);
 
 		//MAPPA 7
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 7, x);
+		}
+
 		if (x >= 0)
 		{
 			entitiesOBJ->Insert(enemy, 15, 8, 7, x);
@@ -219,6 +245,10 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 62, 12, 7, x);
 
 		//MAPPA 8
+		if(x>0){
+			entitiesOBJ->Insert(follower, 5, 4, 8, x);
+		}
+
 		if (x >= 0)
 		{
 			entitiesOBJ->Insert(enemy, 17, 7, 8, x);
