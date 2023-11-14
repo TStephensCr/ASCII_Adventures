@@ -53,6 +53,6 @@ COSA MANCA DA FARE?
 6)aggiungere tasti per cambiare direzione senza muoversi
 9)collisione proiettile/bordo mappa
 11)Aggiungere controllo che non ti fa raccogliere il powerup di vita se sei gia full
-
+12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
 
 
