@@ -93,6 +93,7 @@ void Negozio::eventiShop(int scelta){
                     if(InfoPlayer->hp>0){
                         InfoPlayer->Money-=3;
                         //aggiornare curmap. Come?
+                        //aggiornare anche la posizione del player per non farlo spawnare dov'era nella mappa vecchia
                     }else mvwprintw(curwin, 12, 55, "%s", "Sei morto! Iniza una nuova partita!");
                 }else mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
                 break;
