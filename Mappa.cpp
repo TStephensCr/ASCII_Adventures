@@ -43,7 +43,7 @@ void Mappa::leggimappa(int curmap){
 
     bool endWhile = false;
     while(myfile.good() && !endWhile){
-        if(std::string("0123456789;<").find(mychar) != std::string::npos)
+        if(std::string("0123456789;").find(mychar) != std::string::npos)
             if(curmap!=10)
                 endWhile=true;
         

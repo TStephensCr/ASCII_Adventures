@@ -51,7 +51,6 @@ COSA MANCA DA FARE?
     -aumentare il range del proiettile
     -comprare extra vita, vista come barre viola nella barra della vita
 6)aggiungere tasti per cambiare direzione senza muoversi
-8)fixare numerino in alto a sinistra
 9)collisione proiettile/bordo mappa
 11)Aggiungere controllo che non ti fa raccogliere il powerup di vita se sei gia full
 
