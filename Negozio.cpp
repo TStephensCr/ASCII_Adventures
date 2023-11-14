@@ -89,6 +89,12 @@ void Negozio::eventiShop(int scelta){
                 } */
                 break;
             case 3:
+                if(InfoPlayer->Money>2){
+                    if(InfoPlayer->hp>0){
+                        InfoPlayer->Money-=3;
+                        //aggiornare curmap. Come?
+                    }else mvwprintw(curwin, 12, 55, "%s", "Sei morto! Iniza una nuova partita!");
+                }else mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
                 break;
             case 4:
                 break;

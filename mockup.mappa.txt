@@ -211,7 +211,7 @@
 |         -  1 ARMATURA: 2 MONETE                                                                  |
 |                                                                                                  |
 |                                                                                                  |
-|         -  EXTRAVITA 30: 3 MONETE                                                                |
+|         -  SKIP MAPPA CORRENTE: 3 MONETE                                                         |
 |                                                                                                  |
 |                                                                                                  |
 |         -  AUMENTA RANGE PROIETTILI                                                              |
