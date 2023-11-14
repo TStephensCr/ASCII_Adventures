@@ -286,8 +286,6 @@ void Logic::FileWrite()
 	std::ofstream myfile;
 	myfile.open("Salvataggio.txt", std::ofstream::trunc);
 
-	myfile << 'E' << '1' << '\n'; // file contiene salvataggio
-
 	myfile << 'M' << curmap_ << '\n'; // mappa
 
 	myfile << 'L' << curLev_ << '\n'; // livello
@@ -348,17 +346,14 @@ void Logic::FileRead()
 	char mychar;
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");
-	mychar = myfile.get(); // La E
-	mychar = myfile.get(); // il bool che dice se il file contiene salvataggi o no
-	if (mychar == '1' && myfile.good())
-	{
 
-		ReadGeneral(); // va bene
+	if (myfile.good())
+	{
+		ReadGeneral();
 
 		ReadPlayer();
 
 		ReadEntities();
-		// ritornare i valori letti/chiamare le funzioni di init da salvataggio
 	}
 	myfile.close();
 }

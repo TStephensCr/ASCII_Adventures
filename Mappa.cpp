@@ -46,13 +46,15 @@ void Mappa::leggimappa(int curmap){
         if(std::string("0123456789;<").find(mychar) != std::string::npos)
             if(curmap!=10)
                 endWhile=true;
-            
-        if(mychar=='\n')
-            {j++; i=0; mychar=myfile.get();}
-        else{
-            Matrice[i][j]=mychar;
-            i++;
-            mychar=myfile.get();
+        
+        if(!endWhile){
+            if(mychar=='\n')
+                {j++; i=0; mychar=myfile.get();}
+            else{
+                Matrice[i][j]=mychar;
+                i++;
+                mychar=myfile.get();
+            }
         }
     }
     myfile.close();

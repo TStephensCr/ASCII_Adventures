@@ -207,8 +207,8 @@ void Logic::ReadGeneral()
 			if (number_str[1] != '.')
 				mychar = myfile.get();
 		}
+		mychar = myfile.get(); // il carattere \n
 	}
-
 	myfile.close();
 }
 
