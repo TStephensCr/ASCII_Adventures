@@ -31,8 +31,11 @@
 #define SHOOT_COLOR 4
 #define POWERUP_COLOR 5
 #define FOLLOWER_COLOR 6
+#define SHIELD_COLOR 7
 
 #define ESC_KEY 27
+
+#define STATS_DISTANCE_FROM_RIGHT 32
 
 enum menuChoice
 {

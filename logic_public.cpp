@@ -440,6 +440,7 @@ void Logic::InitColors()
 	init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
 	init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
 	init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
+	init_pair(SHIELD_COLOR, COLOR_MAGENTA, COLOR_BLACK);
 }
 
 void Logic::decreaseMap()

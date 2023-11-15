@@ -186,28 +186,38 @@ void Entities::explosionEffect(ens entity)
 void Entities::DisplayPlayerStats()
 {
   int maxX = getmaxx(curwin);
+
   if (InfoPlayer)
   {
-    mvwprintw(curwin, 2, maxX - 28, "                          ");
-    mvwprintw(curwin, 3, maxX - 28, "                          ");
-    mvwprintw(curwin, 4, maxX - 28, "                          ");
-    mvwprintw(curwin, 5, maxX - 28, "                          ");
-    mvwprintw(curwin, 6, maxX - 28, "                          ");
-    mvwprintw(curwin, 2, maxX - 28, "hp : ");
+    ClearPlayerStatsDisplay(maxX);
+    DisplayHealth(maxX);
+    DisplayShield();
+    DisplayPlayerInfo();
+  }
+}
 
-    int health = InfoPlayer->hp;
-    int bars = health / 5; // Calcola il numero di / basato sulla vita
-
-    for (int i = 0; i < bars && i < 20; i++)
+void Entities::inflictDamageToPlayer(int damage)
+{
+  if (InfoPlayer)
+  {
+    // If the player has a shield
+    if (InfoPlayer->shield > 0)
     {
-      waddch(curwin, '/');
+      // Reduce shield by the damage amount
+      InfoPlayer->shield -= damage;
+
+      // Ensure shield doesn't go below 0
+      if (InfoPlayer->shield < 0)
+      {
+        InfoPlayer->shield = 0;
+      }
     }
-    mvwprintw(curwin, 3, maxX - 28, "soldi : %d", InfoPlayer->Money);
-    mvwprintw(curwin, 4, maxX - 28, "colpi : %d", InfoPlayer->colpi);
-    mvwprintw(curwin, 5, maxX - 28, "punti : %d", InfoPlayer->points);
-    if (InfoPlayer->LastMovement == 'd')
-      mvwprintw(curwin, 6, maxX - 28, "last direction : -->");
     else
-      mvwprintw(curwin, 6, maxX - 28, "last direction : <--");
+    {
+      // If no shield, reduce health by the damage amount
+      InfoPlayer->hp -= damage;
+
+      // Optionally, check for player death or other conditions
+    }
   }
 }

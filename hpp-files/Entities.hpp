@@ -4,62 +4,73 @@
 #include "globals.hpp"
 #pragma once
 
-class Entities {
- protected:
-  ens entities = NULL;  // lista entit�
+class Entities
+{
+protected:
+   ens entities = NULL; // lista entit�
 
-  Player* InfoPlayer = NULL;
+   Player *InfoPlayer = NULL;
 
-  ens PlayerPointer = NULL;
+   ens PlayerPointer = NULL;
 
-  WINDOW* curwin;  // window in cui verrano stampate le entit�
+   WINDOW *curwin; // window in cui verrano stampate le entit�
 
-  int yMax, xMax;
+   int yMax, xMax;
 
- private:
-    char Character(EntityType Type); 
+private:
+   char Character(EntityType Type);
 
-    void Remove(ens Entity); //SE FAI entita->Remove(j); RICORDA DI METTERE j == NULL.altrimenti
+   void Remove(ens Entity);
 
-    int yLoc(ens Entity);
+   int yLoc(ens Entity);
 
-    int xLoc(ens Entity); 
- public:
-  // Blocco Azione su liste di entit�
-  Entities(WINDOW* win);  // costruttore
+   int xLoc(ens Entity);
 
-  WINDOW* ReturnCurwin();
+   void ClearPlayerStatsDisplay(int maxX);
 
-  ens Insert(EntityType tipo, int x,
-             int y, int map, int level);  // inserisce un'entità in base al tipo [ EntityType ] and
-                      // his position coordinates [ x , y ]
+   void DisplayHealth(int maxX);
 
+   void DisplayShield();
 
-  ens EntitiesInLocation(
-      MyPosition Loc, int mappa, int livello);// Given a position returns the entity in that position
-                                             // otherwise returns NULL
+   void DisplayPlayerInfo();
 
-  ens ReturnPlayerPointer();
+public:
+   // Blocco Azione su liste di entit�
+   Entities(WINDOW *win); // costruttore
 
-  Player* ReturnPlayerOBJ();
+   WINDOW *ReturnCurwin();
 
-  ens ReturnList();
+   ens Insert(EntityType tipo, int x,
+              int y, int map, int level); // inserisce un'entità in base al tipo [ EntityType ] and
+                                          // his position coordinates [ x , y ]
 
-  void Display(ens MyEntity);
+   ens EntitiesInLocation(
+       MyPosition Loc, int mappa, int livello); // Given a position returns the entity in that position
+                                                // otherwise returns NULL
 
-  void ClearPosition(ens Entity);
+   ens ReturnPlayerPointer();
 
-  void KillEntity(ens Entity);
+   Player *ReturnPlayerOBJ();
 
-  void MoveEntity(ens myEntity);
+   ens ReturnList();
 
-  bool SameDir(ens Entity,ens Entity2);
+   void Display(ens MyEntity);
 
-  void DeleteEntities();
+   void ClearPosition(ens Entity);
 
-  void RemoveDeadEntities(); 
+   void KillEntity(ens Entity);
 
-  void explosionEffect(ens entity);
-   
-  void DisplayPlayerStats();
+   void MoveEntity(ens myEntity);
+
+   bool SameDir(ens Entity, ens Entity2);
+
+   void DeleteEntities();
+
+   void RemoveDeadEntities();
+
+   void explosionEffect(ens entity);
+
+   void DisplayPlayerStats();
+
+   void inflictDamageToPlayer(int damage);
 };

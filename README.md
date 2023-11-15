@@ -52,5 +52,7 @@ COSA MANCA DA FARE?
     -comprare extra vita, vista come barre viola nella barra della vita
 6)aggiungere tasti per cambiare direzione senza muoversi
 12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
+13)fare un breve tutorial
+14) il player viene respinto solo a sinistra dai nemici
 
 

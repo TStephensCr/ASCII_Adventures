@@ -117,7 +117,7 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     else if (CollidingEntity->type == follower)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
-        entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
+        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE);
     }
 }
 
@@ -162,7 +162,7 @@ void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->KillEntity(Entity);
-        entitiesOBJ->ReturnPlayerOBJ()->hp -= FOLLOWER_DAMAGE;
+        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE);
     }
     else if (CollidingEntity->type == shoot)
     {
@@ -181,17 +181,17 @@ void Collision::HandleEnemyPlayerCollision(ens Enemy)
 
     PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
 
-    InfoPlayer->hp -= PLAYER_ENEMY_COLLISION_DAMAGE;
+    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE);
 }
 
 void Collision::HandlePlayerEnemyCollision()
 {
     if (InfoPlayer->LastMovement == 'd')
-        PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;
-    else
         PlayerPointer->xForce = -1 * REPELLING_XFORCE_OF_ENEMYS;
+    else
+        PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;
 
     PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
 
-    InfoPlayer->hp -= PLAYER_ENEMY_COLLISION_DAMAGE;
+    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE);
 }
