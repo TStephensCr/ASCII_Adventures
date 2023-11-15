@@ -125,7 +125,7 @@ void Collision::HandleEnemyCollision(ens Entity, ens CollidingEntity)
 {
     if (CollidingEntity->type == player)
     {
-        HandleEnemyPlayerCollision(CollidingEntity);
+        HandleEnemyPlayerCollision(Entity);
     }
     else if (CollidingEntity->type == shoot)
     {
@@ -174,7 +174,7 @@ void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
 
 void Collision::HandleEnemyPlayerCollision(ens Enemy)
 {
-    if (Enemy->xForce >= 1)
+    if (Enemy->xForce > 0)
         PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;
     else
         PlayerPointer->xForce = -1 * REPELLING_XFORCE_OF_ENEMYS;

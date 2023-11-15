@@ -392,7 +392,6 @@ void Logic::update_game_logic()
 
 			if (!tmp->death_flag)
 			{ // questo perche' in ManageCollisions l'entita' potrebbe morire
-
 				entitiesOBJ->MoveEntity(tmp);
 
 				eventi->DecreaseForce(tmp);
@@ -481,7 +480,6 @@ void Logic::increaseMap()
 		if (curLev_ == 2 && curmap_ == 8)
 		{
 			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
-			// need to circle back to the first map
 		}
 		else
 		{

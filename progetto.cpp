@@ -7,6 +7,7 @@ int main()
     cbreak();
     start_color();
     curs_set(FALSE);
+    timeout(0);
 
     Game *game = new Game();
 

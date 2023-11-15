@@ -200,13 +200,10 @@ void Entities::inflictDamageToPlayer(int damage)
 {
   if (InfoPlayer)
   {
-    // If the player has a shield
     if (InfoPlayer->shield > 0)
     {
-      // Reduce shield by the damage amount
       InfoPlayer->shield -= damage;
 
-      // Ensure shield doesn't go below 0
       if (InfoPlayer->shield < 0)
       {
         InfoPlayer->shield = 0;
@@ -214,10 +211,7 @@ void Entities::inflictDamageToPlayer(int damage)
     }
     else
     {
-      // If no shield, reduce health by the damage amount
       InfoPlayer->hp -= damage;
-
-      // Optionally, check for player death or other conditions
     }
   }
 }
