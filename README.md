@@ -1,7 +1,7 @@
 # **Ascii Adventures**
 
-## *Progetto di programmazione a.s. 2022/2023*
-### *Dervishi Erik, Parazza Gaia, Stephens Thomas*
+#### *Progetto di programmazione a.s. 2022/2023*
+#### *Dervishi Erik, Parazza Gaia, Stephens Thomas*
 
 ------------------------------------
 ## **DESCRIZIONE**
