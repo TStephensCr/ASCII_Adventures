@@ -2,7 +2,7 @@ struct Player
 {
     int hp = 100;
     int shield = 20;
-    int Money = 0;
+    int Money = 1100;
     int colpi = 10;
     int points = 0;
     int bulletRange = 10;

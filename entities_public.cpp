@@ -160,27 +160,30 @@ void Entities::RemoveDeadEntities()
 
 void Entities::explosionEffect(ens entity)
 {
-  init_pair(1, COLOR_RED, COLOR_BLACK);
-
-  chtype redCell = ' ' | COLOR_PAIR(1);
-
   int x = xLoc(entity);
   int y = yLoc(entity);
 
-  for (int dx = -1; dx <= 1; dx++)
+  for (int radius = 1; radius <= 2; radius++)
   {
-    for (int dy = -1; dy <= 1; dy++)
+    init_pair(8, COLOR_RED, COLOR_YELLOW);
+    wattron(curwin, COLOR_PAIR(8));
+
+    for (int dx = -radius; dx <= radius; dx++)
     {
-      if (dx == 0 and dy == 0)
-        continue;
+      for (int dy = (InfoPlayer->inJump) ? radius : 0; dy >= -radius; dy--)
+      {
+        int nearX = x + dx;
+        int nearY = y + dy;
 
-      int nearX = x + dx;
-      int nearY = y + dy;
-
-      mvwaddch(curwin, nearY, nearX, redCell);
+        if (dx * dx + dy * dy <= (radius * radius))
+        {
+          mvwaddch(curwin, nearY, nearX, ' ');
+        }
+      }
     }
+
+    wattroff(curwin, COLOR_PAIR(8));
   }
-  wattroff(curwin, COLOR_PAIR(1));
 }
 
 void Entities::DisplayPlayerStats()
@@ -200,6 +203,8 @@ void Entities::inflictDamageToPlayer(int damage)
 {
   if (InfoPlayer)
   {
+    // explosionEffect(PlayerPointer);
+
     if (InfoPlayer->shield > 0)
     {
       InfoPlayer->shield -= damage;

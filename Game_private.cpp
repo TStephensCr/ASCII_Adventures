@@ -54,7 +54,12 @@ void Game::openShop()
 
         choice = shop->create_Shop();
 
-        shop->eventiShop(choice);
+        bool flag = shop->eventiShop(choice);
+
+        if (flag)
+            logic->increaseMap();
+
+        logic->FileWrite();
 
         if (choice == -1)
         {
@@ -81,7 +86,7 @@ void Game::initializeEntitiesForNewGame()
 
     logic->InitEntities();
 
-    logic->InitMappa(1, 0, true);
+    logic->InitMappa(1, 1, true);
 }
 
 void Game::initializeEntitiesForLoadGame()

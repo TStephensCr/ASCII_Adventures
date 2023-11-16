@@ -8,7 +8,7 @@ protected:
     WINDOW *curwin;
     Entities *entitiesOBJ;
     Player *InfoPlayer;
-    //Logic *logic;
+    // Logic *logic;
 
 private:
     void displayMenu(int highlight);
@@ -17,7 +17,7 @@ public:
     Negozio(WINDOW *win, Entities *MyEntities);
     void updateVariables();
     int create_Shop();
-    void eventiShop(int scelta);
+    bool eventiShop(int scelta);
     void buyshots();
     void buyLives();
     void colorPlayer();
