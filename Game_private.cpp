@@ -81,7 +81,7 @@ void Game::initializeEntitiesForNewGame()
 
     logic->InitEntities();
 
-    logic->InitMappa(8, 2, true);
+    logic->InitMappa(1, 0, true);
 }
 
 void Game::initializeEntitiesForLoadGame()

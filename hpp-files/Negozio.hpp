@@ -8,6 +8,7 @@ protected:
     WINDOW *curwin;
     Entities *entitiesOBJ;
     Player *InfoPlayer;
+    //Logic *logic;
 
 private:
     void displayMenu(int highlight);

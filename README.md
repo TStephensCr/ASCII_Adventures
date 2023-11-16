@@ -44,14 +44,9 @@ COSA CI FACCIAMO CON I PUNTI?   discussione
 cosa fare quando chiudo il negozio
 
 COSA MANCA DA FARE?
-1)negozio(comprare proiettili e powerup)
-5)power up
-    -armatura che assorbe un colpo(quindi non fa prendere danno al player per un colpo)
-    -si puo' avanzare di una mappa con le monete
-    -aumentare il range del proiettile
-    -comprare extra vita, vista come barre viola nella barra della vita
+1)negozio(comprare skipmappa e range proiettili)
 6)aggiungere tasti per cambiare direzione senza muoversi
 12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
 13)fare un breve tutorial
 
-
+A parere mio il tutorial è un po' inutile(thomas)

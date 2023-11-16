@@ -197,9 +197,17 @@ void Logic::ReadPlayer()
 	number_str[2] = 'f';
 
 	do
-	{ // soldi
+	{ // shield
 		mychar = myfile.get();
 	} while (mychar != 's');
+	number_str[0] = myfile.get();
+	number_str[1] = myfile.get();
+	InfoPlayer->shield = strtol(number_str, &output, 10);
+
+	do
+	{ // soldi
+		mychar = myfile.get();
+	} while (mychar != 'm');
 	number_str[0] = myfile.get();
 	number_str[1] = myfile.get();
 	InfoPlayer->Money = strtol(number_str, &output, 10);
@@ -226,6 +234,13 @@ void Logic::ReadPlayer()
 	else
 		InfoPlayer->points = 0;
 	number_str[2] = 'f';
+
+	do
+	{ // lasy movement
+		mychar = myfile.get();
+	} while (mychar != 'l');
+	mychar = myfile.get();
+	InfoPlayer->LastMovement = mychar;
 
 	do
 	{ // InJump

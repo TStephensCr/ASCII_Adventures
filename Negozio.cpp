@@ -5,6 +5,7 @@ Negozio::Negozio(WINDOW *win, Entities *MyEntities)
     curwin = win;
     entitiesOBJ = MyEntities;
     InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+    //logic = new Logic(win, menuwin);
 }
 void Negozio::updateVariables()
 {
@@ -70,86 +71,90 @@ void Negozio::eventiShop(int scelta)
         return; // Exit if InfoPlayer is nullptr
     }
 
-    switch (scelta)
-    {
-    case 0:
-        if (InfoPlayer->Money <= 0)
-        {
-            mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete!");
+    switch (scelta){
+        case 0:
+            if (InfoPlayer->Money <= 0)
+            {
+                mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete!");
+                break;
+            }
+
+            if (InfoPlayer->hp <= 80 && InfoPlayer->hp > 0)
+            {
+                InfoPlayer->hp += 20;
+                InfoPlayer->Money -= 1;
+            }
+            else if (InfoPlayer->hp <= 0)
+            {
+                mvwprintw(curwin, 9, 55, "%s", "Sei morto! Inizia una nuova partita!");
+            }
+            else
+            {
+                mvwprintw(curwin, 9, 65, "%s", "Hai già vita al massimo!");
+            }
             break;
-        }
 
-        if (InfoPlayer->hp <= 80 && InfoPlayer->hp > 0)
-        {
-            InfoPlayer->hp += 20;
-            InfoPlayer->Money -= 1;
-        }
-        else if (InfoPlayer->hp <= 0)
-        {
-            mvwprintw(curwin, 9, 55, "%s", "Sei morto! Inizia una nuova partita!");
-        }
-        else
-        {
-            mvwprintw(curwin, 9, 65, "%s", "Hai già vita al massimo!");
-        }
-        break;
+        case 1:
+            if (InfoPlayer->Money <= 1)
+            {
+                mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete!");
+                break;
+            }
 
-    case 1:
-        if (InfoPlayer->Money <= 1)
-        {
-            mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete!");
-            break;
-        }
-
-        if (InfoPlayer->hp > 0)
-        {
-            InfoPlayer->colpi += 5;
-            InfoPlayer->Money -= 2;
-        }
-        else
-        {
-            mvwprintw(curwin, 10, 55, "%s", "Sei morto! Inizia una nuova partita!");
-        }
-        break;
-
-    case 2:
-        /*
-        if (InfoPlayer->Money > 1) {
-            if (InfoPlayer->shield < 80) {
-                InfoPlayer->shield += 20;
-                InfoPlayer->Money -= 2;
-            } else if (InfoPlayer->shield < 100) {
-                InfoPlayer->shield = 100;
+            if (InfoPlayer->hp > 0)
+            {
+                InfoPlayer->colpi += 5;
                 InfoPlayer->Money -= 2;
             }
-        }
-        */
-        break;
-
-    case 3:
-        if (InfoPlayer->Money <= 2)
-        {
-            mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
+            else
+            {
+                mvwprintw(curwin, 10, 55, "%s", "Sei morto! Inizia una nuova partita!");
+            }
             break;
-        }
 
-        if (InfoPlayer->hp > 0)
-        {
-            InfoPlayer->Money -= 3;
-        }
-        else
-        {
-            mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
-        }
-        break;
+        case 2:
+            if (InfoPlayer->Money <= 2)
+            {
+                mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
+                break;
+            }
 
-    case 4:
-        // Handle case 4
-        break;
+            if (InfoPlayer->hp > 0)
+            {
+                InfoPlayer->Money -= 3;
+                InfoPlayer->shield = 20;
+            }
+            else
+            {
+                mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
+            }
+            break;
 
-    default:
-        // Handle other cases
-        break;
+        case 3:
+            if (InfoPlayer->Money <= 2)
+            {
+                mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
+                break;
+            }
+
+            if (InfoPlayer->hp > 0)
+            {
+                InfoPlayer->Money -= 3;
+                //logica->increaseMap();
+            }
+            else
+            {
+                mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
+            }
+            break;
+
+        case 4:
+            // Handle case 4
+            break;
+
+        default:
+            // Handle other cases
+            break;
     }
 }
 
@@ -165,25 +170,4 @@ void Negozio::buyLives()
     // int hp = 100;
 }
 
-/*
 
-====================================================================================================
-|             (  ____ \    (  )    (  )    /         \     (  ____  )                              |
-|             | (   \/     |  |    |  |   (    ___    )    | (    ) |                              |
-|             | (_____     |  (____)  |   |   /   \   |    | (____) |                              |
-|             (_____  )    |   ____   |   |  |     |  |    |  ______)                              |
-|                   ) |    |  (    )  |   |   \___/   |    |  |                                    |
-|             /\____) |    |  |    |  |   (           )    |  |                                    |
-|             \_______)    (__)    (__)    \_________/     (__)                                    |
-|                                                                                                  |
-|                                                                                                  |
-|      ACQUISTA VITE:                  ACQUISTA COLPI                   ACQUISTA ARMATURA:         |
-|                                                                                                  |
-|    1 vita = 20 monete              1 colpo = 10 monete              1 armatura = 30 monete       |
-|                                                                                                  |
-|   10 vite =  150 monete           10 colpi = 50 monete              5 armature=  100 monete      |
-|                                                                                                  |
-|                                                                                                  |
-====================================================================================================
-
-*/

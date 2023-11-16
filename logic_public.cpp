@@ -313,9 +313,11 @@ void Logic::FileWrite()
 	Player *tmpPlay = ReturnInfoPlayer();
 	myfile << 'U' << '\n';
 	myfile << 'h' << tmpPlay->hp << '\n';
-	myfile << 's' << tmpPlay->Money << '\n';
+	myfile << 's' << tmpPlay->shield << '\n';
+	myfile << 'm' << tmpPlay->Money << '\n';
 	myfile << 'c' << tmpPlay->colpi << '\n';
 	myfile << 'p' << tmpPlay->points << '\n';
+	myfile << 'l' << tmpPlay->LastMovement << '\n';
 	myfile << 'b' << tmpPlay->inJump << '\n';
 	myfile << 'x' << PlayerPointer->pos.x << '.' << PlayerPointer->pos.y << '.' << '\n';
 
