@@ -115,7 +115,7 @@ void Negozio::eventiShop(int scelta)
         case 2:
             if (InfoPlayer->Money <= 2)
             {
-                mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
+                mvwprintw(curwin, 11, 65, "%s", "Non hai abbastanza monete!");
                 break;
             }
 
@@ -126,7 +126,7 @@ void Negozio::eventiShop(int scelta)
             }
             else
             {
-                mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
+                mvwprintw(curwin, 11, 55, "%s", "Sei morto! Inizia una nuova partita!");
             }
             break;
 

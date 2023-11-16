@@ -1,9 +1,6 @@
 git# P.project2023
 Progetto di programmazione 2023 UniBO
 
-NOTE:
--nelle mappe ci sono P per power-up, che dovranno essere diversi dai power-up che si comprano nello shop.
-
 Collisioni:
 -player/sparo ->elimina il player e se ha ancora vite lo mette nello spawn altrimenti viene una scritta game over 
 -soldo/sparo  ->non succede nulla
@@ -14,8 +11,6 @@ Collisioni:
 
 ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin main] e quando si è finito di scrivere codice bisogna fare : [git push origin main] altrimenti bordello 
 commit -a -m 'messaggio'
-
-problemi:
 
 
 
@@ -41,12 +36,9 @@ dopodiche ti serviranno le funzioni che si avviano quando il giocatore sceglie d
 
 COSA CI FACCIAMO CON I PUNTI?   discussione
 
-cosa fare quando chiudo il negozio
-
 COSA MANCA DA FARE?
 1)negozio(comprare skipmappa e range proiettili)
-6)aggiungere tasti per cambiare direzione senza muoversi
 12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
 14)i proiettili alcune volte si buggano e vanno a -1 (wtf?)
-15)da aggiungere:poter comprare quanto va lontano il tuo sparo
+
 
