@@ -236,7 +236,22 @@ void Logic::ReadPlayer()
 	number_str[2] = 'f';
 
 	do
-	{ // lasy movement
+	{ // bullet range
+		mychar = myfile.get();
+	} while (mychar != 'r');
+	number_str[0] = myfile.get();
+	if (number_str[0] != '0')
+	{
+		number_str[1] = myfile.get();
+		number_str[2] = myfile.get();
+		InfoPlayer->bulletRange = strtol(number_str, &output, 10);
+	}
+	else
+		InfoPlayer->bulletRange = 0;
+	number_str[2] = 'f';
+
+	do
+	{ // last movement
 		mychar = myfile.get();
 	} while (mychar != 'l');
 	mychar = myfile.get();

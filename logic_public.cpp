@@ -317,6 +317,7 @@ void Logic::FileWrite()
 	myfile << 'm' << tmpPlay->Money << '\n';
 	myfile << 'c' << tmpPlay->colpi << '\n';
 	myfile << 'p' << tmpPlay->points << '\n';
+	myfile << 'r' << tmpPlay->bulletRange << '\n';
 	myfile << 'l' << tmpPlay->LastMovement << '\n';
 	myfile << 'b' << tmpPlay->inJump << '\n';
 	myfile << 'x' << PlayerPointer->pos.x << '.' << PlayerPointer->pos.y << '.' << '\n';
