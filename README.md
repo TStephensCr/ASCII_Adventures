@@ -40,5 +40,5 @@ COSA MANCA DA FARE?
 1)negozio(comprare skipmappa e range proiettili)
 12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
 14)i proiettili alcune volte si buggano e vanno a -1 (wtf?)
-
+IDEA)magari ci starebbe fare una funzione tipo displayPlayerStats ma piu sgravata che stampa piu info da chiamare nello shop, cosi tipo vedi il bullet range a la mappa corrente mentre compri
 

@@ -149,7 +149,21 @@ void Negozio::eventiShop(int scelta)
             break;
 
         case 4:
-            // Handle case 4
+            if (InfoPlayer->points < 100)
+            {
+                mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza punti!");
+                break;
+            }
+
+            if (InfoPlayer->hp > 0)
+            {
+                InfoPlayer->points -= 100;
+                InfoPlayer->bulletRange += 10;
+            }
+            else
+            {
+                mvwprintw(curwin, 13, 55, "%s", "Sei morto! Inizia una nuova partita!");
+            }
             break;
 
         default:

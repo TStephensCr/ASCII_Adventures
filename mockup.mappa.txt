@@ -214,6 +214,6 @@
 |         -  SKIP MAPPA CORRENTE: 3 MONETE                                                         |
 |                                                                                                  |
 |                                                                                                  |
-|         -  AUMENTA RANGE PROIETTILI                                                              |
+|         -  AUMENTA RANGE PROIETTILI: 100 PUNTI                                                   |
 |                                                                                                  |
 ====================================================================================================
