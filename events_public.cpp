@@ -52,12 +52,21 @@ void Events::Shoot(ens Entity, char Last_movement)
 	else
 	{
 		char g = mvwinch(curwin, yPos, xPos + xDelta);
+
 		if (g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && (InfoPlayer->colpi > 0 || Entity->type == enemy))
 		{
 			ens sparo = entitiesOBJ->Insert(shoot, xPos + xDelta, yPos, Entity->mappa, Entity->livello);
-			sparo->xForce = (Last_movement == 'd') ? 200 : -200;
+
 			if (Entity->type == player)
+			{
+				sparo->xForce = (Last_movement == 'd') ? InfoPlayer->bulletRange : (-1 * InfoPlayer->bulletRange);
 				InfoPlayer->colpi--;
+			}
+
+			else
+			{
+				sparo->xForce = (Last_movement == 'd') ? 200 : -200;
+			}
 		}
 	}
 }

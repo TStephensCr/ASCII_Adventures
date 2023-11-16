@@ -364,3 +364,14 @@ void Logic::ReadEntities()
 
 	myfile.close();
 }
+
+void Logic::eliminateMaxRangeBullet(ens Entity)
+{
+	if (!Entity)
+		return;
+
+	if (Entity->type == shoot && (Entity->xForce == 1 || Entity->xForce == -1))
+	{
+		entitiesOBJ->KillEntity(Entity);
+	}
+}

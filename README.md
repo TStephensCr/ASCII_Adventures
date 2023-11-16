@@ -47,6 +47,6 @@ COSA MANCA DA FARE?
 1)negozio(comprare skipmappa e range proiettili)
 6)aggiungere tasti per cambiare direzione senza muoversi
 12)ciclare il gioco quando si arriva a ultima mappa ultimo livello
-13)fare un breve tutorial
+14)i proiettili alcune volte si buggano e vanno a -1 (wtf?)
+15)da aggiungere:poter comprare quanto va lontano il tuo sparo
 
-A parere mio il tutorial è un po' inutile(thomas)

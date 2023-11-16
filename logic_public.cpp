@@ -392,8 +392,10 @@ void Logic::update_game_logic()
 
 			collision->ManageCollisions(tmp);
 
+			eliminateMaxRangeBullet(tmp);
+
 			if (!tmp->death_flag)
-			{ // questo perche' in ManageCollisions l'entita' potrebbe morire
+			{
 				entitiesOBJ->MoveEntity(tmp);
 
 				eventi->DecreaseForce(tmp);

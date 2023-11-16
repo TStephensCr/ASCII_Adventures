@@ -58,6 +58,8 @@ private:
 
 	void ReadEntities();
 
+	void eliminateMaxRangeBullet(ens Entity);
+
 public:
 	//---constructor---//
 

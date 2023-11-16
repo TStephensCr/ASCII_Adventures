@@ -5,6 +5,7 @@ struct Player
     int Money = 0;
     int colpi = 10;
     int points = 0;
+    int bulletRange = 10;
     char LastMovement = 'd';
     bool inJump = false;
     MyPosition previusPosition;
