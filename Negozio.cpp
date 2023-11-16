@@ -1,11 +1,12 @@
 #include "hpp-files/Negozio.hpp"
 
-Negozio::Negozio(WINDOW *win, Entities *MyEntities)
+Negozio::Negozio(WINDOW *win, Entities *MyEntities, Logic *logic_)
 {
     curwin = win;
     entitiesOBJ = MyEntities;
     InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
-    //logic = new Logic(win, menuwin);
+    logic = logic_;
+    // logic = new Logic(win, menuwin);
 }
 void Negozio::updateVariables()
 {
@@ -71,104 +72,105 @@ void Negozio::eventiShop(int scelta)
         return; // Exit if InfoPlayer is nullptr
     }
 
-    switch (scelta){
-        case 0:
-            if (InfoPlayer->Money <= 0)
-            {
-                mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete!");
-                break;
-            }
-
-            if (InfoPlayer->hp <= 80 && InfoPlayer->hp > 0)
-            {
-                InfoPlayer->hp += 20;
-                InfoPlayer->Money -= 1;
-            }
-            else if (InfoPlayer->hp <= 0)
-            {
-                mvwprintw(curwin, 9, 55, "%s", "Sei morto! Inizia una nuova partita!");
-            }
-            else
-            {
-                mvwprintw(curwin, 9, 65, "%s", "Hai già vita al massimo!");
-            }
+    switch (scelta)
+    {
+    case 0:
+        if (InfoPlayer->Money <= 0)
+        {
+            mvwprintw(curwin, 9, 65, "%s", "Non hai abbastanza monete!");
             break;
+        }
 
-        case 1:
-            if (InfoPlayer->Money <= 1)
-            {
-                mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete!");
-                break;
-            }
+        if (InfoPlayer->hp <= 80 && InfoPlayer->hp > 0)
+        {
+            InfoPlayer->hp += 20;
+            InfoPlayer->Money -= 1;
+        }
+        else if (InfoPlayer->hp <= 0)
+        {
+            mvwprintw(curwin, 9, 55, "%s", "Sei morto! Inizia una nuova partita!");
+        }
+        else
+        {
+            mvwprintw(curwin, 9, 65, "%s", "Hai già vita al massimo!");
+        }
+        break;
 
-            if (InfoPlayer->hp > 0)
-            {
-                InfoPlayer->colpi += 5;
-                InfoPlayer->Money -= 2;
-            }
-            else
-            {
-                mvwprintw(curwin, 10, 55, "%s", "Sei morto! Inizia una nuova partita!");
-            }
+    case 1:
+        if (InfoPlayer->Money <= 1)
+        {
+            mvwprintw(curwin, 10, 65, "%s", "Non hai abbastanza monete!");
             break;
+        }
 
-        case 2:
-            if (InfoPlayer->Money <= 2)
-            {
-                mvwprintw(curwin, 11, 65, "%s", "Non hai abbastanza monete!");
-                break;
-            }
+        if (InfoPlayer->hp > 0)
+        {
+            InfoPlayer->colpi += 5;
+            InfoPlayer->Money -= 2;
+        }
+        else
+        {
+            mvwprintw(curwin, 10, 55, "%s", "Sei morto! Inizia una nuova partita!");
+        }
+        break;
 
-            if (InfoPlayer->hp > 0)
-            {
-                InfoPlayer->Money -= 3;
-                InfoPlayer->shield = 20;
-            }
-            else
-            {
-                mvwprintw(curwin, 11, 55, "%s", "Sei morto! Inizia una nuova partita!");
-            }
+    case 2:
+        if (InfoPlayer->Money <= 2)
+        {
+            mvwprintw(curwin, 11, 65, "%s", "Non hai abbastanza monete!");
             break;
+        }
 
-        case 3:
-            if (InfoPlayer->Money <= 2)
-            {
-                mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
-                break;
-            }
+        if (InfoPlayer->hp > 0)
+        {
+            InfoPlayer->Money -= 3;
+            InfoPlayer->shield = 20;
+        }
+        else
+        {
+            mvwprintw(curwin, 11, 55, "%s", "Sei morto! Inizia una nuova partita!");
+        }
+        break;
 
-            if (InfoPlayer->hp > 0)
-            {
-                InfoPlayer->Money -= 3;
-                //logica->increaseMap();
-            }
-            else
-            {
-                mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
-            }
+    case 3:
+        if (InfoPlayer->Money <= 2)
+        {
+            mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
             break;
+        }
 
-        case 4:
-            if (InfoPlayer->points < 100)
-            {
-                mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza punti!");
-                break;
-            }
+        if (InfoPlayer->hp > 0)
+        {
+            InfoPlayer->Money -= 3;
+            logic->increaseMap();
+        }
+        else
+        {
+            mvwprintw(curwin, 12, 55, "%s", "Sei morto! Inizia una nuova partita!");
+        }
+        break;
 
-            if (InfoPlayer->hp > 0)
-            {
-                InfoPlayer->points -= 100;
-                InfoPlayer->bulletRange += 10;
-            }
-            else
-            {
-                mvwprintw(curwin, 13, 55, "%s", "Sei morto! Inizia una nuova partita!");
-            }
+    case 4:
+        if (InfoPlayer->points < 100)
+        {
+            mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza punti!");
             break;
+        }
 
-        default:
-            // Handle other cases
-            break;
+        if (InfoPlayer->hp > 0)
+        {
+            InfoPlayer->points -= 100;
+            InfoPlayer->bulletRange += 10;
+        }
+        else
+        {
+            mvwprintw(curwin, 13, 55, "%s", "Sei morto! Inizia una nuova partita!");
+        }
+        break;
+
+    default:
+        // Handle other cases
+        break;
     }
 }
 
@@ -183,5 +185,3 @@ void Negozio::buyLives()
 {
     // int hp = 100;
 }
-
-

@@ -47,7 +47,7 @@ void Game::openShop()
     gamestatus = Shopping;
 
     int choice;
-
+    logic->increaseMap();
     while (gamestatus == Shopping)
     {
         entitiesOBJ->DisplayPlayerStats();
@@ -55,9 +55,6 @@ void Game::openShop()
         choice = shop->create_Shop();
 
         bool flag = shop->eventiShop(choice);
-
-        if (flag)
-            logic->increaseMap();
 
         logic->FileWrite();
 

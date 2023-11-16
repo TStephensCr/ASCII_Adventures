@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Collision.hpp"
 #include "Mappa.hpp"
 #include <fstream>

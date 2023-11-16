@@ -21,7 +21,7 @@ Game::Game()
 
     gamestatus = Running;
 
-    shop = new Negozio(win, entitiesOBJ);
+    shop = new Negozio(win, entitiesOBJ, logic);
 
     menu = new Menu(menuwin, win);
 
