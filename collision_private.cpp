@@ -141,19 +141,20 @@ void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_ENEMYS_POINTS;
+        entitiesOBJ->KillEntity(Entity);
     }
     else if (CollidingEntity->type == player)
     {
         entitiesOBJ->inflictDamageToPlayer(SHOOT_DAMAGE);
         PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+        entitiesOBJ->KillEntity(Entity);
     }
     else if (CollidingEntity->type == follower)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->ReturnPlayerOBJ()->points += KILL_FOLLOWER_POINTS;
+        entitiesOBJ->KillEntity(Entity);
     }
-
-    entitiesOBJ->KillEntity(Entity); // every time a shoot collides with something, it dies
 }
 
 void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
