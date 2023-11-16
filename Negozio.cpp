@@ -18,7 +18,9 @@ int Negozio::create_Shop()
     while (true)
     {
         updateVariables();
+
         entitiesOBJ->DisplayPlayerStats();
+
         displayMenu(highlight);
 
         scelta = wgetch(curwin);

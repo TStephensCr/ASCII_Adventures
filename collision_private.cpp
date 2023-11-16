@@ -144,7 +144,7 @@ void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
     }
     else if (CollidingEntity->type == player)
     {
-        InfoPlayer->hp -= SHOOT_DAMAGE;
+        entitiesOBJ->inflictDamageToPlayer(SHOOT_DAMAGE);
         PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
     }
     else if (CollidingEntity->type == follower)
