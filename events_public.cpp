@@ -32,41 +32,28 @@ void Events::DecreaseForce(ens myEntity)
 	}
 }
 
-void Events::Shoot(ens Entity, char Last_movement)
+void Events::Shoot(ens shooter, char lastMovement)
 {
-	int xPos = Entity->pos.x;
-	int yPos = Entity->pos.y;
-	int xDelta = (Last_movement == 'd') ? 1 : -1;
+	int shooterXPos = shooter->pos.x;
+	int shooterYPos = shooter->pos.y;
+	int xDelta = (lastMovement == 'd') ? 1 : -1;
 
-	MyPosition newP;
-	newP.Select(xPos + xDelta, yPos);
+	MyPosition newShotPosition;
+	newShotPosition.Select(shooterXPos + xDelta, shooterYPos);
 
-	ens Entity_in_new_loc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
+	ens targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
 
-	if (Entity_in_new_loc)
+	if (targetEntity)
 	{
-		if (Entity->type == player)
-			InfoPlayer->colpi--;
-		entitiesOBJ->KillEntity(Entity_in_new_loc);
+		HandleHitTarget(shooter, targetEntity);
 	}
 	else
 	{
-		char g = mvwinch(curwin, yPos, xPos + xDelta);
+		char obstacle = mvwinch(curwin, shooterYPos, shooterXPos + xDelta);
 
-		if (g != HORIZONTAL_WALL && g != VERTICAL_WALL && g != FULLFILL_POINT && (InfoPlayer->colpi > 0 || Entity->type == enemy))
+		if (checkIfValidShoot(obstacle, shooter))
 		{
-			ens sparo = entitiesOBJ->Insert(shoot, xPos + xDelta, yPos, Entity->mappa, Entity->livello);
-
-			if (Entity->type == player)
-			{
-				sparo->xForce = (Last_movement == 'd') ? InfoPlayer->bulletRange : (-1 * InfoPlayer->bulletRange);
-				InfoPlayer->colpi--;
-			}
-
-			else
-			{
-				sparo->xForce = (Last_movement == 'd') ? 200 : -200;
-			}
+			HandleValidShot(shooter, shooterXPos + xDelta, shooterYPos, lastMovement);
 		}
 	}
 }
@@ -77,43 +64,44 @@ int Events::getmv()
 
 	UpdateVariables();
 
-	if (PlayerPointer && InfoPlayer)
+	if (!PlayerPointer && !InfoPlayer)
+		return choice;
+
+	switch (choice)
 	{
-		switch (choice)
-		{
-		case KEY_RIGHT:
-		case (int)'d':
-		case (int)'D':
-			InfoPlayer->LastMovement = 'd';
-			mvright(1);
-			break;
-		case KEY_LEFT:
-		case (int)'a':
-		case (int)'A':
-			InfoPlayer->LastMovement = 's';
-			mvleft(1);
-			break;
-		case KEY_DOWN:
-		case (int)'s':
-			Shoot(PlayerPointer, InfoPlayer->LastMovement);
-			break;
-		case ' ':
-			JumpStraight();
-			break;
-		case KEY_UP:
-		case (int)'w':
-		case (int)'W':
-			Jump();
-			break;
-		case (int)'q':
-		case (int)'Q':
-			InfoPlayer->LastMovement = 's';
-			break;
-		case (int)'e':
-		case (int)'E':
-			InfoPlayer->LastMovement = 'd';
-			break;
-		}
+	case KEY_RIGHT:
+	case (int)'d':
+	case (int)'D':
+		InfoPlayer->LastMovement = 'd';
+		mvright(1);
+		break;
+	case KEY_LEFT:
+	case (int)'a':
+	case (int)'A':
+		InfoPlayer->LastMovement = 's';
+		mvleft(1);
+		break;
+	case KEY_DOWN:
+	case (int)'s':
+		Shoot(PlayerPointer, InfoPlayer->LastMovement);
+		break;
+	case ' ':
+		JumpStraight();
+		break;
+	case KEY_UP:
+	case (int)'w':
+	case (int)'W':
+		Jump();
+		break;
+	case (int)'q':
+	case (int)'Q':
+		InfoPlayer->LastMovement = 's';
+		break;
+	case (int)'e':
+	case (int)'E':
+		InfoPlayer->LastMovement = 'd';
+		break;
 	}
+
 	return choice;
 }

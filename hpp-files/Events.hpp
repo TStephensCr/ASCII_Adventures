@@ -1,39 +1,43 @@
 #define MaxForce 5
 #include "Entities.hpp"
 
-
-class Events {//Forces Modifier
+class Events
+{
 protected:
+	Entities *entitiesOBJ;
 
-	Entities* entitiesOBJ;
+	Player *InfoPlayer;
 
-	Player* InfoPlayer;
-
-	WINDOW* curwin;
+	WINDOW *curwin;
 
 	ens ListOfEntities;
 
 	ens PlayerPointer = NULL;
 
 private:
+	//----Update functions----//
 	void UpdateVariables();
 
+	//----Movement functions----//
 	void mvright(int Force);
-
 	void mvleft(int Force);
-
 	void JumpStraight();
-
 	void Jump();
 
+	//----Shooting functions----//
+	void HandleHitTarget(ens shooter, ens target);
+	bool checkIfValidShoot(char obstacle, ens shooter);
+	void HandleValidShot(ens shooter, int shooterXPos, int shooterYPos, char lastMovement);
+
 public:
-	Events(Entities* MyEntities);
+	//----Constructor----//
+	Events(Entities *MyEntities);
 
-	void Shoot(ens Entity, char Last_movement);
-
+	//----Player-related functions----//
 	void PlayerGravity();
-
-	void DecreaseForce(ens myEntity);
-
 	int getmv();
+
+	//----Entity actions----//
+	void Shoot(ens Entity, char Last_movement);
+	void DecreaseForce(ens myEntity);
 };

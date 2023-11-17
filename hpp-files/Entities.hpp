@@ -19,18 +19,15 @@ protected:
    int yMax, xMax;
 
 private:
+   //----Entity-info functions----//
    char Character(EntityType Type);
-
    int yLoc(ens Entity);
-
    int xLoc(ens Entity);
 
+   //----Player stats display functions----//
    void ClearPlayerStatsDisplay(int maxX);
-
    void DisplayHealth(int maxX);
-
    void DisplayShield();
-
    void DisplayPlayerInfo();
 
 public:

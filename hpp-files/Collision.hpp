@@ -14,7 +14,10 @@ protected:
     Player *InfoPlayer;
 
 private:
+    //----Update functions----//
     void UpdateVariables();
+
+    //----Collision handling functions----//
     void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
     void HandleHorizontalCollision(ens Entity, int &xPos, int yPos);
     void HandleEntityCollision(ens Entity, ens OtherEntity);
@@ -26,11 +29,11 @@ private:
     void HandleFollowerCollision(ens Entity, ens CollidingEntity);
 
 public:
+    //----Constructor----//
     Collision(Entities *MyEntities);
 
+    //----Collision management functions----//
     void ManageJump(ens Entity);
-
     void OutOfBounds(ens Entity);
-
     void ManageCollisions(ens Entity);
 };

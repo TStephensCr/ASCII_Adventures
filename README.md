@@ -13,6 +13,8 @@
 git# P.project2023
 Progetto di programmazione 2023 UniBO
 
+inclusion tree : https://docs.google.com/drawings/d/1UUb0oqGbRCR2WfaC-HINHZWo360EI35IN0vddv0dTWE/edit
+
 Collisioni:
 -player/sparo ->elimina il player e se ha ancora vite lo mette nello spawn altrimenti viene una scritta game over 
 -soldo/sparo  ->non succede nulla
@@ -29,6 +31,8 @@ IDEE CONTINUO:(cio che succede dopo mappa 5 livello 2)
 -incrementa la velocità dei bot
 -cap sulla vita massima
 -cap sui proiettili?
+
+idea : danni moltiplicati per il livello in cui sei. cosi' all'aumentare dei livelli e' piu' tosta
 
 Erik: rimangono da sistemare --> events, collision, logic, game
 

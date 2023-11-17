@@ -40,3 +40,36 @@ void Events::Jump()
 			mvleft(JUMPHEIGHT);
 	}
 }
+
+void Events::HandleHitTarget(ens shooter, ens target)
+{
+	if (shooter->type == player)
+	{
+		InfoPlayer->colpi--;
+	}
+
+	entitiesOBJ->KillEntity(target);
+}
+
+bool Events::checkIfValidShoot(char obstacle, ens shooter)
+{
+	return obstacle != HORIZONTAL_WALL &&
+		   obstacle != VERTICAL_WALL &&
+		   obstacle != FULLFILL_POINT &&
+		   (InfoPlayer->colpi > 0 || shooter->type == enemy);
+}
+
+void Events::HandleValidShot(ens shooter, int x, int y, char lastMovement)
+{
+	ens shot = entitiesOBJ->Insert(shoot, x, y, shooter->mappa, shooter->livello);
+
+	if (shooter->type == player)
+	{
+		shot->xForce = (lastMovement == 'd') ? InfoPlayer->bulletRange : (-1 * InfoPlayer->bulletRange);
+		InfoPlayer->colpi--;
+	}
+	else
+	{
+		shot->xForce = (lastMovement == 'd') ? MAX_BULLET_RANGE : -MAX_BULLET_RANGE;
+	}
+}

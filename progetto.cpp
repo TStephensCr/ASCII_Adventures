@@ -1,5 +1,5 @@
 #include "hpp-files/Game.hpp"
-#include <iostream>
+
 int main()
 {
     initscr();

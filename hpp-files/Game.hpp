@@ -1,6 +1,4 @@
-#include <ncurses.h>
 #include "Logic.hpp"
-#include "Mappa.hpp"
 #include "Menu.hpp"
 #include "Negozio.hpp"
 
