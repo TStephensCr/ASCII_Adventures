@@ -1,47 +1,30 @@
 #include "hpp-files/Entities.hpp"
 
-void Entities::Remove(ens entityToRemove)
-{
-  if (entities == entityToRemove)
-  {
-    ens nextEntity = entities->next;
-    delete entities;
-    entities = nextEntity;
-    return;
-  }
-
-  ens currentEntity = entities;
-  while (currentEntity->next != NULL)
-  {
-    if (currentEntity->next == entityToRemove)
-    {
-      ens nextEntity = currentEntity->next->next;
-      delete currentEntity->next;
-      currentEntity->next = nextEntity;
-      return;
-    }
-    currentEntity = currentEntity->next;
-  }
-}
-
 char Entities::Character(EntityType type)
 {
   switch (type)
   {
   case player:
     return CHARACTER;
+    break;
   case enemy:
     return ENEMY;
+    break;
   case money:
     return MONEY;
+    break;
   case shoot:
     return SHOOT;
+    break;
   case powerup:
     return POWERUP;
+    break;
   case follower:
     return FOLLOWER;
+    break;
   default:
     return '?';
+    break;
   }
 }
 

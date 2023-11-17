@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Collision.hpp"
+#include "Queue.hpp"
 #include "Mappa.hpp"
 #include <fstream>
 

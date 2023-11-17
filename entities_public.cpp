@@ -1,5 +1,6 @@
 #include "hpp-files/Entities.hpp"
 
+// ---- Constructor ---- //
 Entities::Entities(WINDOW *win)
 {
   curwin = win;
@@ -7,61 +8,73 @@ Entities::Entities(WINDOW *win)
   getmaxyx(curwin, yMax, xMax);
 }
 
+// ---- Return Functions ---- //
 WINDOW *Entities::ReturnCurwin() { return curwin; }
 
 ens Entities::ReturnPlayerPointer() { return PlayerPointer; }
 
 Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
 
-ens Entities::Insert(EntityType Type, int x, int y, int map = 1, int level = 0)
+ens Entities::ReturnList() { return entities; }
+
+// ---- Entity Management ---- //
+ens Entities::Insert(EntityType Type, int x, int y, int map, int level)
 {
-  if (Character(Type) != '?')
+  if (Character(Type) == '?')
+    return NULL;
+
+  ens tmp = new entita;
+  tmp->type = Type;
+  tmp->pos.Select(x, y);
+  tmp->next = entities;
+  tmp->livello = level;
+  tmp->mappa = map;
+  entities = tmp;
+  if (Type == player)
   {
-    ens tmp = new entita;
-    tmp->type = Type;
-    tmp->pos.Select(x, y);
-    tmp->next = entities;
-    tmp->livello = level;
-    tmp->mappa = map;
-    entities = tmp;
-    if (Type == player)
-    {
-      PlayerPointer = tmp;
-      InfoPlayer = new Player;
-    }
-    return entities;
+    PlayerPointer = tmp;
+    InfoPlayer = new Player;
   }
-  return NULL;
+  return entities;
 }
 
 ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello)
 {
-  ens entity = entities;
-  ens Entity_founded = NULL;
-  bool Trovato = false;
-  while (entity && !Trovato)
+  ens currentEntity = entities;
+  bool found = false;
+
+  while (currentEntity && !found)
   {
-    if (!entity->death_flag &&
-        xLoc(entity) == Loc.x &&
-        yLoc(entity) == Loc.y &&
-        (entity->mappa == mappa) && (entity->livello == livello))
+    if (isValidEntity(currentEntity, Loc, mappa, livello))
     {
-      Entity_founded = entity;
-      Trovato = true;
+      found = true;
     }
     else
     {
-      entity = entity->next; // Avanza nell'elenco principale
+      currentEntity = currentEntity->next;
     }
   }
-  if (Trovato)
-    return Entity_founded;
+
+  if (found)
+  {
+    return currentEntity;
+  }
   else
+  {
     return NULL;
+  }
 }
 
-ens Entities::ReturnList() { return entities; }
+bool Entities::isValidEntity(ens entity, MyPosition Loc, int mappa, int livello)
+{
+  return !entity->death_flag &&
+         xLoc(entity) == Loc.x &&
+         yLoc(entity) == Loc.y &&
+         entity->mappa == mappa &&
+         entity->livello == livello;
+}
 
+// ---- Display Functions ---- //
 void Entities::Display(ens MyEntity)
 {
   if (MyEntity && !MyEntity->death_flag)
@@ -78,28 +91,30 @@ void Entities::ClearPosition(ens Entity)
     mvwaddch(curwin, yLoc(Entity), xLoc(Entity), ' ');
 }
 
+// ---- Movement and Deletion Functions ---- //
 void Entities::MoveEntity(ens myEntity)
 {
+  if (!myEntity)
+    return;
+
   int xForce = myEntity->xForce;
   int yForce = myEntity->yForce;
-  if (myEntity)
+
+  if (yForce > 0)
   {
-    if (yForce > 0)
-    {
-      myEntity->pos.Move(0, 1);
-    }
-    else if (yForce < 0)
-    {
-      myEntity->pos.Move(0, -1);
-    }
-    if (xForce > 0)
-    {
-      myEntity->pos.Move(1, 0);
-    }
-    else if (xForce < 0)
-    {
-      myEntity->pos.Move(-1, 0);
-    }
+    myEntity->pos.Move(0, 1);
+  }
+  else if (yForce < 0)
+  {
+    myEntity->pos.Move(0, -1);
+  }
+  if (xForce > 0)
+  {
+    myEntity->pos.Move(1, 0);
+  }
+  else if (xForce < 0)
+  {
+    myEntity->pos.Move(-1, 0);
   }
 }
 
@@ -134,7 +149,6 @@ void Entities::RemoveDeadEntities()
   {
     if (currentEntity->death_flag && currentEntity->type != player)
     {
-      // Remove the entity with death_flag set to true
       if (prevEntity)
       {
         prevEntity->next = currentEntity->next;
@@ -143,7 +157,6 @@ void Entities::RemoveDeadEntities()
       }
       else
       {
-        // If the first entity has death_flag set to true
         entities = currentEntity->next;
         delete currentEntity;
         currentEntity = entities;
@@ -151,13 +164,13 @@ void Entities::RemoveDeadEntities()
     }
     else
     {
-      // Move to the next entity
       prevEntity = currentEntity;
       currentEntity = currentEntity->next;
     }
   }
 }
 
+// ---- Visual Effects and Player Stats ---- //
 void Entities::explosionEffect(ens entity)
 {
   int x = xLoc(entity);
@@ -188,35 +201,33 @@ void Entities::explosionEffect(ens entity)
 
 void Entities::DisplayPlayerStats()
 {
+  if (!InfoPlayer)
+    return;
+
   int maxX = getmaxx(curwin);
 
-  if (InfoPlayer)
-  {
-    ClearPlayerStatsDisplay(maxX);
-    DisplayHealth(maxX);
-    DisplayShield();
-    DisplayPlayerInfo();
-  }
+  ClearPlayerStatsDisplay(maxX);
+  DisplayHealth(maxX);
+  DisplayShield();
+  DisplayPlayerInfo();
 }
 
 void Entities::inflictDamageToPlayer(int damage)
 {
-  if (InfoPlayer)
+  if (!InfoPlayer)
+    return;
+
+  if (InfoPlayer->shield > 0)
   {
-    // explosionEffect(PlayerPointer);
+    InfoPlayer->shield -= damage;
 
-    if (InfoPlayer->shield > 0)
+    if (InfoPlayer->shield < 0)
     {
-      InfoPlayer->shield -= damage;
-
-      if (InfoPlayer->shield < 0)
-      {
-        InfoPlayer->shield = 0;
-      }
+      InfoPlayer->shield = 0;
     }
-    else
-    {
-      InfoPlayer->hp -= damage;
-    }
+  }
+  else
+  {
+    InfoPlayer->hp -= damage;
   }
 }

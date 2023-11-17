@@ -54,7 +54,7 @@ void Game::openShop()
 
         choice = shop->create_Shop();
 
-        bool flag = shop->eventiShop(choice);
+        shop->eventiShop(choice);
 
         logic->FileWrite();
 

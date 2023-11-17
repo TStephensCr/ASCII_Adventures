@@ -117,7 +117,6 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     else if (CollidingEntity->type == follower)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
-        entitiesOBJ->explosionEffect(PlayerPointer);
         entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE);
     }
 }

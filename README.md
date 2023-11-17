@@ -31,3 +31,4 @@ IDEE CONTINUO:(cio che succede dopo mappa 5 livello 2)
 -cap sulla vita massima
 -cap sui proiettili?
 
+Erik: rimangono da sistemare --> events, collision, logic, game

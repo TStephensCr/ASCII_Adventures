@@ -1,7 +1,8 @@
 #include <ncurses.h>
+#include "Game_constants.hpp"
 #include "Position.hpp"
 #include "Player.hpp"
-#include "globals.hpp"
+#include "Entities_structure.hpp"
 #pragma once
 
 class Entities
@@ -20,8 +21,6 @@ protected:
 private:
    char Character(EntityType Type);
 
-   void Remove(ens Entity);
-
    int yLoc(ens Entity);
 
    int xLoc(ens Entity);
@@ -35,42 +34,29 @@ private:
    void DisplayPlayerInfo();
 
 public:
-   // Blocco Azione su liste di entit�
-   Entities(WINDOW *win); // costruttore
+   //----Constructor----//
+   Entities(WINDOW *win);
 
+   //----Return Functions----//
    WINDOW *ReturnCurwin();
-
-   ens Insert(EntityType tipo, int x,
-              int y, int map, int level); // inserisce un'entità in base al tipo [ EntityType ] and
-                                          // his position coordinates [ x , y ]
-
-   ens EntitiesInLocation(
-       MyPosition Loc, int mappa, int livello); // Given a position returns the entity in that position
-                                                // otherwise returns NULL
-
    ens ReturnPlayerPointer();
-
    Player *ReturnPlayerOBJ();
-
    ens ReturnList();
 
+   //----Entity Management----//
+   ens Insert(EntityType tipo, int x, int y, int map, int level);
+   ens EntitiesInLocation(MyPosition Loc, int mappa, int livello);
+   bool isValidEntity(ens entity, MyPosition Loc, int mappa, int livello);
    void Display(ens MyEntity);
-
    void ClearPosition(ens Entity);
-
    void KillEntity(ens Entity);
-
    void MoveEntity(ens myEntity);
-
    bool SameDir(ens Entity, ens Entity2);
-
    void DeleteEntities();
-
    void RemoveDeadEntities();
 
+   //----Visual Effects and Player Stats----//
    void explosionEffect(ens entity);
-
    void DisplayPlayerStats();
-
    void inflictDamageToPlayer(int damage);
 };
