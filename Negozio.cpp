@@ -151,15 +151,15 @@ void Negozio::eventiShop(int scelta)
         break;
 
     case 4:
-        if (InfoPlayer->points < 100)
+        if (InfoPlayer->Money <= 1)
         {
-            mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza punti!");
+            mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza monete!");
             break;
         }
 
         if (InfoPlayer->hp > 0)
         {
-            InfoPlayer->points -= 100;
+            InfoPlayer->Money -= 2;
             InfoPlayer->bulletRange += 10;
         }
         else
