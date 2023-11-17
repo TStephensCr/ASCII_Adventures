@@ -25,10 +25,11 @@ ogni volta che si scrive codice bisogna per prima cosa fare : [git pull origin m
 commit -a -m 'messaggio'
 
 
-COSA CI FACCIAMO CON I PUNTI?   discussione
 IDEE CONTINUO:(cio che succede dopo mappa 5 livello 2)
 -incrementa la velocità dei bot
 -cap sulla vita massima
 -cap sui proiettili?
 
 Erik: rimangono da sistemare --> events, collision, logic, game
+
+Manca ciclare il gioco alla fine dell'ultimo livello, ancora non abbiamo deciso cosa farci.
