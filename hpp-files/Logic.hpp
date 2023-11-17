@@ -43,25 +43,21 @@ protected:
 	Mappa *map;
 
 private:
-	void updateMapRelativeToPlayer();
-
+	// Initialization functions
 	void UpdateVariables();
-
-	void handleEnemys(ens entity);
-
-	void handleFollower(ens entity);
-
-	void HandleBot(ens entity);
-
-	void IncrementCounters();
-
 	void ReadGeneral();
-
 	void ReadPlayer();
-
 	void ReadEntities();
 
+	// Entity handling functions
+	void handleEnemys(ens entity);
+	void handleFollower(ens entity);
+	void HandleBot(ens entity);
+	void IncrementCounters();
 	void eliminateMaxRangeBullet(ens Entity);
+
+	// Map-related functions
+	void updateMapRelativeToPlayer();
 
 public:
 	//---constructor---//
