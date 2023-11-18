@@ -1,10 +1,14 @@
 #include "hpp-files/Collision.hpp"
 
+//----Update functions----//
+
 void Collision::UpdateVariables()
 {
     PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
     InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
 }
+
+//----Collision handling functions----//
 
 void Collision::HandleVerticalCollision(ens Entity, int xPos, int &yPos)
 {
@@ -32,7 +36,7 @@ void Collision::HandleVerticalCollision(ens Entity, int xPos, int &yPos)
     }
 }
 
-void Collision::HandleHorizontalCollision(ens Entity, int &xPos, int yPos)
+void Collision::HandleHorizontalCollision(ens Entity, int xPos, int yPos)
 {
     if (Entity->xForce != 0)
     {
@@ -84,7 +88,6 @@ void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
         break;
 
     default:
-        // Handle other cases or do nothing
         break;
     }
 }

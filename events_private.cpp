@@ -1,11 +1,15 @@
+// Events.cpp
+
 #include "hpp-files/Events.hpp"
 
+//----Update functions----//
 void Events::UpdateVariables()
 {
 	PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
 	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
 }
 
+//----Movement functions----//
 void Events::mvright(int Force)
 {
 	if (PlayerPointer->xForce <= MaxForce)
@@ -41,6 +45,7 @@ void Events::Jump()
 	}
 }
 
+//----Shooting functions----//
 void Events::HandleHitTarget(ens shooter, ens target)
 {
 	if (shooter->type == player)

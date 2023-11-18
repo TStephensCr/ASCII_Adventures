@@ -1,5 +1,6 @@
 #include "hpp-files/Events.hpp"
 
+//----Constructor----//
 Events::Events(Entities *MyEntities)
 {
 	entitiesOBJ = MyEntities;
@@ -11,51 +12,12 @@ Events::Events(Entities *MyEntities)
 	curwin = entitiesOBJ->ReturnCurwin();
 }
 
+//----Player-related functions----//
+
 void Events::PlayerGravity()
 {
 	if (PlayerPointer)
 		PlayerPointer->yForce++;
-}
-
-void Events::DecreaseForce(ens myEntity)
-{
-	if (myEntity)
-	{
-		if (myEntity->xForce <= -1)
-			myEntity->xForce++;
-		else if (myEntity->xForce >= 1)
-			myEntity->xForce--;
-		if (myEntity->yForce <= -1)
-			myEntity->yForce++;
-		else if (myEntity->yForce >= 1)
-			myEntity->yForce--;
-	}
-}
-
-void Events::Shoot(ens shooter, char lastMovement)
-{
-	int shooterXPos = shooter->pos.x;
-	int shooterYPos = shooter->pos.y;
-	int xDelta = (lastMovement == 'd') ? 1 : -1;
-
-	MyPosition newShotPosition;
-	newShotPosition.Select(shooterXPos + xDelta, shooterYPos);
-
-	ens targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
-
-	if (targetEntity)
-	{
-		HandleHitTarget(shooter, targetEntity);
-	}
-	else
-	{
-		char obstacle = mvwinch(curwin, shooterYPos, shooterXPos + xDelta);
-
-		if (checkIfValidShoot(obstacle, shooter))
-		{
-			HandleValidShot(shooter, shooterXPos + xDelta, shooterYPos, lastMovement);
-		}
-	}
 }
 
 int Events::getmv()
@@ -104,4 +66,47 @@ int Events::getmv()
 	}
 
 	return choice;
+}
+
+//----Entity actions----//
+
+void Events::DecreaseForce(ens myEntity)
+{
+	if (myEntity)
+	{
+		if (myEntity->xForce <= -1)
+			myEntity->xForce++;
+		else if (myEntity->xForce >= 1)
+			myEntity->xForce--;
+		if (myEntity->yForce <= -1)
+			myEntity->yForce++;
+		else if (myEntity->yForce >= 1)
+			myEntity->yForce--;
+	}
+}
+
+void Events::Shoot(ens shooter, char lastMovement)
+{
+	int shooterXPos = shooter->pos.x;
+	int shooterYPos = shooter->pos.y;
+	int xDelta = (lastMovement == 'd') ? 1 : -1;
+
+	MyPosition newShotPosition;
+	newShotPosition.Select(shooterXPos + xDelta, shooterYPos);
+
+	ens targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
+
+	if (targetEntity)
+	{
+		HandleHitTarget(shooter, targetEntity);
+	}
+	else
+	{
+		char obstacle = mvwinch(curwin, shooterYPos, shooterXPos + xDelta);
+
+		if (checkIfValidShoot(obstacle, shooter))
+		{
+			HandleValidShot(shooter, shooterXPos + xDelta, shooterYPos, lastMovement);
+		}
+	}
 }

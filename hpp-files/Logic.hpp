@@ -76,6 +76,8 @@ public:
 
 	int returnCurLev();
 
+	bool return_DevMode_status();
+
 	//---set or reset functions---//
 
 	void ResetEntities();
@@ -85,8 +87,6 @@ public:
 	void InitColors();
 
 	void set_dev_mode(bool on);
-
-	bool return_DevMode_status();
 
 	void InitMappa(int curmap, int curLev, bool check);
 

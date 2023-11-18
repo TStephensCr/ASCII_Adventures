@@ -19,7 +19,7 @@ private:
 
     //----Collision handling functions----//
     void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
-    void HandleHorizontalCollision(ens Entity, int &xPos, int yPos);
+    void HandleHorizontalCollision(ens Entity, int xPos, int yPos);
     void HandleEntityCollision(ens Entity, ens OtherEntity);
     void HandleEnemyPlayerCollision(ens Enemy);
     void HandlePlayerEnemyCollision();

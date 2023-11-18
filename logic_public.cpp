@@ -1,4 +1,5 @@
 #include "hpp-files/Logic.hpp"
+//---constructor---//
 
 Logic::Logic(WINDOW *win, WINDOW *menuuwin)
 {
@@ -23,6 +24,8 @@ Logic::Logic(WINDOW *win, WINDOW *menuuwin)
 
 	maxX = getmaxx(curwin);
 }
+
+//---return functions---//
 
 Events *Logic::ReturnEventsOBJ()
 {
@@ -53,6 +56,8 @@ bool Logic::return_DevMode_status()
 {
 	return Developer_mode;
 }
+
+//---set or reset functions---//
 
 void Logic::ResetEntities()
 {
@@ -278,6 +283,28 @@ void Logic::InitEntities()
 	}
 }
 
+void Logic::InitColors()
+{
+	init_pair(PLAYER_COLOR, COLOR_WHITE, COLOR_WHITE);
+	init_pair(ENEMY_COLOR, COLOR_RED, COLOR_RED);
+	init_pair(MONEY_COLOR, COLOR_YELLOW, COLOR_BLACK);
+	init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
+	init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
+	init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
+	init_pair(SHIELD_COLOR, COLOR_MAGENTA, COLOR_BLACK);
+}
+
+void Logic::set_dev_mode(bool on)
+{
+	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
+	Developer_mode = on;
+	if (InfoPlayer && on)
+	{
+		InfoPlayer->colpi = 10000;
+		InfoPlayer->hp = 10000;
+	}
+}
+
 void Logic::InitMappa(int curmap, int curLev, bool check)
 {
 	if (check)
@@ -289,6 +316,7 @@ void Logic::InitMappa(int curmap, int curLev, bool check)
 	map->stampamappa();
 }
 
+//---logic functions---//
 void Logic::FileWrite()
 { // scrive il salvataggio su file
 	std::ofstream myfile;
@@ -423,28 +451,6 @@ void Logic::render()
 		}
 		tmp = tmp->next;
 	}
-}
-
-void Logic::set_dev_mode(bool on)
-{
-	InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
-	Developer_mode = on;
-	if (InfoPlayer && on)
-	{
-		InfoPlayer->colpi = 10000;
-		InfoPlayer->hp = 10000;
-	}
-}
-
-void Logic::InitColors()
-{
-	init_pair(PLAYER_COLOR, COLOR_WHITE, COLOR_WHITE);
-	init_pair(ENEMY_COLOR, COLOR_RED, COLOR_RED);
-	init_pair(MONEY_COLOR, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(SHOOT_COLOR, COLOR_WHITE, COLOR_BLACK);
-	init_pair(POWERUP_COLOR, COLOR_GREEN, COLOR_BLACK);
-	init_pair(FOLLOWER_COLOR, COLOR_CYAN, COLOR_BLACK);
-	init_pair(SHIELD_COLOR, COLOR_MAGENTA, COLOR_BLACK);
 }
 
 void Logic::decreaseMap()

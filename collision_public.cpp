@@ -1,5 +1,7 @@
 #include "hpp-files/Collision.hpp"
 
+//----Constructor----//
+
 Collision::Collision(Entities *MyEntities)
 {
     entitiesOBJ = MyEntities;
@@ -8,6 +10,8 @@ Collision::Collision(Entities *MyEntities)
     InfoPlayer = entitiesOBJ->ReturnPlayerOBJ();
     PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
 }
+
+//----Collision management functions----//
 
 void Collision::ManageJump(ens Entity)
 {
@@ -41,7 +45,6 @@ void Collision::OutOfBounds(ens Entity)
             InfoPlayer->hp -= FALL_DAMAGE;
             entitiesOBJ->ClearPosition(PlayerPointer);
             PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN - 1);
-            entitiesOBJ->KillEntity(PlayerPointer);
         }
     }
     else if (Entity->type == shoot)
