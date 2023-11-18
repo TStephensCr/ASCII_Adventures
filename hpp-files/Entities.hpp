@@ -56,4 +56,5 @@ public:
    void explosionEffect(ens entity);
    void DisplayPlayerStats();
    void inflictDamageToPlayer(int damage);
+   void moneyGrabberEffect(ens Money);
 };

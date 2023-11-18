@@ -65,13 +65,7 @@ void Logic::ResetEntities()
 	bot_clock = 0;
 	PlayerTrackingQueue.clear();
 	PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
-	for (int i = 0; i < 3; i++)
-	{
-		for (int j = 0; j < 8; j++)
-		{
-			counter_bot[j][i] = 0;
-		}
-	}
+	resetCounter_bot();
 }
 
 void Logic::InitEntities()

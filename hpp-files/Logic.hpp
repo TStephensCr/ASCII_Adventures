@@ -55,6 +55,7 @@ private:
 	void HandleBot(ens entity);
 	void IncrementCounters();
 	void eliminateMaxRangeBullet(ens Entity);
+	void resetCounter_bot();
 
 	// Map-related functions
 	void updateMapRelativeToPlayer();

@@ -106,6 +106,17 @@ void Logic::handleFollower(ens follower)
 	}
 }
 
+void Logic::resetCounter_bot()
+{
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			counter_bot[j][i] = 0;
+		}
+	}
+}
+
 void Logic::IncrementCounters()
 {
 	bot_clock++;

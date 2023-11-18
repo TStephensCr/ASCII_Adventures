@@ -231,3 +231,13 @@ void Entities::inflictDamageToPlayer(int damage)
     InfoPlayer->hp -= damage;
   }
 }
+
+void Entities::moneyGrabberEffect(ens Money)
+{
+  init_pair(8, COLOR_YELLOW, COLOR_BLACK);
+  wattron(curwin, COLOR_PAIR(8));
+
+  mvwaddch(curwin, Money->pos.y - 2, Money->pos.x, MONEY);
+
+  wattroff(curwin, COLOR_PAIR(8));
+}
