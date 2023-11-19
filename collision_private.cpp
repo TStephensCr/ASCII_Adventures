@@ -111,7 +111,7 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     }
     else if (CollidingEntity->type == shoot)
     {
-        InfoPlayer->hp -= SHOOT_DAMAGE;
+        InfoPlayer->hp -= SHOOT_DAMAGE * difficulty;
         PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
         if (CollidingEntity->type == shoot)
         {
@@ -121,7 +121,7 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     else if (CollidingEntity->type == follower)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
-        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE);
+        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE * difficulty);
     }
 }
 
@@ -149,7 +149,7 @@ void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
     }
     else if (CollidingEntity->type == player)
     {
-        entitiesOBJ->inflictDamageToPlayer(SHOOT_DAMAGE);
+        entitiesOBJ->inflictDamageToPlayer(SHOOT_DAMAGE * difficulty);
         PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
         entitiesOBJ->KillEntity(Entity);
     }
@@ -167,7 +167,7 @@ void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->KillEntity(Entity);
-        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE);
+        entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE * difficulty);
     }
     else if (CollidingEntity->type == shoot)
     {
@@ -186,7 +186,7 @@ void Collision::HandleEnemyPlayerCollision(ens Enemy)
 
     PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
 
-    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE);
+    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE * difficulty);
 }
 
 void Collision::HandlePlayerEnemyCollision()
@@ -198,5 +198,5 @@ void Collision::HandlePlayerEnemyCollision()
 
     PlayerPointer->yForce = REPELLING_YFORCE_OF_ENEMYS;
 
-    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE);
+    entitiesOBJ->inflictDamageToPlayer(PLAYER_ENEMY_COLLISION_DAMAGE * difficulty);
 }

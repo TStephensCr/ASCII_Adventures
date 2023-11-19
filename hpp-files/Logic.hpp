@@ -32,6 +32,8 @@ protected:
 
 	int curLev_ = 0;
 
+	int difficulty = 1;
+
 	bool Developer_mode = false;
 
 	int maxX;
@@ -76,6 +78,8 @@ public:
 	int returnCurMap();
 
 	int returnCurLev();
+
+	int returnDifficulty();
 
 	bool return_DevMode_status();
 

@@ -52,6 +52,11 @@ int Logic::returnCurLev()
 	return curLev_;
 }
 
+int Logic::returnDifficulty()
+{
+	return difficulty;
+}
+
 bool Logic::return_DevMode_status()
 {
 	return Developer_mode;
@@ -372,7 +377,7 @@ void Logic::FileWrite()
 	myfile << '<';
 
 	myfile.close();
-} // considerazioni per il read: dopo ogni valore di counter bot c'è un punto, il death flag è 0 vivo e 1 morto, tra i due valori di position c'è un punto, mi servira aiuto a interpretare il LastMovement del player
+} // considerazioni per il read: dopo ogni valore di counter bot c'è un punto, il death flag è 0 vivo e 1 morto, tra i due valori di position c'è un punto
 
 void Logic::FileRead()
 {
@@ -460,7 +465,14 @@ void Logic::decreaseMap()
 	{
 		if (curLev_ == 0 && curmap_ == 1)
 		{
-			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+			if(difficulty>1)
+			{
+				difficulty--;
+				curLev_ = 2;
+				curmap_ = 8;
+			}
+			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+			PlayerTrackingQueue.clear();
 		}
 		else
 		{
@@ -484,7 +496,11 @@ void Logic::increaseMap()
 	{
 		if (curLev_ == 2 && curmap_ == 8)
 		{
-			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+			difficulty++;
+			curLev_ = 0;
+			curmap_ = 1;
+			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+			PlayerTrackingQueue.clear();
 		}
 		else
 		{

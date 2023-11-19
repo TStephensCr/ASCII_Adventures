@@ -42,7 +42,7 @@ void Collision::OutOfBounds(ens Entity)
     {
         if (PlayerPointer->pos.y > y - 5)
         {
-            InfoPlayer->hp -= FALL_DAMAGE;
+            InfoPlayer->hp -= FALL_DAMAGE * difficulty;
             entitiesOBJ->ClearPosition(PlayerPointer);
             PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN - 1);
         }
