@@ -13,10 +13,11 @@ protected:
 
     Player *InfoPlayer;
 
+    int difficulty = 1;
+
 private:
     //----Update functions----//
     void UpdateVariables();
-
     //----Collision handling functions----//
     void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
     void HandleHorizontalCollision(ens Entity, int xPos, int yPos);
@@ -31,6 +32,10 @@ private:
 public:
     //----Constructor----//
     Collision(Entities *MyEntities);
+
+    //----set functions----//
+
+    void setDifficulty(int newDifficulty);
 
     //----Collision management functions----//
     void ManageJump(ens Entity);

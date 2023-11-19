@@ -11,6 +11,13 @@ Collision::Collision(Entities *MyEntities)
     PlayerPointer = entitiesOBJ->ReturnPlayerPointer();
 }
 
+//----set functions----//
+
+void Collision::setDifficulty(int newDifficulty)
+{
+    difficulty = newDifficulty;
+}
+
 //----Collision management functions----//
 
 void Collision::ManageJump(ens Entity)
@@ -42,7 +49,7 @@ void Collision::OutOfBounds(ens Entity)
     {
         if (PlayerPointer->pos.y > y - 5)
         {
-            InfoPlayer->hp -= FALL_DAMAGE * difficulty;
+            entitiesOBJ->inflictDamageToPlayer(FALL_DAMAGE * difficulty);
             entitiesOBJ->ClearPosition(PlayerPointer);
             PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN - 1);
         }

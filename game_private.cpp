@@ -47,7 +47,7 @@ void Game::openShop()
     gamestatus = Shopping;
 
     int choice;
-    
+
     while (gamestatus == Shopping)
     {
         entitiesOBJ->DisplayPlayerStats();
@@ -68,7 +68,7 @@ void Game::openShop()
 
 void Game::checkEndGame()
 {
-    if (logic->ReturnInfoPlayer()->hp == 0)
+    if (logic->ReturnInfoPlayer()->hp <= 0)
     {
         logic->FileWrite();
         gamestatus = MenU;

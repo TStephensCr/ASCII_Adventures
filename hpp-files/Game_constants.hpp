@@ -38,6 +38,8 @@
 
 #define STATS_DISTANCE_FROM_RIGHT 32
 
+#define DAMAGE_SCALE_FACTOR 2
+
 enum menuChoice
 {
     NewGame,

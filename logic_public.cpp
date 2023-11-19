@@ -418,6 +418,8 @@ void Logic::update_game_logic()
 
 			HandleBot(tmp);
 
+			collision->setDifficulty(difficulty);
+
 			collision->ManageCollisions(tmp);
 
 			eliminateMaxRangeBullet(tmp);
@@ -465,7 +467,7 @@ void Logic::decreaseMap()
 	{
 		if (curLev_ == 0 && curmap_ == 1)
 		{
-			if(difficulty>1)
+			if (difficulty > 1)
 			{
 				difficulty--;
 				curLev_ = 2;
