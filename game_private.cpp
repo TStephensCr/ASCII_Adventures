@@ -47,7 +47,7 @@ void Game::openShop()
     gamestatus = Shopping;
 
     int choice;
-    logic->increaseMap();
+    
     while (gamestatus == Shopping)
     {
         entitiesOBJ->DisplayPlayerStats();
