@@ -1,6 +1,5 @@
 #include <ncurses.h>
 #include "Game_constants.hpp"
-#include "Position.hpp"
 #include "Player.hpp"
 #include "Entities_structure.hpp"
 #pragma once

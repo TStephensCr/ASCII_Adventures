@@ -1,3 +1,5 @@
+#include "Position.hpp"
+
 struct Player
 {
     int hp = 100;

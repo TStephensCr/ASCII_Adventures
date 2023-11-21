@@ -1,3 +1,5 @@
+#include "Position.hpp"
+
 struct entita
 {
   EntityType type;

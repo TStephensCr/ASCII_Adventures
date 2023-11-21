@@ -1,3 +1,5 @@
+#pragma once
+
 struct MyPosition
 {
   int x = -1;
