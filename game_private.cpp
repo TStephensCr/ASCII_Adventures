@@ -37,8 +37,6 @@ void Game::runGame()
 
             napms(NAPTIME);
         }
-
-        wrefresh(win);
     }
 }
 

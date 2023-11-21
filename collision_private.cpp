@@ -98,7 +98,6 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     {
         entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->ReturnPlayerOBJ()->Money += 1;
-        entitiesOBJ->moneyGrabberEffect(CollidingEntity);
     }
     else if (CollidingEntity->type == enemy)
     {
