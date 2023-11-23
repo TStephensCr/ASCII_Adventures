@@ -513,16 +513,15 @@ void Logic::increaseMap()
 	}
 }
 
-void Logic::scrambleArray(int *array)
+void Logic::scrambleArray(int *mapArray)
 {
 	int temp;
 	int randomIndex;
 	for (int i = 0; i < 8; i++)
 	{
 		randomIndex = rand() % 8;
-		temp = array[i];
-		array[i] = array[randomIndex];
-		array[randomIndex] = temp;
+		temp = mapArray[i];
+		mapArray[i] = mapArray[randomIndex];
+		mapArray[randomIndex] = temp;
 	}
-	mapArray = array;
 }
