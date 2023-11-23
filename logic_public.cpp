@@ -306,6 +306,7 @@ void Logic::set_dev_mode(bool on)
 
 void Logic::InitMappa(int curmap, int curLev, bool check)
 {
+	scrambleArray(mapArray);
 	if (check)
 	{
 		curmap_ = curmap;
@@ -510,4 +511,18 @@ void Logic::increaseMap()
 			PlayerTrackingQueue.clear();
 		}
 	}
+}
+
+void Logic::scrambleArray(int *array)
+{
+	int temp;
+	int randomIndex;
+	for (int i = 0; i < 8; i++)
+	{
+		randomIndex = rand() % 8;
+		temp = array[i];
+		array[i] = array[randomIndex];
+		array[randomIndex] = temp;
+	}
+	mapArray = array;
 }

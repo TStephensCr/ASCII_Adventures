@@ -9,13 +9,14 @@
 ## **ISTRUZIONI**
 - freccia destra o tasto d: il player procede in direzione destra con salto;
 - freccia sinistra o tasto a: il player procede in direzione sinistra con salto;
-- freccia su o tasto w: il player salta;
-- freccia giu o tasto space: il player spara;
+- freccia su o tasto w: il player salta nella direzione in cui sta guardando;
+- freccia giu: il player spara;
+- barra spaziatrice: il player salta in verticale
 - le freccie su e giu consentono anche di navigare all'interno del menu principale e del menu del negozio;
 - tasto invio: consente di selezionare la voce desiderata del menu principale e del menu del negozio;
 - tasto e: consente di posizionare il player con la direzione verso destra, senza saltare;
-- tasto e: consente di posizionare il player con la direzione verso sinistra, senza saltare;
-- esc: uscire dal gioco e tornare a navigare sul menu principale;
+- tasto q: consente di posizionare il player con la direzione verso sinistra, senza saltare;
+- esc: uscire dal gioco e tornare a navigare sul menu principale salvando su file lo stato corrente del gioco;
 
 
 

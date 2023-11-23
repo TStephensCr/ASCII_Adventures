@@ -38,6 +38,8 @@ protected:
 
 	int maxX;
 
+	int mapArray[8] = {1, 2, 3, 4, 5, 6, 7, 8};
+
 	Queue PlayerTrackingQueue;
 
 	MyPosition PlayerPriviusPosition;
@@ -108,4 +110,6 @@ public:
 	void increaseMap();
 
 	void decreaseMap();
+
+	void scrambleArray(int mapArray[]);
 };
