@@ -28,7 +28,7 @@ int Menu::finestraMenu(){
 
       wrefresh(menuwin);
       
-      char* opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
+      const char* opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
       int highlight=0;
       int scelta=0;
       bool endWhile = false;

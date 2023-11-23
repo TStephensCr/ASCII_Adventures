@@ -381,7 +381,6 @@ void Logic::FileWrite()
 
 void Logic::FileRead()
 {
-	char mychar;
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");
 
