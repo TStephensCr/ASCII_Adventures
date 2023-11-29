@@ -154,6 +154,13 @@ void Logic::ReadGeneral()
 	curLev_ = mychar - '0';
 
 	do
+	{ // difficoltà
+		mychar = myfile.get();
+	} while (mychar != 'D');
+	mychar = myfile.get();
+	difficulty = mychar - '0';
+
+	do
 	{ // bot_clock
 		mychar = myfile.get();
 	} while (mychar != 'C');
@@ -179,6 +186,25 @@ void Logic::ReadGeneral()
 		}
 		mychar = myfile.get(); // il carattere \n
 	}
+
+	do
+	{ // array mappe
+		mychar = myfile.get();
+	} while (mychar != 'A');
+	mychar = myfile.get(); // il carattere \n
+	for (int i = 0; i < 8; i++)
+	{
+		mapArray[i] = myfile.get() - '0';
+		myfile.get();
+	}
+
+	do
+	{ // counter mappe
+		mychar = myfile.get();
+	} while (mychar != 'M');
+	mychar = myfile.get();
+	mapCounter = mychar - '0';
+
 	myfile.close();
 }
 

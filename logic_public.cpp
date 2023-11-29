@@ -57,6 +57,11 @@ int Logic::returnDifficulty()
 	return difficulty;
 }
 
+int Logic::returnMapCounter()
+{
+	return mapCounter;
+}
+
 bool Logic::return_DevMode_status()
 {
 	return Developer_mode;
@@ -304,16 +309,22 @@ void Logic::set_dev_mode(bool on)
 	}
 }
 
-void Logic::InitMappa(int curmap, int curLev, bool check)
+void Logic::InitMappa(int curCounter, int curLev, bool check)
 {
-	scrambleArray(mapArray);
 	if (check)
 	{
-		curmap_ = curmap;
+		curmap_ = mapArray[curCounter - 1];
 		curLev_ = curLev;
 	}
-	map->leggimappa(curmap);
-	map->stampamappa();
+
+	if(curCounter < 1 || curCounter > 8){
+		map->leggimappa(curCounter);
+		map->stampamappa();
+	}
+	else{
+		map->leggimappa(mapArray[curCounter - 1]);
+		map->stampamappa();
+	}
 }
 
 //---logic functions---//
@@ -326,6 +337,8 @@ void Logic::FileWrite()
 
 	myfile << 'L' << curLev_ << '\n'; // livello
 
+	myfile << 'D' << difficulty << '\n'; // difficoltà
+
 	myfile << 'C' << bot_clock << '\n'; // pacing del gioco
 
 	myfile << 'B' << '\n'; // pacing dei bot
@@ -337,6 +350,14 @@ void Logic::FileWrite()
 		}
 		myfile << '\n';
 	}
+
+	myfile << 'A' << '\n'; //array mappe
+	for (int i = 0; i < 8; i++)
+	{
+		myfile << mapArray[i] << '.';
+	}myfile << '\n';
+
+	myfile << 'M' << mapCounter << '\n'; //counter mappe
 
 	Player *tmpPlay = ReturnInfoPlayer();
 	myfile << 'U' << '\n';
@@ -456,29 +477,33 @@ void Logic::render()
 
 void Logic::decreaseMap()
 {
-	if (curmap_ == 1 && curLev_ > 0)
+	if (mapCounter == 1 && curLev_ > 0)
 	{
-		curmap_ = 8;
+		mapCounter = 8;
+		curmap_ = mapArray[mapCounter - 1];
 		curLev_--;
 		PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 		PlayerTrackingQueue.clear();
 	}
 	else
 	{
-		if (curLev_ == 0 && curmap_ == 1)
+		if (curLev_ == 0 && mapCounter == 1)
 		{
 			if (difficulty > 1)
 			{
 				difficulty--;
 				curLev_ = 2;
-				curmap_ = 8;
+				mapCounter = 8;
+				curmap_ = mapArray[mapCounter - 1];
+				PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 			}
-			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 			PlayerTrackingQueue.clear();
 		}
 		else
 		{
-			curmap_--;
+			mapCounter--;
+			curmap_ = mapArray[mapCounter - 1];
 			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 			PlayerTrackingQueue.clear();
 		}
@@ -487,41 +512,52 @@ void Logic::decreaseMap()
 
 void Logic::increaseMap()
 {
-	if (curmap_ == 8 && curLev_ < 2)
+	if (mapCounter == 8 && curLev_ < 2)
 	{
 		curLev_++;
-		curmap_ = 1;
+		mapCounter = 1;
+		curmap_ = mapArray[mapCounter - 1];
 		PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 		PlayerTrackingQueue.clear();
 	}
 	else
 	{
-		if (curLev_ == 2 && curmap_ == 8)
+		if (curLev_ == 2 && mapCounter == 8)
 		{
 			difficulty++;
 			curLev_ = 0;
-			curmap_ = 1;
+			mapCounter = 1;
+			curmap_ = mapArray[mapCounter - 1];
 			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 			PlayerTrackingQueue.clear();
 		}
 		else
 		{
-			curmap_++;
+			mapCounter++;
+			curmap_ = mapArray[mapCounter - 1];
 			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 			PlayerTrackingQueue.clear();
 		}
 	}
 }
 
-void Logic::scrambleArray(int *mapArray)
+void Logic::scrambleArray()
 {
+	unsigned int seed = (unsigned int)time(NULL);
+    srand(seed);
 	int temp;
 	int randomIndex;
 	for (int i = 0; i < 8; i++)
 	{
-		randomIndex = rand() % 8;
+		randomIndex = abs(rand()) % 8;
 		temp = mapArray[i];
 		mapArray[i] = mapArray[randomIndex];
 		mapArray[randomIndex] = temp;
 	}
+}
+
+void Logic::setNewGame(int diff, int curCounter)
+{
+	difficulty = diff;
+	mapCounter = curCounter;
 }

@@ -40,6 +40,8 @@ protected:
 
 	int mapArray[8] = {1, 2, 3, 4, 5, 6, 7, 8};
 
+	int mapCounter = 1;
+
 	Queue PlayerTrackingQueue;
 
 	MyPosition PlayerPriviusPosition;
@@ -83,6 +85,8 @@ public:
 
 	int returnDifficulty();
 
+	int returnMapCounter();
+
 	bool return_DevMode_status();
 
 	//---set or reset functions---//
@@ -111,5 +115,7 @@ public:
 
 	void decreaseMap();
 
-	void scrambleArray(int mapArray[]);
+	void scrambleArray();
+
+	void setNewGame(int diff, int curCounter);
 };

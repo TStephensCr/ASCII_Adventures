@@ -173,15 +173,3 @@ void Negozio::eventiShop(int scelta)
         break;
     }
 }
-
-void Negozio::buyshots()
-{
-    // int hp = 100;
-    //     int Money = 0;
-    //   int colpi = 10;
-}
-
-void Negozio::buyLives()
-{
-    // int hp = 100;
-}

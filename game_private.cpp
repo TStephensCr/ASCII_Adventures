@@ -81,7 +81,11 @@ void Game::initializeEntitiesForNewGame()
 
     logic->InitEntities();
 
-    logic->InitMappa(8, 2, true);
+    logic->scrambleArray();
+
+    logic->InitMappa(1, 0, true);
+
+    logic->setNewGame(1, 1);
 }
 
 void Game::initializeEntitiesForLoadGame()
@@ -90,7 +94,9 @@ void Game::initializeEntitiesForLoadGame()
 
     logic->FileRead();
 
-    logic->InitMappa(logic->returnCurMap(), logic->returnCurLev(), true);
+    logic->InitMappa(logic->returnMapCounter(), logic->returnCurLev(), true);
+
+    logic->setNewGame(logic->returnDifficulty(), logic->returnMapCounter());
 }
 
 void Game::initializeEntitiesForShop()

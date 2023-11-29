@@ -47,3 +47,14 @@ idea : danni moltiplicati per il livello in cui sei. cosi' all'aumentare dei liv
 Erik: rimangono da sistemare --> events, collision, logic, game
 
 Manca ciclare il gioco alla fine dell'ultimo livello, ancora non abbiamo deciso cosa farci.
+
+
+Modifiche:
+-aggiustato il salvataggio della difficolta
+-implementato array:
+    -salviamo l'array e la posizione corrente nell'array
+    -initMappa non prende piu come argomento la mappa
+    -aggiustato il cambio mappa in base a sti cambiamenti
+    -tanti altri megabordelloni
+-fixato la funzione scramble, non scramblava
+se dovete cambiare qualcosa riguardo curmap, mapcounter, maparray o le funzioni di cambio mappa chiedetemi e vi spiego tutto

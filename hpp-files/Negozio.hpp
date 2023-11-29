@@ -19,9 +19,6 @@ public:
     void updateVariables();
     int create_Shop();
     void eventiShop(int scelta);
-    void buyshots();
-    void buyLives();
-    void colorPlayer();
 };
 
 #endif
