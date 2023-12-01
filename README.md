@@ -5,6 +5,22 @@
 
 ------------------------------------
 ## **DESCRIZIONE**
+Ascii’ Advantures è un gioco platform in grafica ASCII, sviluppato su più livelli, a punteggio, dove il player viene controllato da tastiera.
+Lo scopo del giocatore è non morire mai. Il gioco non ha una fine, quindi il player può continuare a giocare all’infinito finchè ha vite.  Durante il gioco si possono raccogliere monete e sparare ai nemici ( i colpi iniziali sono 10, quindi quando terminano non è più possibile sparare ma si possono comunque acquistare nel negozio).  Il player all’inizio, avrà un range di sparo molto corto. Aumentando i livelli, e di conseguenza i punti, il giocatore potrà decidere di aumentare la lunghezza dello sparo acquistandola nel negozio.
+
+Il gioco è basato su 8 mappe predefinite e 3 livelli di difficoltà. Le mappe sono generate in modo randomico e per accedere alla difficoltà successiva è necessario che il giocatore superi le 8 mappe di livello inferiore.
+Le prime 8 mappe di difficoltà base presentano un solo nemico, che non è in grado di sparare, ma di respingere il player in caso di contatto, quindi crea danno quando i due si scontrano, diminuendo così la vita.
+Il livello intermedio presenta 3 nemici: 2 normali, che sono in grado di sparare, e un terzo nemico F, ovvero follow, che insegue il player e crea danno quando i due si toccano, diminuendo cosi la vita. La difficoltà qua aumenta, perché il player, oltre a non farsi raggiungere dal follow, deve schivare i colpi dei 2 nemici.
+Il livello avanzato presenta 4 nemici: oltre al follow, sono presenti 3 nemici in grado di sparare. 
+Dopo aver terminato le mappe del livello più difficile, il gioco rinizia da capo, ma i danni che prende il player vengono aumentati, quindi è più difficile sopravvivere.
+
+In ogni mappa, in alto a destra, sono visualizzate le caratteristiche del player ovvero la vita, le monete che ha raccolto, i colpi rimanenti, quanti punti ha accumulato e, infine, in che direzione è posizionato il player (funzionalità che abbiamo deciso di aggiungere siccome il simbolo del giocatore non ci consente di stabilire se siamo puntati verso destra o verso sinistra. Questa funzionalità può essere utile quando è necessario sparare: per evitare di perdere colpi inutilmente, basta controllare l’ultima direzione del player per sparare nella direzione desiderata). 
+
+Il giocatore è in grado, anche durante il gioco, di entrare nella pagina del negozio e acquistare, tramite i punti e le monete raccolte durante il gioco.  Col le monete è possibile acquistare la vita, i colpi, lo scudo e lo skip mappa. 
+Lo scudo consente di
+Lo skip mappa , invece, consente di passare alla mappa successiva.
+Avere una grande quantità di punti significa che il player ha superato un numero di livelli sufficienti per aumentare il range del colpo.
+
 
 ## **ISTRUZIONI**
 - freccia destra o tasto d: il player procede in direzione destra con salto;
