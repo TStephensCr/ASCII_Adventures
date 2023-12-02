@@ -1,6 +1,6 @@
 ## ASCII Adventures: A C++ Game Powered by the Ncurses Library
 
-![image of the game](https://raw.githubusercontent.com/TStephensCr/P.project2023/readmeUpdate/screenshot/Ascii_Adventures_Front_image.png?token=GHSAT0AAAAAACIIV2ZXGH6PHL35XSQ7BE4AZLLJ3RQ)
+![image of the game](https://raw.githubusercontent.com/TStephensCr/P.project2023/main/screenshot/Ascii_Adventures_Front_image.png?token=GHSAT0AAAAAACIIV2ZW3IEAAIV2YFWR2XMYZLLTCEQ)
 
 ## Overview
 
