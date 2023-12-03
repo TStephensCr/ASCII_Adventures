@@ -133,7 +133,7 @@ void Negozio::eventiShop(int scelta)
         break;
 
     case 3:
-        if (InfoPlayer->Money <= 2)
+        if (InfoPlayer->Money <= 3)
         {
             mvwprintw(curwin, 12, 65, "%s", "Non hai abbastanza monete!");
             break;
@@ -141,7 +141,7 @@ void Negozio::eventiShop(int scelta)
 
         if (InfoPlayer->hp > 0)
         {
-            InfoPlayer->Money -= 3;
+            InfoPlayer->Money -= 4;
             logic->increaseMap();
         }
         else
@@ -151,7 +151,12 @@ void Negozio::eventiShop(int scelta)
         break;
 
     case 4:
-        if (InfoPlayer->Money <= 1)
+        if (InfoPlayer->points <= 140)
+        {
+            mvwprintw(curwin, 13, 65, "%s", "Fai più punti! (150 min.)");
+            break;
+        }
+        if (InfoPlayer->Money <= 4)
         {
             mvwprintw(curwin, 13, 65, "%s", "Non hai abbastanza monete!");
             break;
@@ -159,7 +164,7 @@ void Negozio::eventiShop(int scelta)
 
         if (InfoPlayer->hp > 0)
         {
-            InfoPlayer->Money -= 2;
+            InfoPlayer->Money -= 5;
             InfoPlayer->bulletRange += 10;
         }
         else
