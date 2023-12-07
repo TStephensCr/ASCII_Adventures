@@ -374,7 +374,7 @@ void Logic::FileWrite()
 	myfile << 'b' << tmpPlay->inJump << '\n';
 	myfile << 'x' << PlayerPointer->pos.x << '.' << PlayerPointer->pos.y << '.' << '\n';
 
-	ens tmp = entitiesOBJ->ReturnList();
+	entita_p tmp = entitiesOBJ->ReturnList();
 	while (tmp != NULL)
 	{
 		if (tmp->type != 3)
@@ -422,7 +422,7 @@ void Logic::FileRead()
 
 void Logic::update_game_logic()
 {
-	ens tmp = entitiesOBJ->ReturnList();
+	entita_p tmp = entitiesOBJ->ReturnList();
 
 	UpdateVariables();
 
@@ -466,7 +466,7 @@ void Logic::update_game_logic()
 
 void Logic::render()
 {
-	ens tmp = entitiesOBJ->ReturnList();
+	entita_p tmp = entitiesOBJ->ReturnList();
 	while (tmp)
 	{
 		if (tmp->mappa == curmap_ && tmp->livello == curLev_)

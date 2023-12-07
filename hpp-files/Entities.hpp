@@ -7,11 +7,11 @@
 class Entities
 {
 protected:
-   ens entities = NULL; // lista entit�
+   entita_p entities = NULL; // lista entit�
 
    Player *InfoPlayer = NULL;
 
-   ens PlayerPointer = NULL;
+   entita_p PlayerPointer = NULL;
 
    WINDOW *curwin; // window in cui verrano stampate le entit�
 
@@ -20,8 +20,8 @@ protected:
 private:
    //----Entity-info functions----//
    char Character(EntityType Type);
-   int yLoc(ens Entity);
-   int xLoc(ens Entity);
+   int yLoc(entita_p Entity);
+   int xLoc(entita_p Entity);
 
    //----Player stats display functions----//
    void ClearPlayerStatsDisplay(int maxX);
@@ -35,25 +35,25 @@ public:
 
    //----Return Functions----//
    WINDOW *ReturnCurwin();
-   ens ReturnPlayerPointer();
+   entita_p ReturnPlayerPointer();
    Player *ReturnPlayerOBJ();
-   ens ReturnList();
+   entita_p ReturnList();
 
    //----Entity Management----//
-   ens Insert(EntityType tipo, int x, int y, int map, int level);
-   ens EntitiesInLocation(Position Loc, int mappa, int livello);
-   bool isValidEntity(ens entity, Position Loc, int mappa, int livello);
-   void Display(ens MyEntity);
-   void ClearPosition(ens Entity);
-   void KillEntity(ens Entity);
-   void MoveEntity(ens myEntity);
-   bool SameDir(ens Entity, ens Entity2);
+   entita_p Insert(EntityType tipo, int x, int y, int map, int level);
+   entita_p EntitiesInLocation(Position Loc, int mappa, int livello);
+   bool isValidEntity(entita_p entity, Position Loc, int mappa, int livello);
+   void Display(entita_p MyEntity);
+   void ClearPosition(entita_p Entity);
+   void KillEntity(entita_p Entity);
+   void MoveEntity(entita_p myEntity);
+   bool SameDir(entita_p Entity, entita_p Entity2);
    void DeleteEntities();
    void RemoveDeadEntities();
 
    //----Visual Effects and Player Stats----//
-   void explosionEffect(ens entity);
+   void explosionEffect(entita_p entity);
    void DisplayPlayerStats();
    void inflictDamageToPlayer(int damage);
-   void moneyGrabberEffect(ens Money);
+   void moneyGrabberEffect(entita_p Money);
 };

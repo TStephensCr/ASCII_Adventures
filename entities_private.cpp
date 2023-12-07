@@ -28,12 +28,12 @@ char Entities::Character(EntityType type)
   }
 }
 
-int Entities::yLoc(ens entity)
+int Entities::yLoc(entita_p entity)
 {
   return entity->pos.y;
 }
 
-int Entities::xLoc(ens entity)
+int Entities::xLoc(entita_p entity)
 {
   return entity->pos.x;
 }

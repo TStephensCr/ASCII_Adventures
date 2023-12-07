@@ -22,7 +22,7 @@ protected:
 
 	GameStatus Status;
 
-	ens PlayerPointer;
+	entita_p PlayerPointer;
 
 	int counter_bot[8][3];
 
@@ -56,11 +56,11 @@ private:
 	void ReadEntities();
 
 	// Entity handling functions
-	void handleEnemys(ens entity);
-	void handleFollower(ens entity);
-	void HandleBot(ens entity);
+	void handleEnemys(entita_p entity);
+	void handleFollower(entita_p entity);
+	void HandleBot(entita_p entity);
 	void IncrementCounters();
-	void eliminateMaxRangeBullet(ens Entity);
+	void eliminateMaxRangeBullet(entita_p Entity);
 	void resetCounter_bot();
 
 	// Map-related functions

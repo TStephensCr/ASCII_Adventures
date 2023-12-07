@@ -46,7 +46,7 @@ void Events::Jump()
 }
 
 //----Shooting functions----//
-void Events::HandleHitTarget(ens shooter, ens target)
+void Events::HandleHitTarget(entita_p shooter, entita_p target)
 {
 	if (shooter->type == player)
 	{
@@ -56,7 +56,7 @@ void Events::HandleHitTarget(ens shooter, ens target)
 	entitiesOBJ->KillEntity(target);
 }
 
-bool Events::checkIfValidShoot(char obstacle, ens shooter)
+bool Events::checkIfValidShoot(char obstacle, entita_p shooter)
 {
 	return obstacle != HORIZONTAL_WALL &&
 		   obstacle != VERTICAL_WALL &&
@@ -64,9 +64,9 @@ bool Events::checkIfValidShoot(char obstacle, ens shooter)
 		   (InfoPlayer->colpi > 0 || shooter->type == enemy);
 }
 
-void Events::HandleValidShot(ens shooter, int x, int y, char lastMovement)
+void Events::HandleValidShot(entita_p shooter, int x, int y, char lastMovement)
 {
-	ens shot = entitiesOBJ->Insert(shoot, x, y, shooter->mappa, shooter->livello);
+	entita_p shot = entitiesOBJ->Insert(shoot, x, y, shooter->mappa, shooter->livello);
 
 	if (shooter->type == player)
 	{

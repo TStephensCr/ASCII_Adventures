@@ -7,9 +7,9 @@ protected:
 
     WINDOW *curwin;
 
-    ens ListOfEntities;
+    entita_p ListOfEntities;
 
-    ens PlayerPointer = NULL;
+    entita_p PlayerPointer = NULL;
 
     Player *InfoPlayer;
 
@@ -19,15 +19,22 @@ private:
     //----Update functions----//
     void UpdateVariables();
     //----Collision handling functions----//
-    void HandleVerticalCollision(ens Entity, int xPos, int &yPos);
-    void HandleHorizontalCollision(ens Entity, int xPos, int yPos);
-    void HandleEntityCollision(ens Entity, ens OtherEntity);
-    void HandleEnemyPlayerCollision(ens Enemy);
+    void handleCollisions(entita_p Entity);
+    void HandleVerticalCollision(entita_p Entity, int xPos, int &yPos);
+    void HandleHorizontalCollision(entita_p Entity, int xPos, int yPos);
+    void HandleEntityCollision(entita_p Entity, entita_p OtherEntity);
+    void HandleEnemyPlayerCollision(entita_p Enemy);
     void HandlePlayerEnemyCollision();
-    void HandlePlayerCollision(ens CollidingEntity);
-    void HandleEnemyCollision(ens Entity, ens CollidingEntity);
-    void HandleShootCollision(ens Entity, ens CollidingEntity);
-    void HandleFollowerCollision(ens Entity, ens CollidingEntity);
+    void HandlePlayerCollision(entita_p CollidingEntity);
+    void HandleEnemyCollision(entita_p Entity, entita_p CollidingEntity);
+    void HandleShootCollision(entita_p Entity, entita_p CollidingEntity);
+    void HandleFollowerCollision(entita_p Entity, entita_p CollidingEntity);
+    //----Condition checking functions----//
+    bool isMapCollision(char charAtNewPos);
+    bool isPossibleEntitiesCollision(entita_p Entity, entita_p CollidingEntity);
+
+    //----get info functions----//
+    entita_p getCollidingEntity(entita_p Entity, int entityNextX, int entityNextY);
 
 public:
     //----Constructor----//
@@ -38,7 +45,7 @@ public:
     void setDifficulty(int newDifficulty);
 
     //----Collision management functions----//
-    void ManageJump(ens Entity);
-    void OutOfBounds(ens Entity);
-    void ManageCollisions(ens Entity);
+    void ManageJump(entita_p Entity);
+    void OutOfBounds(entita_p Entity);
+    void ManageCollisions(entita_p Entity);
 };

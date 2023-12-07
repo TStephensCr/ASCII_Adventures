@@ -32,7 +32,7 @@ void Logic::updateMapRelativeToPlayer()
 	}
 }
 
-void Logic::HandleBot(ens entity)
+void Logic::HandleBot(entita_p entity)
 {
 	if (entity->type == enemy)
 	{
@@ -44,7 +44,7 @@ void Logic::HandleBot(ens entity)
 	}
 }
 
-void Logic::handleEnemys(ens entity)
+void Logic::handleEnemys(entita_p entity)
 {
 	if (bot_clock == 3)
 	{
@@ -70,7 +70,7 @@ void Logic::handleEnemys(ens entity)
 	}
 }
 
-void Logic::handleFollower(ens follower)
+void Logic::handleFollower(entita_p follower)
 {
 	if (PlayerTrackingQueue.size < FOLLOWER_DELAY)
 	{
@@ -216,7 +216,7 @@ void Logic::ReadPlayer()
 	char number_str[3];
 	char *output;
 
-	ens tmp = entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, curmap_, curLev_); // nella lista la pos del player viene aggiornata quando cambio la pos di Infoplayer(perche?)
+	entita_p tmp = entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, curmap_, curLev_); // nella lista la pos del player viene aggiornata quando cambio la pos di Infoplayer(perche?)
 	UpdateVariables();
 	do
 	{ // hp
@@ -333,7 +333,7 @@ void Logic::ReadEntities()
 	int xtemp, ytemp;
 	while (myfile.good() && mychar != '<')
 	{ // valore di fine file
-		ens tmp = new entita;
+		entita_p tmp = new Entita;
 		do
 		{ // type
 			mychar = myfile.get();
@@ -417,7 +417,7 @@ void Logic::ReadEntities()
 	myfile.close();
 }
 
-void Logic::eliminateMaxRangeBullet(ens Entity)
+void Logic::eliminateMaxRangeBullet(entita_p Entity)
 {
 	if (!Entity)
 		return;

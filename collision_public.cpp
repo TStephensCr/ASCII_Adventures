@@ -20,7 +20,7 @@ void Collision::setDifficulty(int newDifficulty)
 
 //----Collision management functions----//
 
-void Collision::ManageJump(ens Entity)
+void Collision::ManageJump(entita_p Entity)
 {
     if (Entity != PlayerPointer)
         return;
@@ -40,7 +40,7 @@ void Collision::ManageJump(ens Entity)
     }
 }
 
-void Collision::OutOfBounds(ens Entity)
+void Collision::OutOfBounds(entita_p Entity)
 {
     int x, y;
     getmaxyx(curwin, y, x);
@@ -61,19 +61,16 @@ void Collision::OutOfBounds(ens Entity)
     }
 }
 
-void Collision::ManageCollisions(ens Entity)
+void Collision::ManageCollisions(entita_p Entity)
 {
     if (!Entity)
         return;
 
     UpdateVariables();
 
-    int xPos = Entity->pos.x;
-    int yPos = Entity->pos.y;
-
     ManageJump(Entity);
+
     OutOfBounds(Entity);
 
-    HandleVerticalCollision(Entity, xPos, yPos);
-    HandleHorizontalCollision(Entity, xPos, yPos);
+    handleCollisions(Entity);
 }

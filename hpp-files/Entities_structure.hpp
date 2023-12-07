@@ -1,6 +1,6 @@
 #include "Position.hpp"
 
-struct entita
+struct Entita
 {
   EntityType type;
   Position pos;
@@ -9,6 +9,6 @@ struct entita
   bool death_flag = false;
   int mappa = -1;
   int livello = -1;
-  entita *next;
+  Entita *next;
 };
-typedef entita *ens; // e = entit�, n = nello , s = spazio
+typedef Entita *entita_p; // e = entit�, n = nello , s = spazio

@@ -10,9 +10,9 @@ protected:
 
 	WINDOW *curwin;
 
-	ens ListOfEntities;
+	entita_p ListOfEntities;
 
-	ens PlayerPointer = NULL;
+	entita_p PlayerPointer = NULL;
 
 private:
 	//----Update functions----//
@@ -25,9 +25,9 @@ private:
 	void Jump();
 
 	//----Shooting functions----//
-	void HandleHitTarget(ens shooter, ens target);
-	bool checkIfValidShoot(char obstacle, ens shooter);
-	void HandleValidShot(ens shooter, int shooterXPos, int shooterYPos, char lastMovement);
+	void HandleHitTarget(entita_p shooter, entita_p target);
+	bool checkIfValidShoot(char obstacle, entita_p shooter);
+	void HandleValidShot(entita_p shooter, int shooterXPos, int shooterYPos, char lastMovement);
 
 public:
 	//----Constructor----//
@@ -38,6 +38,6 @@ public:
 	int getmv();
 
 	//----Entity actions----//
-	void Shoot(ens Entity, char Last_movement);
-	void DecreaseForce(ens myEntity);
+	void Shoot(entita_p Entity, char Last_movement);
+	void DecreaseForce(entita_p myEntity);
 };

@@ -10,59 +10,79 @@ void Collision::UpdateVariables()
 
 //----Collision handling functions----//
 
-void Collision::HandleVerticalCollision(ens Entity, int xPos, int &yPos)
+void Collision::handleCollisions(entita_p Entity)
 {
+    int xPos = Entity->pos.x;
+    int yPos = Entity->pos.y;
+
     if (Entity->yForce != 0)
-    {
-        int dir = (Entity->yForce < 0) ? -1 : 1;
-        char charAboveOrBelow = mvwinch(curwin, yPos + dir, xPos);
-
-        Position newP;
-        newP.Select(xPos, yPos + dir);
-
-        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
-
-        if (charAboveOrBelow == HORIZONTAL_WALL || charAboveOrBelow == VERTICAL_WALL || charAboveOrBelow == FULLFILL_POINT)
-        {
-            Entity->yForce = 0;
-            return;
-        }
-        else if (EntityInNewLoc && !EntityInNewLoc->death_flag)
-        {
-            HandleEntityCollision(Entity, EntityInNewLoc);
-        }
-
-        yPos = yPos + dir;
-    }
-}
-
-void Collision::HandleHorizontalCollision(ens Entity, int xPos, int yPos)
-{
+        HandleVerticalCollision(Entity, xPos, yPos);
     if (Entity->xForce != 0)
+        HandleHorizontalCollision(Entity, xPos, yPos);
+}
+
+void Collision::HandleVerticalCollision(entita_p Entity, int xPos, int &yPos)
+{
+    int dir = (Entity->yForce < 0) ? -1 : 1;
+    char charAboveOrBelow = mvwinch(curwin, yPos + dir, xPos);
+
+    entita_p CollidingEntity = getCollidingEntity(Entity, xPos, yPos + dir);
+
+    if (isMapCollision(charAboveOrBelow))
     {
-        xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
-        char charAtNewPos = mvwinch(curwin, yPos, xPos);
+        Entity->yForce = 0;
+        return;
+    }
+    else if (CollidingEntity)
+    {
+        HandleEntityCollision(Entity, CollidingEntity);
+    }
 
-        Position newP;
-        newP.Select(xPos, yPos);
+    yPos = yPos + dir;
+}
 
-        ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
+void Collision::HandleHorizontalCollision(entita_p Entity, int xPos, int yPos)
+{
+    xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
+    char charAtNewPos = mvwinch(curwin, yPos, xPos);
 
-        if (charAtNewPos == HORIZONTAL_WALL || charAtNewPos == VERTICAL_WALL || charAtNewPos == FULLFILL_POINT)
-        {
-            if (Entity->type == shoot)
-                entitiesOBJ->KillEntity(Entity);
-            else
-                Entity->xForce = 0;
-        }
-        else if (EntityInNewLoc && !EntityInNewLoc->death_flag && (!entitiesOBJ->SameDir(Entity, EntityInNewLoc) || EntityInNewLoc->xForce == 0))
-        {
-            HandleEntityCollision(Entity, EntityInNewLoc);
-        }
+    entita_p CollidingEntity = getCollidingEntity(Entity, xPos, yPos);
+
+    if (isMapCollision(charAtNewPos))
+    {
+        if (Entity->type == shoot)
+            entitiesOBJ->KillEntity(Entity);
+        else
+            Entity->xForce = 0;
+    }
+    else if (CollidingEntity && isPossibleEntitiesCollision(Entity, CollidingEntity))
+    {
+        HandleEntityCollision(Entity, CollidingEntity);
     }
 }
 
-void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
+bool Collision::isMapCollision(char posInNextFrame)
+{
+    return (posInNextFrame == HORIZONTAL_WALL || posInNextFrame == VERTICAL_WALL || posInNextFrame == FULLFILL_POINT);
+}
+
+bool Collision::isPossibleEntitiesCollision(entita_p Entity, entita_p CollidingEntity)
+{
+    return (!entitiesOBJ->SameDir(Entity, CollidingEntity) || CollidingEntity->xForce == 0);
+}
+
+entita_p Collision::getCollidingEntity(entita_p Entity, int entityNextX, int entityNextY)
+{
+    Position positionAtNweFrame;
+
+    positionAtNweFrame.Select(entityNextX, entityNextY);
+
+    entita_p CollidingEntity = entitiesOBJ->EntitiesInLocation(positionAtNweFrame, Entity->mappa, Entity->livello);
+
+    return CollidingEntity;
+}
+
+void Collision::HandleEntityCollision(entita_p Entity, entita_p CollidingEntity)
 {
     if (!PlayerPointer || !InfoPlayer)
     {
@@ -92,7 +112,7 @@ void Collision::HandleEntityCollision(ens Entity, ens CollidingEntity)
     }
 }
 
-void Collision::HandlePlayerCollision(ens CollidingEntity)
+void Collision::HandlePlayerCollision(entita_p CollidingEntity)
 {
     if (CollidingEntity->type == money)
     {
@@ -124,7 +144,7 @@ void Collision::HandlePlayerCollision(ens CollidingEntity)
     }
 }
 
-void Collision::HandleEnemyCollision(ens Entity, ens CollidingEntity)
+void Collision::HandleEnemyCollision(entita_p Entity, entita_p CollidingEntity)
 {
     if (CollidingEntity->type == player)
     {
@@ -138,7 +158,7 @@ void Collision::HandleEnemyCollision(ens Entity, ens CollidingEntity)
     }
 }
 
-void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
+void Collision::HandleShootCollision(entita_p Entity, entita_p CollidingEntity)
 {
     if (CollidingEntity->type == enemy)
     {
@@ -160,11 +180,10 @@ void Collision::HandleShootCollision(ens Entity, ens CollidingEntity)
     }
 }
 
-void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
+void Collision::HandleFollowerCollision(entita_p Entity, entita_p CollidingEntity)
 {
     if (CollidingEntity->type == player)
     {
-        entitiesOBJ->KillEntity(CollidingEntity);
         entitiesOBJ->KillEntity(Entity);
         entitiesOBJ->inflictDamageToPlayer(FOLLOWER_DAMAGE * difficulty);
     }
@@ -176,7 +195,7 @@ void Collision::HandleFollowerCollision(ens Entity, ens CollidingEntity)
     }
 }
 
-void Collision::HandleEnemyPlayerCollision(ens Enemy)
+void Collision::HandleEnemyPlayerCollision(entita_p Enemy)
 {
     if (Enemy->xForce > 0)
         PlayerPointer->xForce = 1 * REPELLING_XFORCE_OF_ENEMYS;

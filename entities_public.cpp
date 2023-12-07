@@ -11,19 +11,19 @@ Entities::Entities(WINDOW *win)
 // ---- Return Functions ---- //
 WINDOW *Entities::ReturnCurwin() { return curwin; }
 
-ens Entities::ReturnPlayerPointer() { return PlayerPointer; }
+entita_p Entities::ReturnPlayerPointer() { return PlayerPointer; }
 
 Player *Entities::ReturnPlayerOBJ() { return InfoPlayer; }
 
-ens Entities::ReturnList() { return entities; }
+entita_p Entities::ReturnList() { return entities; }
 
 // ---- Entity Management ---- //
-ens Entities::Insert(EntityType Type, int x, int y, int map, int level)
+entita_p Entities::Insert(EntityType Type, int x, int y, int map, int level)
 {
   if (Character(Type) == '?')
     return NULL;
 
-  ens tmp = new entita;
+  entita_p tmp = new Entita;
   tmp->type = Type;
   tmp->pos.Select(x, y);
   tmp->next = entities;
@@ -38,9 +38,9 @@ ens Entities::Insert(EntityType Type, int x, int y, int map, int level)
   return entities;
 }
 
-ens Entities::EntitiesInLocation(Position Loc, int mappa, int livello)
+entita_p Entities::EntitiesInLocation(Position Loc, int mappa, int livello)
 {
-  ens currentEntity = entities;
+  entita_p currentEntity = entities;
   bool found = false;
 
   while (currentEntity && !found)
@@ -65,7 +65,7 @@ ens Entities::EntitiesInLocation(Position Loc, int mappa, int livello)
   }
 }
 
-bool Entities::isValidEntity(ens entity, Position Loc, int mappa, int livello)
+bool Entities::isValidEntity(entita_p entity, Position Loc, int mappa, int livello)
 {
   return !entity->death_flag &&
          xLoc(entity) == Loc.x &&
@@ -75,7 +75,7 @@ bool Entities::isValidEntity(ens entity, Position Loc, int mappa, int livello)
 }
 
 // ---- Display Functions ---- //
-void Entities::Display(ens MyEntity)
+void Entities::Display(entita_p MyEntity)
 {
   if (MyEntity && !MyEntity->death_flag)
   {
@@ -85,14 +85,14 @@ void Entities::Display(ens MyEntity)
   }
 }
 
-void Entities::ClearPosition(ens Entity)
+void Entities::ClearPosition(entita_p Entity)
 {
   if (Entity)
     mvwaddch(curwin, yLoc(Entity), xLoc(Entity), ' ');
 }
 
 // ---- Movement and Deletion Functions ---- //
-void Entities::MoveEntity(ens myEntity)
+void Entities::MoveEntity(entita_p myEntity)
 {
   if (!myEntity)
     return;
@@ -118,7 +118,7 @@ void Entities::MoveEntity(ens myEntity)
   }
 }
 
-void Entities::KillEntity(ens Entity)
+void Entities::KillEntity(entita_p Entity)
 {
   if (Entity->type != player)
   {
@@ -127,7 +127,7 @@ void Entities::KillEntity(ens Entity)
   }
 }
 
-bool Entities::SameDir(ens Entity1, ens Entity2)
+bool Entities::SameDir(entita_p Entity1, entita_p Entity2)
 {
   if ((Entity1->xForce > 0) == (Entity2->xForce > 0))
     return true;
@@ -142,8 +142,8 @@ void Entities::DeleteEntities()
 
 void Entities::RemoveDeadEntities()
 {
-  ens currentEntity = entities;
-  ens prevEntity = NULL;
+  entita_p currentEntity = entities;
+  entita_p prevEntity = NULL;
 
   while (currentEntity)
   {
@@ -171,7 +171,7 @@ void Entities::RemoveDeadEntities()
 }
 
 // ---- Visual Effects and Player Stats ---- //
-void Entities::explosionEffect(ens entity)
+void Entities::explosionEffect(entita_p entity)
 {
   int x = xLoc(entity);
   int y = yLoc(entity);
@@ -232,7 +232,7 @@ void Entities::inflictDamageToPlayer(int damage)
   }
 }
 
-void Entities::moneyGrabberEffect(ens Money)
+void Entities::moneyGrabberEffect(entita_p Money)
 {
   init_pair(8, COLOR_YELLOW, COLOR_BLACK);
   wattron(curwin, COLOR_PAIR(8));

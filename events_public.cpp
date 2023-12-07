@@ -70,7 +70,7 @@ int Events::getmv()
 
 //----Entity actions----//
 
-void Events::DecreaseForce(ens myEntity)
+void Events::DecreaseForce(entita_p myEntity)
 {
 	if (myEntity)
 	{
@@ -85,7 +85,7 @@ void Events::DecreaseForce(ens myEntity)
 	}
 }
 
-void Events::Shoot(ens shooter, char lastMovement)
+void Events::Shoot(entita_p shooter, char lastMovement)
 {
 	int shooterXPos = shooter->pos.x;
 	int shooterYPos = shooter->pos.y;
@@ -94,7 +94,7 @@ void Events::Shoot(ens shooter, char lastMovement)
 	Position newShotPosition;
 	newShotPosition.Select(shooterXPos + xDelta, shooterYPos);
 
-	ens targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
+	entita_p targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
 
 	if (targetEntity)
 	{
