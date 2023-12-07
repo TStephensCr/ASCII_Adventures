@@ -3,7 +3,7 @@
 struct entita
 {
   EntityType type;
-  MyPosition pos;
+  Position pos;
   int xForce = 0;
   int yForce = 0;
   bool death_flag = false;

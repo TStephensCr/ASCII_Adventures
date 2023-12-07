@@ -38,7 +38,7 @@ ens Entities::Insert(EntityType Type, int x, int y, int map, int level)
   return entities;
 }
 
-ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello)
+ens Entities::EntitiesInLocation(Position Loc, int mappa, int livello)
 {
   ens currentEntity = entities;
   bool found = false;
@@ -65,7 +65,7 @@ ens Entities::EntitiesInLocation(MyPosition Loc, int mappa, int livello)
   }
 }
 
-bool Entities::isValidEntity(ens entity, MyPosition Loc, int mappa, int livello)
+bool Entities::isValidEntity(ens entity, Position Loc, int mappa, int livello)
 {
   return !entity->death_flag &&
          xLoc(entity) == Loc.x &&

@@ -317,11 +317,13 @@ void Logic::InitMappa(int curCounter, int curLev, bool check)
 		curLev_ = curLev;
 	}
 
-	if(curCounter < 1 || curCounter > 8){
+	if (curCounter < 1 || curCounter > 8)
+	{
 		map->leggimappa(curCounter);
 		map->stampamappa();
 	}
-	else{
+	else
+	{
 		map->leggimappa(mapArray[curCounter - 1]);
 		map->stampamappa();
 	}
@@ -351,13 +353,14 @@ void Logic::FileWrite()
 		myfile << '\n';
 	}
 
-	myfile << 'A' << '\n'; //array mappe
+	myfile << 'A' << '\n'; // array mappe
 	for (int i = 0; i < 8; i++)
 	{
 		myfile << mapArray[i] << '.';
-	}myfile << '\n';
+	}
+	myfile << '\n';
 
-	myfile << 'M' << mapCounter << '\n'; //counter mappe
+	myfile << 'M' << mapCounter << '\n'; // counter mappe
 
 	Player *tmpPlay = ReturnInfoPlayer();
 	myfile << 'U' << '\n';
@@ -427,7 +430,7 @@ void Logic::update_game_logic()
 
 	eventi->PlayerGravity();
 
-	MyPosition rememberPosition;
+	Position rememberPosition;
 	rememberPosition.Select(PlayerPointer->pos.x, PlayerPointer->pos.y);
 
 	while (tmp)
@@ -544,7 +547,7 @@ void Logic::increaseMap()
 void Logic::scrambleArray()
 {
 	unsigned int seed = (unsigned int)time(NULL);
-    srand(seed);
+	srand(seed);
 	int temp;
 	int randomIndex;
 	for (int i = 0; i < 8; i++)

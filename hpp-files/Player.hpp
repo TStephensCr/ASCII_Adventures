@@ -10,5 +10,5 @@ struct Player
     int bulletRange = 10;
     char LastMovement = 'd';
     bool inJump = false;
-    MyPosition previusPosition;
+    Position previusPosition;
 };

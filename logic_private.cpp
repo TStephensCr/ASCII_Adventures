@@ -74,13 +74,13 @@ void Logic::handleFollower(ens follower)
 {
 	if (PlayerTrackingQueue.size < FOLLOWER_DELAY)
 	{
-		MyPosition nullPos;
+		Position nullPos;
 		PlayerTrackingQueue.enqueue(nullPos);
 	}
 	else
 	{
 		bool stuck = false;
-		MyPosition positionWithDelay = PlayerTrackingQueue.dequeue();
+		Position positionWithDelay = PlayerTrackingQueue.dequeue();
 		if (positionWithDelay.checkValidPos())
 		{
 			if (follower->pos.x != positionWithDelay.x)

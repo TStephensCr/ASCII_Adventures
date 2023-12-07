@@ -41,8 +41,8 @@ public:
 
    //----Entity Management----//
    ens Insert(EntityType tipo, int x, int y, int map, int level);
-   ens EntitiesInLocation(MyPosition Loc, int mappa, int livello);
-   bool isValidEntity(ens entity, MyPosition Loc, int mappa, int livello);
+   ens EntitiesInLocation(Position Loc, int mappa, int livello);
+   bool isValidEntity(ens entity, Position Loc, int mappa, int livello);
    void Display(ens MyEntity);
    void ClearPosition(ens Entity);
    void KillEntity(ens Entity);

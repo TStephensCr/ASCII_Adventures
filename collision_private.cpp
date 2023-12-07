@@ -17,7 +17,7 @@ void Collision::HandleVerticalCollision(ens Entity, int xPos, int &yPos)
         int dir = (Entity->yForce < 0) ? -1 : 1;
         char charAboveOrBelow = mvwinch(curwin, yPos + dir, xPos);
 
-        MyPosition newP;
+        Position newP;
         newP.Select(xPos, yPos + dir);
 
         ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);
@@ -43,7 +43,7 @@ void Collision::HandleHorizontalCollision(ens Entity, int xPos, int yPos)
         xPos = (Entity->xForce < 0) ? xPos - 1 : xPos + 1;
         char charAtNewPos = mvwinch(curwin, yPos, xPos);
 
-        MyPosition newP;
+        Position newP;
         newP.Select(xPos, yPos);
 
         ens EntityInNewLoc = entitiesOBJ->EntitiesInLocation(newP, Entity->mappa, Entity->livello);

@@ -1,6 +1,6 @@
 #pragma once
 
-struct MyPosition
+struct Position
 {
   int x = -1;
   int y = -1;
@@ -22,4 +22,3 @@ struct MyPosition
     return (x != -1 and y != -1);
   }
 };
-typedef MyPosition *pos;

@@ -91,7 +91,7 @@ void Events::Shoot(ens shooter, char lastMovement)
 	int shooterYPos = shooter->pos.y;
 	int xDelta = (lastMovement == 'd') ? 1 : -1;
 
-	MyPosition newShotPosition;
+	Position newShotPosition;
 	newShotPosition.Select(shooterXPos + xDelta, shooterYPos);
 
 	ens targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);

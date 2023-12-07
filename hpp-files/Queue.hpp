@@ -1,8 +1,8 @@
 struct Node
 {
-    MyPosition element;
+    Position element;
     Node *next;
-    Node(MyPosition pos)
+    Node(Position pos)
     {
         element = pos;
         next = NULL;
@@ -20,7 +20,7 @@ struct Queue
         size = 0;
     }
 
-    void enqueue(MyPosition pos)
+    void enqueue(Position pos)
     {
         node temp = new Node(pos);
         size++;
@@ -34,11 +34,11 @@ struct Queue
         rear = temp;
     }
 
-    MyPosition dequeue()
+    Position dequeue()
     {
         if (front == NULL)
         {
-            MyPosition tmp;
+            Position tmp;
             return tmp; // return (-1,-1)
         }
 
@@ -62,7 +62,7 @@ struct Queue
 
     void initialize(int queueInitialLenght)
     {
-        MyPosition nullPos;
+        Position nullPos;
         for (int i = 0; i < queueInitialLenght; i++)
         {
             enqueue(nullPos);
