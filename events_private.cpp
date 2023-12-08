@@ -78,3 +78,14 @@ void Events::HandleValidShot(entita_p shooter, int x, int y, char lastMovement)
 		shot->xForce = (lastMovement == 'd') ? MAX_BULLET_RANGE : -MAX_BULLET_RANGE;
 	}
 }
+
+entita_p Events::getTargetEntity(entita_p shooter, int shootNextX, int shootNextY)
+{
+	Position newShotPosition;
+
+	newShotPosition.Select(shootNextX, shootNextY);
+
+	entita_p targetEntity = entitiesOBJ->EntitiesInLocation(positionAtNewFrame, shooter->mappa, shooter->livello);
+
+	return targetEntity;
+}
