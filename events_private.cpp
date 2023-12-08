@@ -85,7 +85,7 @@ entita_p Events::getTargetEntity(entita_p shooter, int shootNextX, int shootNext
 
 	newShotPosition.Select(shootNextX, shootNextY);
 
-	entita_p targetEntity = entitiesOBJ->EntitiesInLocation(positionAtNewFrame, shooter->mappa, shooter->livello);
+	entita_p targetEntity = entitiesOBJ->EntitiesInLocation(newShotPosition, shooter->mappa, shooter->livello);
 
 	return targetEntity;
 }

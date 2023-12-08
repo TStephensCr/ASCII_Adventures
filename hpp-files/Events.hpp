@@ -26,6 +26,7 @@ private:
 
 	//----Shooting functions----//
 	void HandleHitTarget(entita_p shooter, entita_p target);
+	entita_p getTargetEntity(entita_p shooter, int shootNextX, int shootNextY);
 	bool checkIfValidShoot(char obstacle, entita_p shooter);
 	void HandleValidShot(entita_p shooter, int shooterXPos, int shooterYPos, char lastMovement);
 

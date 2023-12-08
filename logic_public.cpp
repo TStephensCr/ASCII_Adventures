@@ -69,6 +69,20 @@ bool Logic::return_DevMode_status()
 
 //---set or reset functions---//
 
+void Logic::initEntities()
+{
+	entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, 1, 0);
+
+	initEntitiesInMap1();
+	initEntitiesInMap2();
+	initEntitiesInMap3();
+	initEntitiesInMap4();
+	initEntitiesInMap5();
+	initEntitiesInMap6();
+	initEntitiesInMap7();
+	initEntitiesInMap8();
+}
+
 void Logic::ResetEntities()
 {
 	entitiesOBJ->DeleteEntities();
@@ -77,14 +91,10 @@ void Logic::ResetEntities()
 	PlayerTrackingQueue.initialize(FOLLOWER_DELAY);
 	resetCounter_bot();
 }
-
-void Logic::InitEntities()
+void Logic::initEntitiesInMap1()
 {
-	entitiesOBJ->Insert(player, X_PLAYERSPAWN, Y_PLAYERSPAWN, 1, 0);
-
 	for (int x = 0; x < 3; x++)
 	{
-		// MAPPA 1
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 1, x);
@@ -106,8 +116,13 @@ void Logic::InitEntities()
 		}
 
 		entitiesOBJ->Insert(money, 78, 8, 1, x);
+	}
+}
 
-		// MAPPA 2
+void Logic::initEntitiesInMap2()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 2, x);
@@ -133,8 +148,12 @@ void Logic::InitEntities()
 		{
 			entitiesOBJ->Insert(enemy, 77, 10, 2, x);
 		}
-
-		// MAPPA 3
+	}
+}
+void Logic::initEntitiesInMap3()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 3, x);
@@ -157,8 +176,13 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 60, 6, 3, x);
 
 		entitiesOBJ->Insert(money, 73, 13, 3, x);
+	}
+}
 
-		// MAPPA 4
+void Logic::initEntitiesInMap4()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 4, x);
@@ -184,8 +208,13 @@ void Logic::InitEntities()
 		}
 
 		entitiesOBJ->Insert(powerup, 22, 10, 4, x);
+	}
+}
 
-		// MAPPA 5
+void Logic::initEntitiesInMap5()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 5, x);
@@ -211,8 +240,13 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 73, 10, 5, x);
 
 		entitiesOBJ->Insert(powerup, 45, 14, 5, x);
+	}
+}
 
-		// MAPPA 6
+void Logic::initEntitiesInMap6()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 6, x);
@@ -236,8 +270,13 @@ void Logic::InitEntities()
 		entitiesOBJ->Insert(money, 35, 11, 6, x);
 
 		entitiesOBJ->Insert(powerup, 64, 11, 6, x);
+	}
+}
 
-		// MAPPA 7
+void Logic::initEntitiesInMap7()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 7, x);
@@ -259,8 +298,13 @@ void Logic::InitEntities()
 		}
 
 		entitiesOBJ->Insert(money, 62, 12, 7, x);
+	}
+}
 
-		// MAPPA 8
+void Logic::initEntitiesInMap8()
+{
+	for (int x = 0; x < 3; x++)
+	{
 		if (x > 0)
 		{
 			entitiesOBJ->Insert(follower, 5, 4, 8, x);
@@ -428,21 +472,21 @@ void Logic::update_game_logic()
 
 	updateMapRelativeToPlayer();
 
+	collision->setDifficulty(difficulty);
+
 	eventi->PlayerGravity();
 
 	Position rememberPosition;
+
 	rememberPosition.Select(PlayerPointer->pos.x, PlayerPointer->pos.y);
 
 	while (tmp)
 	{
 		if ((!tmp->death_flag) && tmp->mappa == curmap_ && tmp->livello == curLev_)
 		{
-
 			entitiesOBJ->DisplayPlayerStats();
 
 			HandleBot(tmp);
-
-			collision->setDifficulty(difficulty);
 
 			collision->ManageCollisions(tmp);
 
@@ -460,7 +504,9 @@ void Logic::update_game_logic()
 	}
 
 	InfoPlayer->previusPosition.Select(rememberPosition.x, rememberPosition.y);
+
 	entitiesOBJ->RemoveDeadEntities();
+
 	IncrementCounters();
 }
 

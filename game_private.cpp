@@ -79,7 +79,7 @@ void Game::initializeEntitiesForNewGame()
 {
     logic->ResetEntities();
 
-    logic->InitEntities();
+    logic->initEntities();
 
     logic->scrambleArray();
 

@@ -36,7 +36,7 @@ void Logic::HandleBot(entita_p entity)
 {
 	if (entity->type == enemy)
 	{
-		handleEnemys(entity);
+		handleEnemies(entity);
 	}
 	else if (entity->type == follower)
 	{
@@ -44,29 +44,45 @@ void Logic::HandleBot(entita_p entity)
 	}
 }
 
-void Logic::handleEnemys(entita_p entity)
+void Logic::handleEnemies(entita_p entity)
 {
 	if (bot_clock == 3)
 	{
-		if (entity->livello == 2)
-		{
-			if (counter_bot[curmap_ - 1][curLev_] == 4)
-			{
-				eventi->Shoot(entity, 'd');
-			}
-			else if (counter_bot[curmap_ - 1][curLev_] == 13)
-			{
-				eventi->Shoot(entity, 's');
-			}
-		}
-		if (counter_bot[curmap_ - 1][curLev_] < 9)
-		{
-			entity->xForce = 1;
-		}
-		else if (counter_bot[curmap_ - 1][curLev_] >= 9 && counter_bot[curmap_ - 1][curLev_] < 18)
-		{
-			entity->xForce = -1;
-		}
+		handleEnemiesShots(entity);
+
+		handleEnemysMovement(entity);
+	}
+}
+
+void Logic::handleEnemiesShots(entita_p enemy)
+{
+	if (enemy->livello == 2)
+	{
+		letEnemiesShoot(enemy);
+	}
+}
+
+void Logic::letEnemiesShoot(entita_p enemy)
+{
+	if (counter_bot[curmap_ - 1][curLev_] == 4)
+	{
+		eventi->Shoot(enemy, 'd');
+	}
+	else if (counter_bot[curmap_ - 1][curLev_] == 13)
+	{
+		eventi->Shoot(enemy, 's');
+	}
+}
+
+void Logic::handleEnemysMovement(entita_p enemy)
+{
+	if (counter_bot[curmap_ - 1][curLev_] < 9)
+	{
+		enemy->xForce = 1;
+	}
+	else if (counter_bot[curmap_ - 1][curLev_] < 18)
+	{
+		enemy->xForce = -1;
 	}
 }
 
@@ -76,34 +92,63 @@ void Logic::handleFollower(entita_p follower)
 	{
 		Position nullPos;
 		PlayerTrackingQueue.enqueue(nullPos);
+		return;
+	}
+
+	Position playerPositionWithDelay = PlayerTrackingQueue.dequeue();
+
+	if (playerPositionWithDelay.checkValidPos())
+	{
+		letFollowerMove(follower, playerPositionWithDelay);
+	}
+
+	PlayerTrackingQueue.enqueue(PlayerPointer->pos);
+}
+
+void Logic::letFollowerMove(entita_p follower, Position playerPositionWithDelay)
+{
+	bool stuck = false;
+
+	if (follower->pos.x != playerPositionWithDelay.x)
+	{
+		moveFollowerHorizontally(follower, playerPositionWithDelay, stuck);
+	}
+	moveFollowerVertically(follower, playerPositionWithDelay, stuck);
+}
+
+void Logic::moveFollowerHorizontally(entita_p follower, Position playerPositionWithDelay, bool &stuck)
+{
+
+	int direction = (follower->pos.x > playerPositionWithDelay.x) ? -1 : 1;
+	char nextBlock = mvwinch(curwin, follower->pos.y, follower->pos.x + direction);
+
+	if (isFollowerValidMove(nextBlock))
+	{
+		stuck = true;
+		return;
 	}
 	else
 	{
-		bool stuck = false;
-		Position positionWithDelay = PlayerTrackingQueue.dequeue();
-		if (positionWithDelay.checkValidPos())
-		{
-			if (follower->pos.x != positionWithDelay.x)
-			{
-				int direction = (follower->pos.x > positionWithDelay.x) ? -1 : 1;
-				char nextBlock = mvwinch(curwin, follower->pos.y, follower->pos.x + direction);
-
-				if (nextBlock != CHARACTER and nextBlock != SPACE and nextBlock != SHOOT)
-				{
-					follower->yForce = -1;
-					stuck = true;
-				}
-				follower->xForce = direction;
-			}
-			if (follower->pos.y > positionWithDelay.y)
-				follower->yForce = -1;
-			else if (follower->pos.y < positionWithDelay.y && !stuck)
-				follower->yForce = 1;
-
-			stuck = false;
-		}
-		PlayerTrackingQueue.enqueue(PlayerPointer->pos);
+		follower->xForce = direction;
 	}
+}
+
+void Logic::moveFollowerVertically(entita_p follower, Position playerPositionWithDelay, bool &stuck)
+{
+	if (follower->pos.y > playerPositionWithDelay.y || stuck)
+	{
+		follower->yForce = -1;
+	}
+	else
+	{
+		follower->yForce = 1;
+	}
+	stuck = false;
+}
+
+bool Logic::isFollowerValidMove(char block)
+{
+	return block != CHARACTER && block != SPACE && block != SHOOT;
 }
 
 void Logic::resetCounter_bot()
