@@ -89,3 +89,15 @@ entita_p Events::getTargetEntity(entita_p shooter, int shootNextX, int shootNext
 
 	return targetEntity;
 }
+
+bool Events::isValidTarget(entita_p target)
+{
+	if (target == NULL)
+	{
+		return false;
+	}
+	else
+	{
+		return target->type == enemy || target->type == player || target->type == follower;
+	}
+}

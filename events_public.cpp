@@ -93,7 +93,7 @@ void Events::Shoot(entita_p shooter, char lastMovement)
 
 	entita_p targetEntity = getTargetEntity(shooter, shooterXPos + xDelta, shooterYPos);
 
-	if (targetEntity)
+	if (isValidTarget(targetEntity) == true)
 	{
 		HandleHitTarget(shooter, targetEntity);
 	}
