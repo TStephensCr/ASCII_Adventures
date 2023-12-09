@@ -129,6 +129,8 @@ public:
 
 	void increaseMap();
 
+	void increaseMapStat();
+
 	void decreaseMap();
 
 	void scrambleArray();
