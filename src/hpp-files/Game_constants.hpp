@@ -41,6 +41,12 @@
 
 #define DAMAGE_SCALE_FACTOR 2
 
+#define NUM_OF_LAST_MAP 8
+#define NUM_OF_FIRST_MAP 1
+
+#define LAST_LEVEL 2
+#define FIRST_LEVEL 0
+
 enum menuChoice
 {
     NewGame,

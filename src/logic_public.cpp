@@ -374,8 +374,8 @@ void Logic::InitMappa(int curCounter, int curLev, bool check)
 }
 
 //---logic functions---//
-void Logic::FileWrite()			// scrive il salvataggio su file
-{ 
+void Logic::FileWrite() // scrive il salvataggio su file
+{
 	std::ofstream myfile;
 	myfile.open("Salvataggio.txt", std::ofstream::trunc);
 
@@ -415,21 +415,21 @@ void Logic::FileWrite()			// scrive il salvataggio su file
 	myfile << 'U' << '\n';
 
 	myfile << 'h' << tmpPlay->hp << '\n';
-	
+
 	myfile << 's' << tmpPlay->shield << '\n';
-	
+
 	myfile << 'm' << tmpPlay->Money << '\n';
-	
+
 	myfile << 'c' << tmpPlay->colpi << '\n';
-	
+
 	myfile << 'p' << tmpPlay->points << '\n';
-	
+
 	myfile << 'r' << tmpPlay->bulletRange << '\n';
-	
+
 	myfile << 'l' << tmpPlay->LastMovement << '\n';
-	
+
 	myfile << 'b' << tmpPlay->inJump << '\n';
-	
+
 	myfile << 'x' << PlayerPointer->pos.x << '.' << PlayerPointer->pos.y << '.' << '\n';
 
 	//---Entities---//
@@ -540,70 +540,64 @@ void Logic::render()
 	}
 }
 
-void Logic::decreaseMap()
+void Logic::decreaseMap() // finire da sistemare
 {
 	if (mapCounter == 1 && curLev_ > 0)
 	{
-		mapCounter = 8;
+		mapCounter = NUM_OF_LAST_MAP;
 		curmap_ = mapArray[mapCounter - 1];
 		curLev_--;
 		PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
 		PlayerTrackingQueue.clear();
 	}
-	else
+	else if (curLev_ == 0 && mapCounter == 1)
 	{
-		if (curLev_ == 0 && mapCounter == 1)
+		if (difficulty > 1)
 		{
-			if (difficulty > 1)
-			{
-				difficulty--;
-				curLev_ = 2;
-				mapCounter = 8;
-				curmap_ = mapArray[mapCounter - 1];
-				PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
-			}
-			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-			PlayerTrackingQueue.clear();
-		}
-		else
-		{
-			mapCounter--;
+			difficulty--;
+			curLev_ = 2;
+			mapCounter = NUM_OF_LAST_MAP;
 			curmap_ = mapArray[mapCounter - 1];
 			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
-			PlayerTrackingQueue.clear();
 		}
-	}
-}
-
-void Logic::increaseMap()
-{
-	if (mapCounter == 8 && curLev_ < 2)
-	{
-		curLev_++;
-		mapCounter = 1;
-		curmap_ = mapArray[mapCounter - 1];
 		PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
 		PlayerTrackingQueue.clear();
 	}
 	else
 	{
-		if (curLev_ == 2 && mapCounter == 8)
-		{
-			difficulty++;
-			curLev_ = 0;
-			mapCounter = 1;
-			curmap_ = mapArray[mapCounter - 1];
-			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-			PlayerTrackingQueue.clear();
-		}
-		else
-		{
-			mapCounter++;
-			curmap_ = mapArray[mapCounter - 1];
-			PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
-			PlayerTrackingQueue.clear();
-		}
+		mapCounter--;
+		curmap_ = mapArray[mapCounter - 1];
+		PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
+		PlayerTrackingQueue.clear();
 	}
+}
+
+void Logic::increaseMapStat()
+{
+	if (mapCounter == NUM_OF_LAST_MAP && curLev_ < LAST_LEVEL)
+	{
+		curLev_++;
+		mapCounter = NUM_OF_FIRST_MAP;
+	}
+	else if (curLev_ == LAST_LEVEL && mapCounter == NUM_OF_LAST_MAP)
+	{
+		difficulty++;
+		curLev_ = FIRST_LEVEL;
+		mapCounter = NUM_OF_FIRST_MAP;
+	}
+	else
+	{
+		mapCounter++;
+	}
+}
+
+void Logic::increaseMap()
+{
+	increaseMapStat();
+
+	curmap_ = mapArray[mapCounter - 1];
+	PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+	PlayerTrackingQueue.clear();
 }
 
 void Logic::scrambleArray()
