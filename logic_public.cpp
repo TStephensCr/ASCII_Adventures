@@ -379,15 +379,17 @@ void Logic::FileWrite()			// scrive il salvataggio su file
 	std::ofstream myfile;
 	myfile.open("Salvataggio.txt", std::ofstream::trunc);
 
-	myfile << 'M' << curmap_ << '\n'; // mappa
+	//---General---//
 
-	myfile << 'L' << curLev_ << '\n'; // livello
+	myfile << curmap_ << '\n'; // mappa
 
-	myfile << 'D' << difficulty << '\n'; // difficoltà
+	myfile << curLev_ << '\n'; // livello
 
-	myfile << 'C' << bot_clock << '\n'; // pacing del gioco
+	myfile << difficulty << '\n'; // difficoltà
 
-	myfile << 'B' << '\n'; // pacing dei bot
+	myfile << bot_clock << '\n'; // pacing del gioco
+
+	// pacing dei bot
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -397,26 +399,40 @@ void Logic::FileWrite()			// scrive il salvataggio su file
 		myfile << '\n';
 	}
 
-	myfile << 'A' << '\n'; // array mappe
+	// array mappe
 	for (int i = 0; i < 8; i++)
 	{
 		myfile << mapArray[i] << '.';
 	}
 	myfile << '\n';
 
-	myfile << 'M' << mapCounter << '\n'; // counter mappe
+	myfile << mapCounter << '\n'; // counter mappe
+
+	//---Player---//
 
 	Player *tmpPlay = ReturnInfoPlayer();
+
 	myfile << 'U' << '\n';
+
 	myfile << 'h' << tmpPlay->hp << '\n';
+	
 	myfile << 's' << tmpPlay->shield << '\n';
+	
 	myfile << 'm' << tmpPlay->Money << '\n';
+	
 	myfile << 'c' << tmpPlay->colpi << '\n';
+	
 	myfile << 'p' << tmpPlay->points << '\n';
+	
 	myfile << 'r' << tmpPlay->bulletRange << '\n';
+	
 	myfile << 'l' << tmpPlay->LastMovement << '\n';
+	
 	myfile << 'b' << tmpPlay->inJump << '\n';
+	
 	myfile << 'x' << PlayerPointer->pos.x << '.' << PlayerPointer->pos.y << '.' << '\n';
+
+	//---Entities---//
 
 	entita_p tmp = entitiesOBJ->ReturnList();
 	while (tmp != NULL)

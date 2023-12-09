@@ -184,41 +184,29 @@ void Logic::ReadGeneral()
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");
 
-	do
-	{ // mappa
-		mychar = myfile.get();
-	} while (mychar != 'M');
+	//mappa
 	mychar = myfile.get();
-	curmap_ = mychar - '0'; // per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
+	curmap_ = mychar - '0';  	// per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
+	myfile.get();			 	// il carattere \n
 
-	do
-	{ // livello
-		mychar = myfile.get();
-	} while (mychar != 'L');
+	//livello
 	mychar = myfile.get();
 	curLev_ = mychar - '0';
+	myfile.get(); 				// il carattere \n
 
-	do
-	{ // difficoltà
-		mychar = myfile.get();
-	} while (mychar != 'D');
+	//difficulty
 	mychar = myfile.get();
 	difficulty = mychar - '0';
+	myfile.get(); 				// il carattere \n
 
-	do
-	{ // bot_clock
-		mychar = myfile.get();
-	} while (mychar != 'C');
+	//bot clock
 	mychar = myfile.get();
 	bot_clock = mychar - '0';
+	myfile.get(); 				// il carattere \n
 
 	char number_str[3];
 	char *output;
-	do
-	{ // counter_bot
-		mychar = myfile.get();
-	} while (mychar != 'B');
-	mychar = myfile.get(); // il carattere \n
+	//counter bot
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -229,32 +217,26 @@ void Logic::ReadGeneral()
 			if (number_str[1] != '.')
 				mychar = myfile.get();
 		}
-		mychar = myfile.get(); // il carattere \n
+		myfile.get(); 			// il carattere \n
 	}
 
-	do
-	{ // array mappe
-		mychar = myfile.get();
-	} while (mychar != 'A');
-	mychar = myfile.get(); // il carattere \n
+	//array mappe
 	for (int i = 0; i < 8; i++)
 	{
 		mapArray[i] = myfile.get() - '0';
 		myfile.get();
 	}
+	myfile.get(); 				// il carattere \n
 
-	do
-	{ // counter mappe
-		mychar = myfile.get();
-	} while (mychar != 'M');
+	//counter mappe
 	mychar = myfile.get();
 	mapCounter = mychar - '0';
 
 	myfile.close();
 }
 
-void Logic::ReadPlayer()
-{ // manca leggere positionWithDelay per l'insert
+void Logic::ReadPlayer()// manca leggere positionWithDelay per l'insert
+{ 
 	char mychar;
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");
