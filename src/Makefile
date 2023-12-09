@@ -9,6 +9,7 @@ HPPDIR = hpp-files
 SRCS = $(wildcard $(SRCDIR)/*.cpp)
 OBJS = $(patsubst $(SRCDIR)/%.cpp, $(OBJDIR)/%.o, $(SRCS))
 TARGET = game
+TARGET2 = Salvataggio.txt
 
 all: $(TARGET)
 
@@ -20,6 +21,8 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
 	$(CC) $(CFLAGS) -c -o $@ $< -I$(HPPDIR)
 
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJDIR) $(TARGET) $(TARGET2)
 
 .PHONY: all clean
+
+
