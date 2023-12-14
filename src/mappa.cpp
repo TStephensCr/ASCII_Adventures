@@ -1,4 +1,4 @@
-#include "hpp-files/Mappa.hpp"
+#include "../include/Mappa.hpp"
 #include <fstream>
 #include <iostream>
 

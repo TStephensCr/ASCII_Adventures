@@ -1,3 +1,4 @@
+#pragma once
 #include "Events.hpp"
 
 class Collision

@@ -1,3 +1,4 @@
+#pragma once
 #define CHARACTER '@'
 #define ENEMY '&'
 #define MONEY 'o'

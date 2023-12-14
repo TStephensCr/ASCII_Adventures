@@ -1,4 +1,4 @@
-#include "hpp-files/Logic.hpp"
+#include "../include/Logic.hpp"
 
 void Logic::UpdateVariables()
 {
@@ -184,29 +184,29 @@ void Logic::ReadGeneral()
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");
 
-	//mappa
+	// mappa
 	mychar = myfile.get();
-	curmap_ = mychar - '0';  	// per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
-	myfile.get();			 	// il carattere \n
+	curmap_ = mychar - '0'; // per ottenere il valore int di un numero letto come char si sottrae il valore int assegnato a '0' al valore in assegnato al char letto('3'=51, '0'=48, 51-48=3)
+	myfile.get();			// il carattere \n
 
-	//livello
+	// livello
 	mychar = myfile.get();
 	curLev_ = mychar - '0';
-	myfile.get(); 				// il carattere \n
+	myfile.get(); // il carattere \n
 
-	//difficulty
+	// difficulty
 	mychar = myfile.get();
 	difficulty = mychar - '0';
-	myfile.get(); 				// il carattere \n
+	myfile.get(); // il carattere \n
 
-	//bot clock
+	// bot clock
 	mychar = myfile.get();
 	bot_clock = mychar - '0';
-	myfile.get(); 				// il carattere \n
+	myfile.get(); // il carattere \n
 
 	char number_str[3];
 	char *output;
-	//counter bot
+	// counter bot
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 8; j++)
@@ -217,26 +217,26 @@ void Logic::ReadGeneral()
 			if (number_str[1] != '.')
 				mychar = myfile.get();
 		}
-		myfile.get(); 			// il carattere \n
+		myfile.get(); // il carattere \n
 	}
 
-	//array mappe
+	// array mappe
 	for (int i = 0; i < 8; i++)
 	{
 		mapArray[i] = myfile.get() - '0';
 		myfile.get();
 	}
-	myfile.get(); 				// il carattere \n
+	myfile.get(); // il carattere \n
 
-	//counter mappe
+	// counter mappe
 	mychar = myfile.get();
 	mapCounter = mychar - '0';
 
 	myfile.close();
 }
 
-void Logic::ReadPlayer()// manca leggere positionWithDelay per l'insert
-{ 
+void Logic::ReadPlayer() // manca leggere positionWithDelay per l'insert
+{
 	char mychar;
 	std::ifstream myfile;
 	myfile.open("Salvataggio.txt");

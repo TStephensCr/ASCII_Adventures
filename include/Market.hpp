@@ -1,3 +1,4 @@
+#pragma once
 #ifndef NEGOZIO_HPP
 #define NEGOZIO_HPP
 #include "Entities.hpp"

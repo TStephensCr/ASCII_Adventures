@@ -1,3 +1,4 @@
+#pragma once
 #include "Logic.hpp"
 #include "Menu.hpp"
 #include "Market.hpp"

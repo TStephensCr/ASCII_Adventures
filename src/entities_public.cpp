@@ -1,4 +1,4 @@
-#include "hpp-files/Entities.hpp"
+#include "../include/Entities.hpp"
 
 // ---- Constructor ---- //
 Entities::Entities(WINDOW *win)
