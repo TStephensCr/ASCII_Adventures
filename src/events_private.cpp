@@ -1,6 +1,6 @@
 // Events.cpp
 
-#include "hpp-files/Events.hpp"
+#include "../include/Events.hpp"
 
 //----Update functions----//
 void Events::UpdateVariables()

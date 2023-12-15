@@ -21,8 +21,11 @@ If you don't have already done it, install Ncurses library with this comand:
 
 ## Compiling and Running
 
-To compile run this command :
+To compile run these commands :
  
+    mkdir build
+    cd build
+    cmake ..
     make
 
 To run the game run this command : 

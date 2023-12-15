@@ -1,3 +1,4 @@
+#pragma once
 #define MaxForce 5
 #include "Entities.hpp"
 

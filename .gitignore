@@ -3,3 +3,5 @@
 *.out
 /Salvataggio.txt
 /game
+build/
+.vscode/

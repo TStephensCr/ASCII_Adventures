@@ -1,4 +1,4 @@
-#include "hpp-files/Entities.hpp"
+#include "../include/Entities.hpp"
 
 char Entities::Character(EntityType type)
 {

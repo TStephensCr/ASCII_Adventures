@@ -1,4 +1,4 @@
-#include "hpp-files/Logic.hpp"
+#include "../include/Logic.hpp"
 //---constructor---//
 
 Logic::Logic(WINDOW *win, WINDOW *menuuwin)
