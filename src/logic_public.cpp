@@ -377,7 +377,7 @@ void Logic::InitMappa(int curCounter, int curLev, bool check)
 void Logic::FileWrite() // scrive il salvataggio su file
 {
 	std::ofstream myfile;
-	myfile.open("Salvataggio.txt", std::ofstream::trunc);
+	myfile.open("../src/Salvataggio.txt", std::ofstream::trunc);
 
 	//---General---//
 
@@ -467,7 +467,7 @@ void Logic::FileWrite() // scrive il salvataggio su file
 void Logic::FileRead()
 {
 	std::ifstream myfile;
-	myfile.open("Salvataggio.txt");
+	myfile.open("../src/Salvataggio.txt");
 
 	if (myfile.good())
 	{

@@ -157,7 +157,7 @@ void Logic::ReadGeneral()
 {
 	char mychar;
 	std::ifstream myfile;
-	myfile.open("Salvataggio.txt");
+	myfile.open("../src/Salvataggio.txt");
 
 	// mappa
 	mychar = myfile.get();
@@ -214,7 +214,7 @@ void Logic::ReadPlayer() // manca leggere positionWithDelay per l'insert
 {
 	char mychar;
 	std::ifstream myfile;
-	myfile.open("Salvataggio.txt");
+	myfile.open("../src/Salvataggio.txt");
 	char number_str[3];
 	char *output;
 
@@ -328,7 +328,7 @@ void Logic::ReadEntities()
 {
 	char mychar;
 	std::ifstream myfile;
-	myfile.open("Salvataggio.txt");
+	myfile.open("../src/Salvataggio.txt");
 	char number_str[3];
 	char *output;
 
