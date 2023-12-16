@@ -1,4 +1,5 @@
 #include "../include/Logic.hpp"
+#include <filesystem>
 //---constructor---//
 
 Logic::Logic(WINDOW *win, WINDOW *menuuwin)
@@ -466,6 +467,11 @@ void Logic::FileWrite() // scrive il salvataggio su file
 
 void Logic::FileRead()
 {
+	namespace fs = std::filesystem;
+	fs::path f { "../src/Salvataggio.txt" };
+    if (!fs::exists(f)) {
+        return;
+    }
 	std::ifstream myfile;
 	myfile.open("../src/Salvataggio.txt");
 
