@@ -61,10 +61,7 @@ private:
 	void letEnemiesShoot(entita_p enemy);
 	void handleEnemysMovement(entita_p entity);
 	void handleFollower(entita_p entity);
-	void letFollowerMove(entita_p follower, Position playerPositionWithDelay);
-	void moveFollowerHorizontally(entita_p follower, Position playerPositionWithDelay, bool &stuck);
-	void moveFollowerVertically(entita_p follower, Position playerPositionWithDelay, bool &stuck);
-	bool isFollowerValidMove(char block);
+	void moveFollowerInPlayerDirection(entita_p follower, Position positionWithDelay);
 	void HandleBot(entita_p entity);
 	void IncrementCounters();
 	void eliminateMaxRangeBullet(entita_p Entity);

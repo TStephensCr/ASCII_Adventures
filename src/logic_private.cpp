@@ -95,60 +95,35 @@ void Logic::handleFollower(entita_p follower)
 		return;
 	}
 
-	Position playerPositionWithDelay = PlayerTrackingQueue.dequeue();
-
-	if (playerPositionWithDelay.checkValidPos())
+	Position positionWithDelay = PlayerTrackingQueue.dequeue();
+	if (positionWithDelay.checkValidPos())
 	{
-		letFollowerMove(follower, playerPositionWithDelay);
+		moveFollowerInPlayerDirection(follower, positionWithDelay);
 	}
-
 	PlayerTrackingQueue.enqueue(PlayerPointer->pos);
 }
 
-void Logic::letFollowerMove(entita_p follower, Position playerPositionWithDelay)
+void Logic::moveFollowerInPlayerDirection(entita_p follower, Position positionWithDelay)
 {
 	bool stuck = false;
-
-	if (follower->pos.x != playerPositionWithDelay.x)
+	if (follower->pos.x != positionWithDelay.x)
 	{
-		moveFollowerHorizontally(follower, playerPositionWithDelay, stuck);
-	}
-	moveFollowerVertically(follower, playerPositionWithDelay, stuck);
-}
+		int direction = (follower->pos.x > positionWithDelay.x) ? -1 : 1;
+		char nextBlock = mvwinch(curwin, follower->pos.y, follower->pos.x + direction);
 
-void Logic::moveFollowerHorizontally(entita_p follower, Position playerPositionWithDelay, bool &stuck)
-{
-
-	int direction = (follower->pos.x > playerPositionWithDelay.x) ? -1 : 1;
-	char nextBlock = mvwinch(curwin, follower->pos.y, follower->pos.x + direction);
-
-	if (isFollowerValidMove(nextBlock))
-	{
-		stuck = true;
-		return;
-	}
-	else
-	{
+		if (nextBlock != CHARACTER and nextBlock != SPACE and nextBlock != SHOOT)
+		{
+			follower->yForce = -1;
+			stuck = true;
+		}
 		follower->xForce = direction;
 	}
-}
-
-void Logic::moveFollowerVertically(entita_p follower, Position playerPositionWithDelay, bool &stuck)
-{
-	if (follower->pos.y > playerPositionWithDelay.y || stuck)
-	{
+	if (follower->pos.y > positionWithDelay.y)
 		follower->yForce = -1;
-	}
-	else
-	{
+	else if (follower->pos.y < positionWithDelay.y && !stuck)
 		follower->yForce = 1;
-	}
-	stuck = false;
-}
 
-bool Logic::isFollowerValidMove(char block)
-{
-	return block != CHARACTER && block != SPACE && block != SHOOT;
+	stuck = false;
 }
 
 void Logic::resetCounter_bot()
