@@ -153,12 +153,14 @@ void Entities::RemoveDeadEntities()
       {
         prevEntity->next = currentEntity->next;
         delete currentEntity;
+        currentEntity = NULL;
         currentEntity = prevEntity->next;
       }
       else
       {
         entities = currentEntity->next;
         delete currentEntity;
+        currentEntity = NULL;
         currentEntity = entities;
       }
     }
