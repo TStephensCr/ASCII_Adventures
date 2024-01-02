@@ -13,6 +13,9 @@ Game::Game()
     WINDOW *win = newwin(20, 102, yMax - 20, xMax - 51);
     nodelay(win, true);
 
+    init_pair(10, COLOR_WHITE, COLOR_BLACK);
+    wbkgd(win, COLOR_PAIR(10));
+
     logic = new Logic(win, menuwin);
 
     entitiesOBJ = logic->ReturnEntitiesOBJ();
