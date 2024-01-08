@@ -31,13 +31,13 @@ int Menu::finestraMenu()
 
   wrefresh(menuwin);
 
-  const char *opzioni[5] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI", "PROVA"};
+  const char *opzioni[4] = {"NUOVA PARTITA", "CARICA SALVATAGGIO", "NEGOZIO", "ESCI"};
   int highlight = 0;
   int scelta = 0;
   bool endWhile = false;
   while (!endWhile)
   {
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < 4; i++)
     {
       if (i == highlight)
       {
@@ -60,8 +60,8 @@ int Menu::finestraMenu()
       break;
     case KEY_DOWN:
       highlight++;
-      if (highlight == 5)
-        highlight = 4;
+      if (highlight == 4)
+        highlight = 3;
       break;
     default:
       break;

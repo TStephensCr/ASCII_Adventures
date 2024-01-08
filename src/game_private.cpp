@@ -83,7 +83,7 @@ void Game::initializeEntitiesForNewGame()
 
     logic->scrambleArray();
 
-    logic->InitMappa(1, 1, true);
+    logic->InitMappa(1, 0, true);
 
     logic->setNewGame(1, 1);
 }
