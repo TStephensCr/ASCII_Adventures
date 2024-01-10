@@ -15,7 +15,7 @@ clone locally with this command :
 
     https://github.com/TStephensCr/P.project2023.git
 
-If you don't have already done it, install Ncurses library with this comand:
+If you haven't already done it, install Ncurses library with this comand:
 
     sudo apt-get install libncurses5-dev libncursesw5-dev
 
