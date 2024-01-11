@@ -565,8 +565,9 @@ void Logic::decreaseMap() // finire da sistemare
 			mapCounter = NUM_OF_LAST_MAP;
 			curmap_ = mapArray[mapCounter - 1];
 			PlayerPointer->pos.Select(maxX - 3, Y_PLAYERSPAWN);
-		}
-		PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+		}else{ 
+		 PlayerPointer->pos.Select(X_PLAYERSPAWN, Y_PLAYERSPAWN);
+    }
 		PlayerTrackingQueue.clear();
 	}
 	else
