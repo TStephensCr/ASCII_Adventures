@@ -45,6 +45,7 @@ int Events::getmv()
 		break;
 	case KEY_DOWN:
 	case (int)'s':
+  case (int)'S':
 		Shoot(PlayerPointer, InfoPlayer->LastMovement);
 		break;
 	case ' ':

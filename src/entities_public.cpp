@@ -137,6 +137,7 @@ bool Entities::SameDir(entita_p Entity1, entita_p Entity2)
 
 void Entities::DeleteEntities()
 {
+  delete entities;
   entities = NULL;
 }
 
