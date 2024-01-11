@@ -123,8 +123,15 @@ void Negozio::eventiShop(int scelta)
 
         if (InfoPlayer->hp > 0)
         {
-            InfoPlayer->Money -= 3;
-            InfoPlayer->shield = 20;
+            if(InfoPlayer->shield == 0)
+            {
+                InfoPlayer->Money -= 3;
+                InfoPlayer->shield = 20;
+            }
+            else
+            {
+                mvwprintw(curwin, 11, 55, "%s", "Hai già uno scudo!");
+            }
         }
         else
         {
