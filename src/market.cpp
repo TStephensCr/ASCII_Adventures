@@ -130,7 +130,7 @@ void Negozio::eventiShop(int scelta)
             }
             else
             {
-                mvwprintw(curwin, 11, 55, "%s", "Hai già uno scudo!");
+                mvwprintw(curwin, 11, 65, "%s", "Hai già uno scudo!");
             }
         }
         else
